@@ -3,6 +3,7 @@
 import { Box, Flex, Text, IconButton, Button, Stack, Collapse, Icon, Popover, PopoverTrigger, PopoverContent,
          useColorModeValue, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons'
+import {Link} from "react-router-dom";
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure()
 
@@ -29,12 +30,14 @@ export default function WithSubnavigation() {
                         aria-label={'Toggle Navigation'}
                     />
                 </Flex>
-                <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+                <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} className="md:pl-28">
                     <Text
                         textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-                        fontFamily={'heading'}
-                        color={useColorModeValue('gray.800', 'white')}>
-                        Medicare
+                        fontFamily={'heading'} fontWeight={'bold'}
+                        color={useColorModeValue('green.600', 'white')}>
+                        <Link to="/">
+                            Medicare
+                        </Link>
                     </Text>
 
                     <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -47,8 +50,10 @@ export default function WithSubnavigation() {
                     justify={'flex-end'}
                     direction={'row'}
                     spacing={6}>
-                    <Button as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'} href={'#'}>
-                        Sign In
+                    <Button as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'}>
+                        <Link to="/login">
+                            Bejelentkezés
+                        </Link>
                     </Button>
                     <Button
                         as={'a'}
@@ -57,11 +62,12 @@ export default function WithSubnavigation() {
                         fontWeight={600}
                         color={'white'}
                         bg={'green.500'}
-                        href={'#'}
                         _hover={{
                             bg: 'green.400',
                         }}>
-                        Sign Up
+                        <Link to="/register">
+                            Regisztráció
+                        </Link>
                     </Button>
                 </Stack>
             </Flex>
@@ -216,56 +222,50 @@ const MobileNavItem = ({ label, children, href }) => {
 
 const NAV_ITEMS = [
     {
-        label: 'Szakterületeink',
+        label: 'Szolgáltatásaink',
         children: [
             {
-                label: 'Explore Design Work',
-                subLabel: 'Trending Design to inspire you',
+                label: 'Fogászat',
+                subLabel: 'Korszerű, modern fogászati eljárások',
                 href: '#',
             },
             {
-                label: 'New & Noteworthy',
-                subLabel: 'Up-and-coming Designers',
+                label: 'Laborvizsgálatok',
+                subLabel: 'Egy csepp vérből felállítható diagnózisok',
+                href: '#',
+            },
+            {
+                label: 'MR és CT vizsgálatok',
+                subLabel: 'Képalkotó vizsgálatok a legmodernebb készülékekkel',
+                href: '#',
+            },
+            {
+                label: 'Műtétek',
+                subLabel: 'Az ország legjobb műtős orvosainak kezében lesz',
+                href: '#',
+            },
+            {
+                label: 'Szülészet',
+                subLabel: 'Korszerű szülészeti ellátás és módszerek',
+                href: '#',
+            },
+            {
+                label: 'Szakrendelések',
+                subLabel: 'Tekintse meg szakrendeléseinket',
                 href: '#',
             },
         ],
     },
     {
-        label: 'Inspiration',
-        children: [
-            {
-                label: 'Explore Design Work',
-                subLabel: 'Trending Design to inspire you',
-                href: '#',
-            },
-            {
-                label: 'New & Noteworthy',
-                subLabel: 'Up-and-coming Designers',
-                href: '#',
-            },
-        ],
+        label: 'Árlista',
+        href: '#'
     },
     {
-        label: 'Find Work',
-        children: [
-            {
-                label: 'Job Board',
-                subLabel: 'Find your dream design job',
-                href: '#',
-            },
-            {
-                label: 'Freelance Projects',
-                subLabel: 'An exclusive list for contract work',
-                href: '#',
-            },
-        ],
+        label: 'Szolgáltató helyek',
+        href: '#'
     },
     {
-        label: 'Learn Design',
+        label: 'Rólunk',
         href: '#',
     },
-    {
-        label: 'Hire Designers',
-        href: '#',
-    },
-]
+];
