@@ -93,7 +93,6 @@ const DesktopNav = () => {
                             <Box
                                 as="a"
                                 p={2}
-                                href={navItem.href ?? '#'}
                                 fontSize={'sm'}
                                 fontWeight={700}
                                 color={linkColor}
@@ -101,7 +100,9 @@ const DesktopNav = () => {
                                     textDecoration: 'none',
                                     color: linkHoverColor,
                                 }}>
-                                {navItem.label}
+                                <Link to={navItem.href}>
+                                    {navItem.label}
+                                </Link>
                             </Box>
                         </PopoverTrigger>
 
@@ -258,14 +259,14 @@ const NAV_ITEMS = [
     },
     {
         label: 'Árlista',
-        href: '#'
+        href: '/prices'
     },
     {
         label: 'Szolgáltató helyek',
-        href: '#'
+        href: '/service-locations'
     },
     {
         label: 'Rólunk',
-        href: '#',
+        href: '/about',
     },
 ];
