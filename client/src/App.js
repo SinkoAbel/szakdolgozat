@@ -4,7 +4,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Navbar from "./components/Navbar";
 import Home from "./screens/Home/Home";
 import Register from "./screens/Register/Register";
-import Login from "./screens/Login/Client/Login";
+import ClientLogin from "./screens/Login/Client/ClientLogin";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
             <Routes>
                 <Route path="/" element={ <Home/> }/>
                 <Route path="/register" element={ <Register/> }/>
-                <Route path="/login" element={ <Login/> }/>
+                <Route path="/login" element={ <ClientLogin/> }/>
             </Routes>
         </BrowserRouter>
     </ChakraProvider>
