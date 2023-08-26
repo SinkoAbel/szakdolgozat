@@ -8,6 +8,7 @@ import ClientLogin from "./screens/Login/Client/ClientLogin";
 import About from "./screens/About/About";
 import Locations from "./screens/Locations/Locations";
 import AdminLogin from "./screens/Login/Admin/AdminLogin";
+import PriceList from "./screens/PriceList/PriceList";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/login" element={ <ClientLogin/> }/>
                 <Route path="/admin" element={ <AdminLogin/> }/>
                 <Route path="/about" element={ <About/> }/>
+                <Route path="/prices" element={ <PriceList/> }/>
                 <Route path="/service-locations" element={ <Locations/> }/>
             </Routes>
         </BrowserRouter>
