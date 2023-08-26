@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AdminLogin = () => {
+const About = () => {
     return (
         <div>
-            <p>Admin</p>
+            <p>About</p>
         </div>
     );
 };
 
-export default AdminLogin;
+export default About;
