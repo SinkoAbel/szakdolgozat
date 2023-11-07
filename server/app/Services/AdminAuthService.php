@@ -2,12 +2,14 @@
 
 namespace App\Services;
 
+use http\Env\Request;
+
 /**
- * Class AdminAuthController.
+ * Class AdminAuthService.
  */
-class AdminAuthController
+class AdminAuthService
 {
-    public function login()
+    public function login(Request $request)
     {
         //
     }
@@ -16,5 +18,4 @@ class AdminAuthController
     {
         //
     }
-
 }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\UserAuthService;
 use App\Services\UserService;
-use http\Env\Request;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 
@@ -28,14 +29,6 @@ class UserController extends Controller
     {
         $user = $this->userService->getUserByID($id);
         return response()->json($user, 200);
-    }
-
-    public function store(Request $request): JsonResponse
-    {
-        $validatedUser = $this->userAuthService->validateUserData($request);
-
-        $newUser = $this->userAuthService->register($validatedUser);
-        return response()->json($newUser, 201);
     }
 
     public function update(Request $request, int $id): JsonResponse
