@@ -14,10 +14,11 @@ class UserAuthService
 {
     public function register(array $userArray): User
     {
+        // TODO: modify these fields
         return User::create([
-            'name' => $userArray['name'],
+            /*'name' => $userArray['name'],
             'email' => $userArray['email'],
-            'password' => $userArray['password'],
+            'password' => $userArray['password'],*/
         ]);
     }
 
@@ -47,11 +48,12 @@ class UserAuthService
     public function validateUserData(Request $request): array | bool
     {
         try {
+            // TODO: modify these fields ASAP!
             return $request->validate([
-                'name' => 'required|unique:users|max:255',
+                /*'name' => 'required|unique:users|max:255',
                 'email' => 'required|email|unique:users|max:255',
                 'password' => 'required|max:255',
-                'confirm_password' => 'required|same:password'
+                'confirm_password' => 'required|same:password'*/
             ]);
         } catch (Exception $ex) {
             return false;

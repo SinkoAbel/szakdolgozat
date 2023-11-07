@@ -60,7 +60,7 @@ class UserService
      */
     public function deleteUser(int $id): bool
     {
-        $user = User::find($id);
+        $user = $this->user->find($id);
 
         if ($user == null) {
             return false;
