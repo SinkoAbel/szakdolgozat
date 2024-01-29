@@ -12,14 +12,9 @@ use Illuminate\Http\Request;
  */
 class UserAuthService
 {
-    public function register(array $userArray): User
+    public function registerUser(): User
     {
-        // TODO: modify these fields
-        return User::create([
-            /*'name' => $userArray['name'],
-            'email' => $userArray['email'],
-            'password' => $userArray['password'],*/
-        ]);
+        // TODO:
     }
 
     public function login(Request $loginRequest)
@@ -44,20 +39,4 @@ class UserAuthService
     {
         return $request->user()->currentAccessToken()->delete();
     }
-
-    public function validateUserData(Request $request): array | bool
-    {
-        try {
-            // TODO: modify these fields ASAP!
-            return $request->validate([
-                /*'name' => 'required|unique:users|max:255',
-                'email' => 'required|email|unique:users|max:255',
-                'password' => 'required|max:255',
-                'confirm_password' => 'required|same:password'*/
-            ]);
-        } catch (Exception $ex) {
-            return false;
-        }
-    }
-
 }

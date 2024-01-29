@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('bookable_reception_times', function (Blueprint $table) {
             $table->id();
-            $table->morphs('tokenable');
-            $table->string('username')->unique()->index();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('token', 64)->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('bookable_reception_times');
     }
 };

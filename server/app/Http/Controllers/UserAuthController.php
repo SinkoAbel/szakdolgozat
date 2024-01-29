@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\RegisterRequest;
 use App\Services\UserAuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class UserAuthController extends Controller
         $this->authService->logout($request);
     }
 
-     public function register(Request $request): JsonResponse
+     public function register(RegisterRequest $request): JsonResponse
     {
         $validatedUserData = $this->authService->validateUserData($request);
         if (!$validatedUserData) {

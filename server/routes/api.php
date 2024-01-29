@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
 //
 // ---------------------------- User auth routes -----------------------------
 Route::post('v1/auth/users/login', [UserAuthController::class, 'login']);
@@ -24,7 +23,7 @@ Route::post('v1/auth/users/logout', [UserAuthController::class, 'logout'])
     ->middleware(['auth:sanctum']);
 // ---------------------------------------------------------------------------
 
-// User interface routes
+// User UI routes
 // TODO: add auth for user routes
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
@@ -34,7 +33,7 @@ Route::post('v1/auth/users/logout', [UserAuthController::class, 'logout'])
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-// Doctor interface routes
+// Doctor UI routes
 // TODO: add auth for doctor routes
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------

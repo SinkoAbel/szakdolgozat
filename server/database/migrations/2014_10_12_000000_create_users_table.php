@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('birthplace');
             $table->date('birthday');
-            $table->string('healthcare_number')->unique();
+            $table->string('_number')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();

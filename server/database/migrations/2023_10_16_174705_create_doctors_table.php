@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
+            $table->morphs('tokenable');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('token', 64)->unique();
             $table->timestamps();
         });
     }
