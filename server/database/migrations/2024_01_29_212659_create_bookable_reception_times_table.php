@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('bookable_reception_times', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
+            $table->date('date');
+            $table->time('time');
+            $table->float('duration', 5, 2);
             $table->timestamps();
         });
     }

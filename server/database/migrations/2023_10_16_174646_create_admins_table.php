@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->morphs('tokenable');
-            $table->string('username')->unique()->index();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('token', 64)->unique();

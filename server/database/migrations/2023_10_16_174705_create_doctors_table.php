@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->morphs('tokenable');
-            $table->string('name');
+            $table->string('first_name', 60);
+            $table->string('last_name', 60);
             $table->string('email')->unique();
             $table->string('password');
             $table->string('token', 64)->unique();
