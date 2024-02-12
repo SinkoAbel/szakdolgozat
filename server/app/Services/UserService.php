@@ -2,56 +2,54 @@
 
 namespace App\Services;
 
-use App\Http\Requests\CreateUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 /**
  * Class UserService.
  */
-class UserService
+class UserService extends AbstractService
 {
-    protected string $model;
-
-    /**
-     * @param User $model
-     */
-    public function __construct(User $model)
+    public function __construct()
     {
-        $this->model = $model;
+        $this->setModel(User::class);
     }
 
     public function getAllUsers(): Collection
     {
-        return $this->model::all();
+        return $this->getCollection();
     }
 
-    public function getUser(User $user): User
+    public function getUser(User $user): Model
     {
-        return $this->model::find($user);
+        return $this->getRecord($user);
     }
 
-    public function createUser(CreateUserRequest $request): User
+    public function createUser(CreateUserRequest $request): Model
     {
         $newUserData = [
-
+            // TODO
         ];
 
-        return $this->model::create($newUserData);
+        return $this->createRecord($newUserData);
     }
 
-    public function updateUser(UpdateUserRequest $request, User $user): User
+    // TODO: here the abstract method can be a problem, 'cause what record are we updating?
+    public function updateUser(UpdateUserRequest $request, User $user): Model
     {
+        // TODO
         $foundUser = $this->model::find($user);
 
-        return $this->model::update($foundUser);
+        return $this->updateRecord($foundUser);
     }
 
     public function deleteUser(User $user): bool
     {
-        return $this->model::delete($user);
+        return $this->deleteRecord($user);
     }
 
     public function login(Request $loginRequest)

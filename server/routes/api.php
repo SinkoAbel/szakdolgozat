@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -24,3 +26,5 @@ Route::post('v1/auth/users/logout', [UserAuthController::class, 'logout'])
 // ---------------------------------------------------------------------------
 
 Route::apiResource('/users', UserController::class);
+Route::apiResource('/doctors', DoctorController::class);
+Route::apiResource('/admins', AdminController::class);
