@@ -6,7 +6,6 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 
@@ -19,6 +18,7 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
+    // TODO: create UserResource.php
     public function index(): JsonResponse
     {
         return response()->json(

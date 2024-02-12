@@ -17,7 +17,8 @@ class Doctor extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -29,7 +30,8 @@ class Doctor extends Model
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'created_at',
+        'updated_at'
     ];
 
     /**

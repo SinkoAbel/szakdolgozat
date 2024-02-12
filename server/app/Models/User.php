@@ -21,11 +21,16 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
-        'birthplace',
-        'birthday',
-        'healthcare_number',
         'email',
-        'password'
+        'birthday',
+        'birthplace',
+        'city',
+        'zip',
+        'street',
+        'house_number',
+        'insurance_number',
+        'phone',
+        'password',
     ];
 
     /**
@@ -37,7 +42,6 @@ class User extends Authenticatable
         'password',
         'created_at',
         'updated_at',
-        'email_verified_at'
     ];
 
     /**
