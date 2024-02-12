@@ -2,60 +2,67 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\UserAuthService;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\User;
 use App\Services\UserService;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 
 class UserController extends Controller
 {
-    private UserService $userService;
-    private UserAuthService $userAuthService;
-  
-    public function __construct(UserService $userService, UserAuthService $userAuthService)
+    protected UserService $userService;
+
+    public function __construct(UserService $userService)
     {
         $this->userService = $userService;
-        $this->userAuthService = $userAuthService;
     }
 
     public function index(): JsonResponse
     {
-        $users = $this->userService->getAllUsers();
-        return response()->json($users, 200);
+        return response()->json(
+            $this->userService->getAllUsers(),
+            200
+        );
     }
 
-    public function getUser(int $id): JsonResponse
+    public function show(User $user): JsonResponse
     {
-        $user = $this->userService->getUserByID($id);
-        return response()->json($user, 200);
+        return response()->json(
+            $this->userService->getUser($user),
+            200
+        );
     }
 
-    public function update(Request $request, int $id): JsonResponse
+    public function store(CreateUserRequest $request): JsonResponse
     {
-        $validatedUser = $this->userAuthService->validateUserData($request);
-
-        $updatedUser = $this->userService->modifyUser($validatedUser, $id);
-        return response()->json($updatedUser, 201);
+        return response()->json(
+            $this->userService->createUser($request),
+            201
+        );
     }
 
-    public function destroy(int $id): JsonResponse
+    public function update(UpdateUserRequest $request, User $user): JsonResponse
     {
-        $userDeleted = $this->userService->deleteUser($id);
+        return response()->json(
+            $this->userService->updateUser($request, $user),
+            201
+        );
+    }
+
+    public function destroy(User $user): JsonResponse
+    {
+        $userDeleted = $this->userService->deleteUser($user);
 
         if ($userDeleted) {
-            $data = [
+            return response()->json([
                 'message' => 'User deleted successfully.'
-            ];
-
-            return response()->json($data, 200);
+            ], 200);
         } else {
-            $data = [
-                'message' => 'User was not found'
-            ];
-
-            return response()->json($data, 404);
+            return response()->json([
+                'message' => 'Delete was not successful!'
+            ], 500);
         }
     }
 }

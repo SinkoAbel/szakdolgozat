@@ -2,71 +2,78 @@
 
 namespace App\Services;
 
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Exception;
-use http\Env\Request;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
 
 /**
  * Class UserService.
  */
 class UserService
 {
-    private User $user;
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
+    protected string $model;
 
     /**
-     * @return Collection of Users
+     * @param User $model
      */
+    public function __construct(User $model)
+    {
+        $this->model = $model;
+    }
+
     public function getAllUsers(): Collection
     {
-        return $this->user->all();
+        return $this->model::all();
     }
 
-    /**
-     * @param int $id
-     * @return User
-     */
-    public function getUserByID(int $id): User
+    public function getUser(User $user): User
     {
-        return $this->user->find($id);
+        return $this->model::find($user);
     }
 
-    /**
-     * @param Request $user
-     * @param int $id
-     * @return User
-     * @throws Exception
-     */
-    public function modifyUser(Request $user, int $id): User
+    public function createUser(CreateUserRequest $request): User
     {
-        $user = User::find($id);
+        $newUserData = [
 
-        if ($user == null) {
-            throw new Exception("User not found.");
+        ];
+
+        return $this->model::create($newUserData);
+    }
+
+    public function updateUser(UpdateUserRequest $request, User $user): User
+    {
+        $foundUser = $this->model::find($user);
+
+        return $this->model::update($foundUser);
+    }
+
+    public function deleteUser(User $user): bool
+    {
+        return $this->model::delete($user);
+    }
+
+    public function login(Request $loginRequest)
+    {
+        $isCredentialsCorrect = auth()->attempt([
+            'email' => $loginRequest->input('email'),
+            'password' => $loginRequest->input('password')
+        ]);
+
+        if (!$isCredentialsCorrect) {
+            return [
+                'status' => 401,
+                'errorMessage' => 'You\'re not authorized',
+            ];
         }
 
-        // 1. update user data
-        // 2. save user
-        // 3. return modified user
+        $token = auth()->user()->createToken('personal-token')->plainTextToken;
+        return ['token' => $token];
     }
 
-    /**
-     * @param int $id
-     * @return bool
-     */
-    public function deleteUser(int $id): bool
+    public function logout(Request $request)
     {
-        $user = $this->user->find($id);
-
-        if ($user == null) {
-            return false;
-        }
-
-        $user->delete();
-        return true;
+        return $request->user()->currentAccessToken()->delete();
     }
 }
