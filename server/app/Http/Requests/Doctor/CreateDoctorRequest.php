@@ -22,7 +22,10 @@ class CreateDoctorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => 'required|string|max:60|regex:^/[a-zA-Z]+',
+            'last_name' => 'required|string|max:60|regex:^/[a-zA-Z]+',
+            'email' => 'required|email|unique:doctors,email',
+            'password' => 'required|string'
         ];
     }
 }

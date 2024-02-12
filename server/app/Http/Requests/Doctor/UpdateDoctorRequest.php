@@ -4,7 +4,7 @@ namespace App\Http\Requests\Doctor;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateDoctorRequest extends FormRequest
+class UpdateDoctorRequest extends CreateDoctorRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,8 +21,6 @@ class UpdateDoctorRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return parent::rules();
     }
 }
