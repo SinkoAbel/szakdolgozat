@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateAdminRequest;
-use App\Http\Requests\UpdateAdminRequest;
+use App\Http\Requests\Admin\CreateAdminRequest;
+use App\Http\Requests\Admin\UpdateAdminRequest;
 use App\Models\Admin;
 use App\Services\AdminService;
 use Illuminate\Http\JsonResponse;
