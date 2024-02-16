@@ -42,20 +42,14 @@ class UserService extends AbstractService
 
     public function createUser(CreateUserRequest $request): Model
     {
-        $newUserData = [
-            // TODO
-        ];
+        $newUserData = $request->all();
 
         return $this->createRecord($newUserData);
     }
 
-    // TODO: here the abstract method can be a problem, 'cause what record are we updating?
     public function updateUser(UpdateUserRequest $request, User $user): Model
     {
-        // TODO
-        $foundUser = $this->model::find($user);
-
-        return $this->updateRecord($foundUser);
+        return $this->updateRecord($user, $request);
     }
 
     public function deleteUser(User $user): bool

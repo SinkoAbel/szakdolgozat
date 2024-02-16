@@ -20,6 +20,10 @@ class UpdateUserRequest extends CreateUserRequest
      */
     public function rules(): array
     {
-        return parent::rules();
+        return array_merge([
+                'id' => 'required|numeric|exists:users,id'
+            ],
+            parent::rules()
+        );
     }
 }

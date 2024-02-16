@@ -24,20 +24,24 @@ class CreateUserRequest extends FormRequest
     {
         $currentDate = Carbon::now();
 
+        $conditionalRequired = $this->method() == self::METHOD_POST ?
+                                    'required|' :
+                                    '';
+
         return [
-            'first_name'        => 'required|string|max:60|regex:^/[a-zA-Z]+',
-            'last_name'         => 'required|string|max:60|regex:^/[a-zA-Z]+',
-            'email'             => 'required|email|unique:users,email',
-            'birthday'          => 'required|date|min:'. $currentDate->subYears(100)->format('Y-m-d')
+            'first_name'        => $conditionalRequired .'string|max:60|regex:^/[a-zA-Z]+',
+            'last_name'         => $conditionalRequired .'string|max:60|regex:^/[a-zA-Z]+',
+            'email'             => $conditionalRequired .'email|unique:users,email',
+            'birthday'          => $conditionalRequired .'date|min:'. $currentDate->subYears(100)->format('Y-m-d')
                                     .'|max:'. $currentDate->format('Y-m-d'),
-            'birthplace'        => 'required|string|max:80|regex:^/[a-zA-Z]+',
-            'city'              => 'required|string|max:80|regex:^/[a-zA-Z]+',
-            'zip'               => 'required|string|max:10',
-            'street'            => 'required|string|max:50',
-            'house_number'      => 'required|string|max:10',
-            'insurance_number'  => 'required|string|max:15',
-            'phone'             => 'required|string|max:30',
-            'password'          => 'required|string|max:150'
+            'birthplace'        => $conditionalRequired .'string|max:80|regex:^/[a-zA-Z]+',
+            'city'              => $conditionalRequired .'string|max:80|regex:^/[a-zA-Z]+',
+            'zip'               => $conditionalRequired .'string|max:10',
+            'street'            => $conditionalRequired .'string|max:50',
+            'house_number'      => $conditionalRequired .'string|max:10',
+            'insurance_number'  => $conditionalRequired .'string|max:15',
+            'phone'             => $conditionalRequired .'string|max:30',
+            'password'          => $conditionalRequired .'string|max:150'
         ];
     }
 }

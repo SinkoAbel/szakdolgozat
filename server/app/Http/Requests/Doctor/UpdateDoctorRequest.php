@@ -21,6 +21,10 @@ class UpdateDoctorRequest extends CreateDoctorRequest
      */
     public function rules(): array
     {
-        return parent::rules();
+        return array_merge([
+                'id' => 'required|numeric|exists:doctors,id'
+            ],
+            parent::rules()
+        );
     }
 }

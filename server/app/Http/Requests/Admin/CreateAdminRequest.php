@@ -21,9 +21,11 @@ class CreateAdminRequest extends FormRequest
      */
     public function rules(): array
     {
+        $isRequired = $this->method() == self::METHOD_POST ? 'required|' : '';
+
         return [
-            'email' => 'required|email|unique:admins,email',
-            'password' => 'required|string'
+            'email'     => $isRequired . 'email|unique:admins,email',
+            'password'  => $isRequired . 'string'
         ];
     }
 }

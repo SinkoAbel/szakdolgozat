@@ -14,6 +14,12 @@ class BookableReceptionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'doctor' => $this->whenLoaded('doctors'),
+            'date' => $this->date->format('Y-m-d'),
+            'time' => $this->time,
+            'duration' => $this->duration,
+        ];
     }
 }

@@ -21,11 +21,13 @@ class CreateDoctorRequest extends FormRequest
      */
     public function rules(): array
     {
+        $isRequired = $this->method() == self::METHOD_POST ? 'required|' : '';
+
         return [
-            'first_name' => 'required|string|max:60|regex:^/[a-zA-Z]+',
-            'last_name' => 'required|string|max:60|regex:^/[a-zA-Z]+',
-            'email' => 'required|email|unique:doctors,email',
-            'password' => 'required|string'
+            'first_name'    => $isRequired . 'string|max:60|regex:^/[a-zA-Z]+',
+            'last_name'     => $isRequired . 'string|max:60|regex:^/[a-zA-Z]+',
+            'email'         => $isRequired . 'email|unique:doctors,email',
+            'password'      => $isRequired . 'string'
         ];
     }
 }

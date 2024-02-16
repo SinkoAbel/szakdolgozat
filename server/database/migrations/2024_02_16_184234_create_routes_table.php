@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
+            $table->string('route', 40);
+            $table->string('component', 40);
             $table->timestamps();
         });
     }

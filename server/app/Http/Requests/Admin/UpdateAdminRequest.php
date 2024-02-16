@@ -20,6 +20,10 @@ class UpdateAdminRequest extends CreateAdminRequest
      */
     public function rules(): array
     {
-        return parent::rules();
+        return array_merge([
+                'id' => 'required|numeric|exists:admins,id'
+            ],
+            parent::rules()
+        );
     }
 }

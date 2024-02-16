@@ -40,12 +40,14 @@ class AdminService extends AbstractService
 
     public function createAdmin(CreateAdminRequest $request): Model
     {
-        // TODO
+        $newUser = $request->all();
+
+        return $this->createRecord($newUser);
     }
 
     public function updateAdmin(UpdateAdminRequest $request, Admin $admin): Model
     {
-        // TODO
+        return $this->updateRecord($admin, $request);
     }
 
     public function deleteAdmin(Admin $admin): bool

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 /**
  * Class AbstractService.
@@ -43,14 +44,14 @@ abstract class AbstractService
         );
     }
 
-    protected function updateRecord(Model|array $updatedRecord): Model
+    protected function updateRecord(Model $model, Request $dataSet): Model
     {
         return new $this->resource(
-            $this->model::update($updatedRecord)
+            $model->update($dataSet->all())
         );
     }
 
-    protected function deleteRecord(Model|int $deletableRecord): bool
+    protected function deleteRecord(Model $deletableRecord): bool
     {
         return $this->model::delete($deletableRecord);
     }

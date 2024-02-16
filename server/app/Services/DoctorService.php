@@ -41,22 +41,14 @@ class DoctorService extends AbstractService
 
     public function createDoctor(CreateDoctorRequest $request): Model
     {
-        $newDoctor = [
-            // TODO
-        ];
+        $newDoctor = $request->all();
 
         return $this->createRecord($newDoctor);
     }
 
-    // TODO: here the abstract method can be a problem, 'cause what record are we updating?
     public function updateDoctor(UpdateDoctorRequest $request, Doctor $doctor): Model
     {
-        $foundDoctor = $this->getDoctor($doctor);
-        $modifiedData = [
-            // TODO
-        ];
-
-        return $this->updateRecord($modifiedData);
+        return $this->updateRecord($doctor, $request);
     }
 
     public function deleteDoctor(Doctor $doctor): bool
