@@ -7,7 +7,6 @@ use App\Http\Requests\Doctor\UpdateDoctorRequest;
 use App\Models\Doctor;
 use App\Services\DoctorService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {

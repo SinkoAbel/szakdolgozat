@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\Admin\CreateAdminRequest;
 use App\Http\Requests\Admin\UpdateAdminRequest;
+use App\Http\Resources\AdminResource;
 use App\Models\Admin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -13,11 +14,20 @@ use Illuminate\Support\Collection;
  */
 class AdminService extends AbstractService
 {
-    public function __construct()
+    protected function setModel(): string
     {
-        $this->setModel(Admin::class);
+        return Admin::class;
     }
 
+    protected function setResource(): string
+    {
+        return AdminResource::class;
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
     public function getAllAdmins(): Collection
     {
         return $this->getCollection();

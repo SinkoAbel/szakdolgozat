@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\Doctor\CreateDoctorRequest;
 use App\Http\Requests\Doctor\UpdateDoctorRequest;
+use App\Http\Resources\DoctorResource;
 use App\Models\Doctor;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -13,11 +14,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class DoctorService extends AbstractService
 {
-    protected string $model;
+    protected function setModel(): string
+    {
+        return Doctor::class;
+    }
+
+    protected function setResource(): string
+    {
+        return DoctorResource::class;
+    }
 
     public function __construct()
     {
-        $this->setModel(Doctor::class);
+        parent::__construct();
     }
 
     public function getEveryDoctor(): Collection

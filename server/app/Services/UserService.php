@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -14,9 +15,19 @@ use Illuminate\Http\Request;
  */
 class UserService extends AbstractService
 {
+    protected function setModel(): string
+    {
+        return User::class;
+    }
+
+    protected function setResource(): string
+    {
+        return UserResource::class;
+    }
+
     public function __construct()
     {
-        $this->setModel(User::class);
+        parent::__construct();
     }
 
     public function getAllUsers(): Collection

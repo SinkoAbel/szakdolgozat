@@ -11,30 +11,43 @@ use Illuminate\Database\Eloquent\Model;
 abstract class AbstractService
 {
     protected string $model;
+    protected string $resource;
 
-    protected function setModel(string $model): void
+    public function __construct()
     {
-        $this->model = $model;
+        $this->model = $this->setModel();
+        $this->resource = $this->setResource();
     }
+
+    protected abstract function setModel(): string;
+    protected abstract function setResource(): string;
 
     protected function getCollection(): Collection
     {
-        return $this->model::all();
+        return $this->resource::collection(
+            $this->model::all()
+        );
     }
 
     protected function getRecord(Model|int $record): Model
     {
-        return $this->model::find($record);
+        return new $this->resource(
+            $this->model::findOrFail($record)
+        );
     }
 
     protected function createRecord(array $newRecord): Model
     {
-        return $this->model::create($newRecord);
+        return new $this->resource(
+            $this->model::create($newRecord)
+        );
     }
 
     protected function updateRecord(Model|array $updatedRecord): Model
     {
-        return $this->model::update($updatedRecord);
+        return new $this->resource(
+            $this->model::update($updatedRecord)
+        );
     }
 
     protected function deleteRecord(Model|int $deletableRecord): bool
