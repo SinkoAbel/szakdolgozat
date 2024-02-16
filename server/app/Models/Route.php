@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Route extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'route',
+        'component'
+    ];
 }

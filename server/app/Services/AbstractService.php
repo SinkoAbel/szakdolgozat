@@ -5,6 +5,7 @@ namespace App\Services;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * Class AbstractService.
@@ -23,7 +24,7 @@ abstract class AbstractService
     protected abstract function setModel(): string;
     protected abstract function setResource(): string;
 
-    protected function getCollection(): Collection
+    protected function getCollection(): AnonymousResourceCollection
     {
         return $this->resource::collection(
             $this->model::all()

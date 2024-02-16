@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Http\Resources\RouteResource;
 use App\Models\Route;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * Class RouteService.
@@ -26,7 +26,7 @@ class RouteService extends AbstractService
         parent::__construct();
     }
 
-    public function getRoutes(): Collection
+    public function getRoutes(): AnonymousResourceCollection
     {
         return $this->getCollection();
     }
