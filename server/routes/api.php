@@ -19,11 +19,24 @@ use Illuminate\Support\Facades\Route;
 //
 
 Route::apiResource('/routes', RouteController::class)->only(['index']);
+// Register user is a public function
+Route::apiResource('/users/register', UserController::class)->only(['store']);
 
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::apiResource('/users', UserController::class);
-    Route::apiResource('/doctors', DoctorController::class);
-    Route::apiResource('/admins', AdminController::class);
+Route::group(['middleware' => ['auth:users']], function () {
+    Route::apiResource('/users', UserController::class)->only(['show', 'update', 'destroy']);
+});
 
+Route::group(['middleware' => ['auth:doctors']], function () {
+    Route::apiResource('/doctors', DoctorController::class)->only(['index', 'update']);
+});
 
+Route::group(['middleware' => ['auth:admins'], 'prefix' => 'admins'], function () {
+    Route::apiResource('/users', UserController::class)->only(['index', 'show', 'destroy']);
+
+    Route::prefix('doctors')->group(function () {
+        Route::apiResource('/', DoctorController::class)->only(['index', 'show', 'store', 'destroy']);
+        Route::apiResource('/register', DoctorController::class)->only(['store']);
+    });
+
+    Route::apiResource('/', AdminController::class);
 });

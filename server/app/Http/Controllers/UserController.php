@@ -18,7 +18,6 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    // TODO: create UserResource.php
     public function index(): JsonResponse
     {
         return response()->json(
