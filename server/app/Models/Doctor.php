@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Laravel\Sanctum\HasApiTokens;
@@ -41,4 +42,9 @@ class Doctor extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function bookable_reception_times(): HasMany
+    {
+        return $this->hasMany(BookableReceptionTimes::class);
+    }
 }
