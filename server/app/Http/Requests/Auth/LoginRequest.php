@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Auth;
 
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends CreateUserRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -20,10 +21,9 @@ class UpdateUserRequest extends CreateUserRequest
      */
     public function rules(): array
     {
-        return array_merge([
-                'id' => 'required|numeric|exists:users,id'
-            ],
-            parent::rules()
-        );
+        return [
+            'email' => 'required|email',
+            'password' => 'required|string|max:150'
+        ];
     }
 }

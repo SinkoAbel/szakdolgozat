@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('reserved_bookings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bookable_reception_times_id')->references('id')->on('bookable_reception_times')->onDelete('cascade');
-            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('patient_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

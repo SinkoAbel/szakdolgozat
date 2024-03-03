@@ -40,9 +40,15 @@ abstract class AbstractService
 
     protected function createRecord(array $newRecord): Model
     {
-        return new $this->resource(
-            $this->model::create($newRecord)
-        );
+        return $this->model::create($newRecord);
+    }
+
+    protected function createUserRecord(array $newRecord, string $role): Model
+    {
+        $user = $this->model::create($newRecord);
+        $user->assignRole($role);
+
+        return new $this->resource($user);
     }
 
     protected function updateRecord(Model $model, Request $dataSet): Model

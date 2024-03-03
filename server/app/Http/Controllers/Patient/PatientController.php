@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Patient;
 
-use App\Http\Requests\User\CreateUserRequest;
-use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Patient\CreatePatientRequest;
+use App\Http\Requests\Patient\UpdatePatientRequest;
 use App\Models\User;
-use App\Services\UserService;
+use App\Services\PatientService;
 use Illuminate\Http\JsonResponse;
 
 
-class UserController extends Controller
+class PatientController extends Controller
 {
-    protected UserService $userService;
-
-    public function __construct(UserService $userService)
+    public function __construct(protected PatientService $userService)
     {
-        $this->userService = $userService;
     }
 
     public function index(): JsonResponse
@@ -34,15 +32,15 @@ class UserController extends Controller
         );
     }
 
-    public function store(CreateUserRequest $request): JsonResponse
+    public function store(CreatePatientRequest $request): JsonResponse
     {
         return response()->json(
-            $this->userService->createUser($request),
+            $this->userService->registerUser($request),
             201
         );
     }
 
-    public function update(UpdateUserRequest $request, User $user): JsonResponse
+    public function update(UpdatePatientRequest $request, User $user): JsonResponse
     {
         return response()->json(
             $this->userService->updateUser($request, $user),

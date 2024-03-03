@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -20,17 +21,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'patient_detail_id',
         'first_name',
         'last_name',
         'email',
-        'birthday',
-        'birthplace',
-        'city',
-        'zip',
-        'street',
-        'house_number',
-        'insurance_number',
-        'phone',
         'password',
     ];
 
@@ -54,8 +48,26 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function reserved_bookings(): HasMany
+    public function patient_details(): HasOne|null
     {
-        return $this->hasMany(ReservedBookings::class);
+        return $this->hasRole('patient') ?
+            $this->hasOne(PatientDetail::class) :
+            null;
+    }
+
+    // Doctor roles
+    public function bookable_reception_times(): HasMany|null
+    {
+        return $this->hasRole('doctor') ?
+            $this->hasMany(BookableReceptionTimes::class) :
+            null;
+    }
+
+    // Patient roles
+    public function reserved_bookings(): HasMany|null
+    {
+        return $this->hasRole('patient') ?
+            $this->hasMany(ReservedBookings::class) :
+            null;
     }
 }

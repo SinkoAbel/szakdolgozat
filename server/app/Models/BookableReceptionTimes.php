@@ -12,7 +12,7 @@ class BookableReceptionTimes extends Model
     use HasFactory;
 
     protected $fillable = [
-        'doctor_id',
+        'doctor_user_id',
         'date',
         'time',
         'duration'
@@ -28,8 +28,9 @@ class BookableReceptionTimes extends Model
         return $this->hasOne(ReservedBookings::class);
     }
 
-    public function doctors(): BelongsTo
+    // Doctor User
+    public function doctor_users(): BelongsTo
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Patient;
 
-use Illuminate\Foundation\Http\FormRequest;
 
-class LoginUserRequest extends FormRequest
+class UpdatePatientRequest extends CreatePatientRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,9 +20,8 @@ class LoginUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'email' => 'required|email|max:60',
-            'password' => 'required|string|max:200'
-        ];
+        return array_merge(
+            parent::rules()
+        );
     }
 }

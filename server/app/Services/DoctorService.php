@@ -3,11 +3,13 @@
 namespace App\Services;
 
 use App\Http\Requests\Doctor\CreateDoctorRequest;
+use App\Http\Requests\Doctor\LoginDoctorRequest;
 use App\Http\Requests\Doctor\UpdateDoctorRequest;
 use App\Http\Resources\DoctorResource;
 use App\Models\Doctor;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class DoctorService.
@@ -54,5 +56,24 @@ class DoctorService extends AbstractService
     public function deleteDoctor(Doctor $doctor): bool
     {
         return $this->deleteRecord($doctor);
+    }
+
+    public function login(LoginDoctorRequest $request): array
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $user = $this->model::where('email', $credentials['email'])->first();
+            $token = $user->createToken('Doctor Token')->plainTextToken;
+
+            return [
+                'token' => $token
+            ];
+        }
+
+        return [
+            'status' => '401',
+            'message' => 'Wrong credentials!'
+        ];
     }
 }

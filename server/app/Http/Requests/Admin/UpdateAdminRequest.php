@@ -10,7 +10,7 @@ class UpdateAdminRequest extends CreateAdminRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**

@@ -11,7 +11,7 @@ class UpdateDoctorRequest extends CreateDoctorRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
