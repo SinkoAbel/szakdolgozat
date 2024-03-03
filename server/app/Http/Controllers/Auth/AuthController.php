@@ -4,22 +4,30 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Services\AdminService;
-use App\Services\DoctorService;
-use App\Services\PatientService;
+use App\Services\AuthService;
+use Illuminate\Http\Client\Request;
+use Illuminate\Http\JsonResponse;
 
 class AuthController extends Controller
 {
-    public function __construct(
-        protected PatientService $userService,
-        protected DoctorService  $doctorService,
-        protected AdminService   $adminService
-    )
+    public function __construct(protected AuthService $service)
     {
     }
 
-    public function login(LoginRequest $request)
+    public function index(LoginRequest $request): JsonResponse
     {
-        // TODO: implement login for all roles
+        return response()->json(
+            $this->service->login($request),
+            200
+        );
+    }
+
+    public function destroy(Request $request): JsonResponse
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'message' => 'Token revoked.'
+        ], 200);
     }
 }

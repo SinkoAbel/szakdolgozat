@@ -2,14 +2,11 @@
 
 namespace App\Services;
 
-use App\Http\Requests\Admin\CreateAdminRequest;
-use App\Http\Requests\Admin\LoginAdminRequest;
-use App\Http\Requests\Admin\UpdateAdminRequest;
-use App\Http\Resources\AdminResource;
-use App\Models\Admin;
+use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * Class AdminService.
@@ -18,61 +15,35 @@ class AdminService extends AbstractService
 {
     protected function setModel(): string
     {
-        return Admin::class;
+        return User::class;
     }
 
     protected function setResource(): string
     {
-        return AdminResource::class;
+        return UserResource::class;
     }
 
     public function __construct()
     {
         parent::__construct();
     }
-    public function getAllAdmins(): Collection
+    public function getAllAdmins(): AnonymousResourceCollection
     {
         return $this->getCollection();
     }
 
-    public function getAdmin(Admin $admin): Model
+    public function getAdmin(User $admin): Model
     {
         return $this->getRecord($admin);
     }
 
-    public function createAdmin(CreateAdminRequest $request): Model
-    {
-        $newUser = $request->all();
-
-        return $this->createRecord($newUser);
-    }
-
-    public function updateAdmin(UpdateAdminRequest $request, Admin $admin): Model
+    public function updateAdmin(UserRequest $request, User $admin): Model
     {
         return $this->updateRecord($admin, $request);
     }
 
-    public function deleteAdmin(Admin $admin): bool
+    public function deleteAdmin(User $admin): bool
     {
         return $this->deleteRecord($admin);
-    }
-
-    public function login(LoginAdminRequest $request): array
-    {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            $user = $this->model::where('email', $credentials['email'])->first();
-            $token = $user->createToken('Admin Token')->plainTextToken;
-
-            return [
-                'token' => $token
-            ];
-        }
-
-        return [
-            'status' => '401',
-            'message' => 'Wrong credentials!'
-        ];
     }
 }

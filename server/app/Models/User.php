@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Enums\UserRolesEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -50,7 +51,7 @@ class User extends Authenticatable
 
     public function patient_details(): HasOne|null
     {
-        return $this->hasRole('patient') ?
+        return $this->hasRole(UserRolesEnum::PATIENT) ?
             $this->hasOne(PatientDetail::class) :
             null;
     }
@@ -58,7 +59,7 @@ class User extends Authenticatable
     // Doctor roles
     public function bookable_reception_times(): HasMany|null
     {
-        return $this->hasRole('doctor') ?
+        return $this->hasRole(UserRolesEnum::DOCTOR) ?
             $this->hasMany(BookableReceptionTimes::class) :
             null;
     }
@@ -66,7 +67,7 @@ class User extends Authenticatable
     // Patient roles
     public function reserved_bookings(): HasMany|null
     {
-        return $this->hasRole('patient') ?
+        return $this->hasRole(UserRolesEnum::PATIENT) ?
             $this->hasMany(ReservedBookings::class) :
             null;
     }

@@ -16,19 +16,10 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'patient_detail' => $this->whenLoaded('patient_details'),
+            'patient_detail' => $this->whenLoaded('patient_details') ?? null,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,
-            'birthday' => $this->birthday,
-            'birthplace' => $this->birthplace,
-            'city' => $this->city,
-            'zip' => $this->zip,
-            'street' => $this->street,
-            'house_number' => $this->house_number,
-            'insurance_number' => $this->insurance_number,
-            'phone' => $this->phone,
-            'remember_token' => $this->token,
         ];
     }
 }

@@ -3,60 +3,57 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Doctor\CreateDoctorRequest;
-use App\Http\Requests\Doctor\UpdateDoctorRequest;
-use App\Models\Doctor;
+use App\Http\Requests\Doctor\DoctorRequest;
+use App\Models\User;
+use App\Services\AuthService;
 use App\Services\DoctorService;
 use Illuminate\Http\JsonResponse;
 
 class DoctorController extends Controller
 {
-    protected DoctorService $service;
-
     /**
      * @param DoctorService $service
      */
-    public function __construct(DoctorService $service)
+    public function __construct(protected DoctorService $doctorService, protected  AuthService $authService)
     {
-        $this->service = $service;
     }
 
     public function index(): JsonResponse
     {
         return response()->json(
-            $this->service->getEveryDoctor(),
+            $this->doctorService->getEveryDoctor(),
             200
         );
     }
 
-    public function show(Doctor $doctor): JsonResponse
+    public function show(User $doctor): JsonResponse
     {
         return response()->json(
-            $this->service->getDoctor($doctor),
+            $this->doctorService->getDoctor($doctor),
             200
         );
     }
 
-    public function store(CreateDoctorRequest $request): JsonResponse
+    public function store(DoctorRequest $request): JsonResponse
     {
         return response()->json(
-            $this->service->createDoctor($request),
+            $this->authService->register($request),
             201
         );
     }
 
-    public function update(UpdateDoctorRequest $request, Doctor $doctor): JsonResponse
+    public function update(DoctorRequest $request, User $doctor): JsonResponse
     {
         return response()->json(
-            $this->service->updateDoctor($request, $doctor),
+            $this->doctorService->updateDoctor($request, $doctor),
             201
         );
     }
 
-    public function destroy(Doctor $doctor): JsonResponse
+    public function destroy(User $doctor): JsonResponse
     {
         return response()->json(
-            $this->service->deleteDoctor($doctor),
+            $this->doctorService->deleteDoctor($doctor),
             200
         );
     }

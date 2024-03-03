@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Doctor;
+namespace App\Http\Requests\Admin;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\UserRequest;
 
-class UpdateDoctorRequest extends CreateDoctorRequest
+class AdminRequest extends UserRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,10 +21,6 @@ class UpdateDoctorRequest extends CreateDoctorRequest
      */
     public function rules(): array
     {
-        return array_merge([
-                'id' => 'required|numeric|exists:doctors,id'
-            ],
-            parent::rules()
-        );
+        return parent::rules();
     }
 }

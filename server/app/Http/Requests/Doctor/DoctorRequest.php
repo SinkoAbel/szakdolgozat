@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Doctor;
 
+use App\Http\Requests\UserRequest;
 
-class UpdateAdminRequest extends CreateAdminRequest
+class DoctorRequest extends UserRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,10 +21,6 @@ class UpdateAdminRequest extends CreateAdminRequest
      */
     public function rules(): array
     {
-        return array_merge([
-                'id' => 'required|numeric|exists:admins,id'
-            ],
-            parent::rules()
-        );
+        return parent::rules();
     }
 }

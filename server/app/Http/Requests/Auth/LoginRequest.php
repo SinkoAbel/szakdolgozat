@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LoginRequest extends FormRequest
 {
@@ -22,8 +23,16 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required|string|max:150'
+            'email' => ['required', 'email'],
+            'password' => [
+                'required',
+                'string',
+                'max:150',
+            ],
+            'tokenType' => [
+                'required',
+                Rule::in(['Patient-Token', 'Doctor-Token', 'Admin-Token'])
+            ]
         ];
     }
 }

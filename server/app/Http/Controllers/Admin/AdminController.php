@@ -3,54 +3,54 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CreateAdminRequest;
-use App\Http\Requests\Admin\UpdateAdminRequest;
-use App\Models\Admin;
+use App\Http\Requests\Admin\AdminRequest;
+use App\Models\User;
 use App\Services\AdminService;
+use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 
 class AdminController extends Controller
 {
-    public function __construct(protected AdminService $service)
+    public function __construct(protected AdminService $adminService, protected AuthService $authService)
     {
     }
 
     public function index(): JsonResponse
     {
         return response()->json(
-            $this->service->getAllAdmins(),
+            $this->adminService->getAllAdmins(),
             200
         );
     }
 
-    public function show(Admin $admin): JsonResponse
+    public function show(User $admin): JsonResponse
     {
         return response()->json(
-            $this->service->getAdmin($admin),
+            $this->adminService->getAdmin($admin),
             200
         );
     }
 
-    public function store(CreateAdminRequest $request): JsonResponse
+    public function store(AdminRequest $request): JsonResponse
     {
         return response()->json(
-            $this->service->createAdmin($request),
+            $this->authService->register($request),
             201
         );
     }
 
-    public function update(UpdateAdminRequest $request, Admin $admin): JsonResponse
+    public function update(AdminRequest $request, User $admin): JsonResponse
     {
         return response()->json(
-            $this->service->updateAdmin($request, $admin),
+            $this->adminService->updateAdmin($request, $admin),
             201
         );
     }
 
-    public function destroy(Admin $admin): JsonResponse
+    public function destroy(User $admin): JsonResponse
     {
         return response()->json(
-            $this->service->deleteAdmin($admin),
+            $this->adminService->deleteAdmin($admin),
             200
         );
     }

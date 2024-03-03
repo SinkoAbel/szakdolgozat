@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Http\Enums\UserRolesEnum;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -17,29 +18,29 @@ class RoleSeeder extends Seeder
 
         // WEB Guard
         Role::create([
-            'name' => 'patient',
+            'name' => UserRolesEnum::PATIENT,
             'guard_name' => 'web',
         ]);
         Role::create([
-            'name' => 'doctor',
+            'name' => UserRolesEnum::DOCTOR,
             'guard_name' => 'web',
         ]);
         Role::create([
-            'name' => 'admin',
+            'name' => UserRolesEnum::ADMIN,
             'guard_name' => 'web',
         ]);
 
         // API guard
         Role::create([
-            'name' => 'patient',
+            'name' => UserRolesEnum::PATIENT,
             'guard_name' => 'api',
         ]);
         Role::create([
-            'name' => 'doctor',
+            'name' => UserRolesEnum::DOCTOR,
             'guard_name' => 'api',
         ]);
         Role::create([
-            'name' => 'admin',
+            'name' => UserRolesEnum::ADMIN,
             'guard_name' => 'api',
         ]);
     }
