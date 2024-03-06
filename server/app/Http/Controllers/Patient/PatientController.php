@@ -24,10 +24,10 @@ class PatientController extends Controller
         );
     }
 
-    public function show(User $user): JsonResponse
+    public function show(User $patient): JsonResponse
     {
         return response()->json(
-            $this->userService->getPatient($user),
+            $this->userService->getPatient($patient),
             200
         );
     }
@@ -40,17 +40,17 @@ class PatientController extends Controller
         );
     }
 
-    public function update(PatientRequest $request, User $user): JsonResponse
+    public function update(PatientRequest $request, User $patient): JsonResponse
     {
         return response()->json(
-            $this->userService->updatePatient($request, $user),
+            $this->userService->updatePatient($request, $patient),
             201
         );
     }
 
-    public function destroy(User $user): JsonResponse
+    public function destroy(User $patient): JsonResponse
     {
-        $userDeleted = $this->userService->deletePatient($user);
+        $userDeleted = $this->userService->deletePatient($patient);
 
         if ($userDeleted) {
             return response()->json([

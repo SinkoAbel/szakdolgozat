@@ -37,14 +37,29 @@ class PatientService extends AbstractService
         return $this->getCollection();
     }
 
-    public function getPatient(User $user): UserResource
+    public function getPatient(User $patient): UserResource
     {
-        return $this->getRecord($user);
+        return $this->getRecord($patient);
     }
 
-    public function updatePatient(PatientRequest $request, User $user): UserResource
-    {
-        return $this->updateRecord($user, $request);
+    public function updatePatient(PatientRequest $request, User $patient): UserResource
+    {   
+        PatientDetail::where('insurance_number', $request->insurance_number)
+            ->update([
+                'city' => $request->city,
+                'zip' => $request->zip,
+                'street' => $request->street,
+                'house_number' => $request->house_number,
+                'phone' => $request->phone,
+            ]);
+
+        
+        $userData = [
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        return $this->updateRecord($patient, $userData);
     }
 
     public function deletePatient(User $user): bool

@@ -6,6 +6,7 @@ use App\Http\Resources\UserResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class AbstractService.
@@ -31,10 +32,18 @@ abstract class AbstractService
         );
     }
 
-    protected function getRecord(Model|int $record): UserResource
+    protected function getRecord(Model|int $record): JsonResource
     {
+        $foundRecord = null;
+
+        if (is_int($record)) {
+            $foundRecord = $this->model::findOrFail($record);
+        }
+
         return new $this->resource(
-            $this->model::findOrFail($record)
+            is_int($record) ?
+                $foundRecord :
+                $record
         );
     }
 
@@ -43,7 +52,7 @@ abstract class AbstractService
         return $this->model::create($newRecord);
     }
 
-    protected function createUserRecord(array $newRecord, string $role): UserResource
+    protected function createUserRecord(array $newRecord, string $role): JsonResource
     {
         $user = $this->model::create($newRecord);
         $user->assignRole($role);
@@ -51,15 +60,15 @@ abstract class AbstractService
         return new $this->resource($user);
     }
 
-    protected function updateRecord(Model $model, Request $dataSet): UserResource
+    protected function updateRecord(Model $model, array $dataSet): JsonResource
     {
-        return new $this->resource(
-            $model->update($dataSet->all())
-        );
+        $model->update($dataSet);
+
+        return new $this->resource($model);
     }
 
     protected function deleteRecord(Model $deletableRecord): bool
     {
-        return $this->model::delete($deletableRecord);
+        return $deletableRecord->delete();
     }
 }

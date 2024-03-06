@@ -25,7 +25,7 @@ class UserRequest extends AbstractRequest
         return [
             'first_name'        => [$this->isRequired(), 'string', 'max:60', 'regex:/^[a-zA-Z]+/'],
             'last_name'         => [$this->isRequired(), 'string', 'max:60', 'regex:/^[a-zA-Z]+/'],
-            'email'             => [$this->isRequired(), 'email', 'unique:users,email'],
+            'email'             => [$this->isRequired(), 'email', $this->uniqueOnPost('users', 'email')],
             'password'          => [$this->isRequired(), 'string', 'max:150'],
             'role'              => [
                 $this->isRequired(),
@@ -52,5 +52,12 @@ class UserRequest extends AbstractRequest
             'password'=> $this->password ?? null,
             'role'=> $this->role ?? null,
         ];
+    }
+
+    protected function uniqueOnPost(string $table, string $field): string
+    {
+        return $this->method() == self::METHOD_POST ?
+                    'unique:'.$table.','.$field :
+                    '';
     }
 }

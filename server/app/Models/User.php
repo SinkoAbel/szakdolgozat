@@ -50,7 +50,9 @@ class User extends Authenticatable
 
     public function patient_details(): HasOne
     {
-        return $this->hasOne(PatientDetail::class);
+        return $this->hasRole(UserRolesEnum::PATIENT->value) ? 
+            $this->hasOne(PatientDetail::class) :
+            null;
     }
 
     // Doctor roles

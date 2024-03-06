@@ -33,12 +33,12 @@ class DoctorService extends AbstractService
         return $this->getCollection();
     }
 
-    public function getDoctor(User $doctor): Model
+    public function getDoctor(User $doctor): UserResource
     {
         return $this->getRecord($doctor);
     }
 
-    public function updateDoctor(DoctorRequest $request, User $doctor): Model
+    public function updateDoctor(DoctorRequest $request, User $doctor): UserResource
     {
         return $this->updateRecord($doctor, $request);
     }
