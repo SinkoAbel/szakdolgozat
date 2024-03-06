@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -30,7 +31,7 @@ abstract class AbstractService
         );
     }
 
-    protected function getRecord(Model|int $record): Model
+    protected function getRecord(Model|int $record): UserResource
     {
         return new $this->resource(
             $this->model::findOrFail($record)
@@ -42,7 +43,7 @@ abstract class AbstractService
         return $this->model::create($newRecord);
     }
 
-    protected function createUserRecord(array $newRecord, string $role): Model
+    protected function createUserRecord(array $newRecord, string $role): UserResource
     {
         $user = $this->model::create($newRecord);
         $user->assignRole($role);
@@ -50,7 +51,7 @@ abstract class AbstractService
         return new $this->resource($user);
     }
 
-    protected function updateRecord(Model $model, Request $dataSet): Model
+    protected function updateRecord(Model $model, Request $dataSet): UserResource
     {
         return new $this->resource(
             $model->update($dataSet->all())

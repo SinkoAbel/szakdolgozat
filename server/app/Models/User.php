@@ -22,7 +22,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'patient_detail_id',
         'first_name',
         'last_name',
         'email',
@@ -49,17 +48,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function patient_details(): HasOne|null
+    public function patient_details(): HasOne
     {
-        return $this->hasRole(UserRolesEnum::PATIENT) ?
-            $this->hasOne(PatientDetail::class) :
-            null;
+        return $this->hasOne(PatientDetail::class);
     }
 
     // Doctor roles
     public function bookable_reception_times(): HasMany|null
     {
-        return $this->hasRole(UserRolesEnum::DOCTOR) ?
+        return $this->hasRole(UserRolesEnum::DOCTOR->value) ?
             $this->hasMany(BookableReceptionTimes::class) :
             null;
     }
@@ -67,7 +64,7 @@ class User extends Authenticatable
     // Patient roles
     public function reserved_bookings(): HasMany|null
     {
-        return $this->hasRole(UserRolesEnum::PATIENT) ?
+        return $this->hasRole(UserRolesEnum::PATIENT->value) ?
             $this->hasMany(ReservedBookings::class) :
             null;
     }

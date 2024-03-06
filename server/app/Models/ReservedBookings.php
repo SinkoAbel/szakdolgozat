@@ -12,10 +12,15 @@ class ReservedBookings extends Model
 
     protected $fillable = [
         'bookable_reception_times_id',
-        'user_id'
+        'patient_user_id',
     ];
 
-    public function users(): BelongsTo
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
+    public function patient_users(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

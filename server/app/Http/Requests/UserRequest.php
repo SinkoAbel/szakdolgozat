@@ -3,10 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Http\Enums\UserRolesEnum;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UserRequest extends FormRequest
+class UserRequest extends AbstractRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,15 +32,25 @@ class UserRequest extends FormRequest
                 Rule::in([
                     UserRolesEnum::PATIENT,
                     UserRolesEnum::DOCTOR,
-                    UserRolesEnum::ADMIN],
-                )],
+                    UserRolesEnum::ADMIN,
+                ])
+            ],
         ];
     }
 
-    protected function isRequired(): string
+    /**
+     * Returns the parameters from the request.
+     * 
+     * @return array<string, string|null>
+     */
+    public function getParams(): array
     {
-        return $this->method() == self::METHOD_POST ?
-            'required' :
-            '';
+        return [
+            'first_name' => $this->first_name ?? null,
+            'last_name' => $this->last_name ?? null,
+            'email' => $this->email ?? null,
+            'password'=> $this->password ?? null,
+            'role'=> $this->role ?? null,
+        ];
     }
 }

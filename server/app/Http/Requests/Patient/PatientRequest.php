@@ -35,4 +35,21 @@ class PatientRequest extends UserRequest
             'phone'             => [$this->isRequired(), 'string', 'max:30'],
         ]);
     }
+
+    public function getParams(): array
+    {
+        return array_merge(
+            parent::getParams(),
+            [
+                'birthday' => $this->birthday ?? null,
+                'birthplace' => $this->birthplace ?? null,
+                'city' => $this->city ?? null,
+                'zip' => $this->zip ?? null,
+                'street' => $this->street ?? null,
+                'house_number' => $this->house_number ?? null,
+                'insurance_number' => $this->insurance_number ?? null,
+                'phone' => $this->phone ?? null,
+            ]
+        );
+    }
 }

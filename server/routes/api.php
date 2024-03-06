@@ -51,6 +51,7 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::apiResource('/patient/register', PatientController::class)->only(['store']);
+Route::apiResource('/patients', PatientController::class)->only(['index', 'destroy']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/routes', RouteController::class)->only(['index']);
@@ -67,7 +68,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['middleware' => ['role:admin']], function () {
         Route::apiResource('/admins', AdminController::class);
         Route::apiResource('/doctors', DoctorController::class)->only(['index', 'store', 'destroy']);
-        Route::apiResource('/patients', PatientController::class)->only(['index', 'destroy']);
+        //Route::apiResource('/patients', PatientController::class)->only(['index', 'destroy']);
     });
 
     Route::group(['middleware' => ['role:doctor']], function () {

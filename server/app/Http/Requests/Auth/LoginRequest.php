@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Auth;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\AbstractRequest;
 use Illuminate\Validation\Rule;
 
-class LoginRequest extends FormRequest
+class LoginRequest extends AbstractRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -33,6 +33,20 @@ class LoginRequest extends FormRequest
                 'required',
                 Rule::in(['Patient-Token', 'Doctor-Token', 'Admin-Token'])
             ]
+        ];
+    }
+
+    /**
+     * Get the params from the request.
+     *  
+     * @return array<string, string>
+     */
+    public function getParams(): array
+    {
+        return [
+            'email'=> $this->email,
+            'password'=> $this->password,
+            'tokenType' => $this->tokenType,
         ];
     }
 }

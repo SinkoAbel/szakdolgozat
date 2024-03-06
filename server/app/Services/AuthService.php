@@ -8,7 +8,6 @@ use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\PatientDetail;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,12 +26,22 @@ class AuthService extends AbstractService
         return UserResource::class;
     }
 
-    public function register(UserRequest $request): Model
+    public function register(UserRequest $request): UserResource
     {
         $role = $request->role;
 
-        if ($role == UserRolesEnum::PATIENT) {
-            $patientDetail = PatientDetail::create([
+        $userData = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ];
+
+        $user = $this->createUserRecord($userData, $role);
+
+        if (strtolower($role) == UserRolesEnum::PATIENT->value) {
+            PatientDetail::create([
+                'user_id' => $user->id,
                 'birthday' => $request->birthday,
                 'birthplace' => $request->birthplace,
                 'city' => $request->city,
@@ -44,15 +53,7 @@ class AuthService extends AbstractService
             ]);
         }
 
-        $userData = [
-            'patient_detail_id' => $patientDetail->id ?? null,
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'password' => $request->password,
-        ];
-
-        return $this->createUserRecord($userData, $role);
+        return $user;
     }
 
     public function login(LoginRequest $loginRequest): string|array
