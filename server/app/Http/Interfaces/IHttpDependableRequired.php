@@ -4,5 +4,5 @@ namespace App\Http\Interfaces;
 
 interface IHttpDependableRequired
  {
-    public function isRequired(): string;
+    public function isRequired(array $methods): string;
  }

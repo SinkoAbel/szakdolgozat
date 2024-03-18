@@ -16,6 +16,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    public static array $ROLES = [
+        UserRolesEnum::PATIENT,
+        UserRolesEnum::DOCTOR,
+        UserRolesEnum::ADMIN
+    ];
+
     public static array $TOKEN_TYPE = [
         'Patient-Token',
         'Doctor-Token',

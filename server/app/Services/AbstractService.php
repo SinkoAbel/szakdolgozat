@@ -16,6 +16,7 @@ abstract class AbstractService
     protected string $model;
     protected string $resource;
 
+
     public function __construct()
     {
         $this->model = $this->setModel();
@@ -52,12 +53,12 @@ abstract class AbstractService
         return $this->model::create($newRecord);
     }
 
-    protected function createUserRecord(array $newRecord, string $role): JsonResource
+    protected function createUserRecord(array $newRecord, string $role): Model
     {
         $user = $this->model::create($newRecord);
         $user->assignRole($role);
 
-        return new $this->resource($user);
+        return $user;
     }
 
     protected function updateRecord(Model $model, array $dataSet): JsonResource

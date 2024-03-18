@@ -22,14 +22,22 @@ abstract class AbstractRequest extends FormRequest implements IHttpDependableReq
 
     /**
      * If the HTTP method is POST it makes the field required.
-     * Otherwise it's optional.
-     * 
+     * Otherwise, it's optional.
+     *
+     * @param array $methods
      * @return string
      */
-    public function isRequired(): string
+    public function isRequired(array $methods): string
     {
-        return $this->method() == self::METHOD_POST ?
+        return in_array($this->method(), $methods) ?
         'required' :
         'nullable';
+    }
+
+    public function isUnique(string $table, string $field, array $methods): string
+    {
+        return in_array($this->method(), $methods) ?
+            "unique:$table,$field" :
+            "";
     }
 }

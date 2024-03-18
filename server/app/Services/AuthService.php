@@ -27,6 +27,18 @@ class AuthService extends AbstractService
         return UserResource::class;
     }
 
+    protected array $eagerLoad = [];
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->eagerLoad = [
+            'patient_details' => function ($query) {
+                $query->select('*');
+            }
+        ];
+    }
+
     public function register(UserRequest $request): JsonResource
     {
         $role = $request->role;
@@ -52,9 +64,11 @@ class AuthService extends AbstractService
                 'insurance_number' => $request->insurance_number,
                 'phone' => $request->phone,
             ]);
+
+            $user->load('patient_details');
         }
 
-        return $user;
+        return new $this->resource($user);
     }
 
     public function login(LoginRequest $loginRequest): string|array

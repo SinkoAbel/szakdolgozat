@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Enums\UserRolesEnum;
+use App\Models\User;
 use Illuminate\Validation\Rule;
 
 class UserRequest extends AbstractRequest
@@ -23,17 +23,28 @@ class UserRequest extends AbstractRequest
     public function rules(): array
     {
         return [
-            'first_name'        => [$this->isRequired(), 'string', 'max:60', 'regex:/^[a-zA-Z]+/'],
-            'last_name'         => [$this->isRequired(), 'string', 'max:60', 'regex:/^[a-zA-Z]+/'],
-            'email'             => [$this->isRequired(), 'email', $this->uniqueOnPost('users', 'email')],
-            'password'          => [$this->isRequired(), 'string', 'max:150'],
-            'role'              => [
-                $this->isRequired(),
-                Rule::in([
-                    UserRolesEnum::PATIENT,
-                    UserRolesEnum::DOCTOR,
-                    UserRolesEnum::ADMIN,
-                ])
+            'first_name' => [
+                $this->isRequired([self::METHOD_POST]),
+                'string',
+                'max:60'
+            ],
+            'last_name' => [
+                $this->isRequired([self::METHOD_POST]),
+                'string',
+                'max:60'
+            ],
+            'email'             => [
+                $this->isRequired([self::METHOD_POST]),
+                'email',
+                $this->isUnique('users', 'email', [self::METHOD_POST, self::METHOD_PUT])],
+            'password' => [
+                $this->isRequired([self::METHOD_POST]),
+                'string',
+                'max:150'
+            ],
+            'role' => [
+                $this->isRequired([self::METHOD_POST]),
+                Rule::in(User::$ROLES)
             ],
         ];
     }
@@ -52,12 +63,5 @@ class UserRequest extends AbstractRequest
             'password'=> $this->password ?? null,
             'role'=> $this->role ?? null,
         ];
-    }
-
-    protected function uniqueOnPost(string $table, string $field): string
-    {
-        return $this->method() == self::METHOD_POST ?
-                    "unique:$table,$field" :
-                    "";
     }
 }
