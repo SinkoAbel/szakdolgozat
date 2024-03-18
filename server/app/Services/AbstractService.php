@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Resources\UserResource;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 

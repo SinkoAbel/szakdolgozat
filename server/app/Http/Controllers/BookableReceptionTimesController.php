@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BookableReceptionTimesRequest;
 use App\Services\ReceptionTimesService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class BookableReceptionTimesController extends Controller
 {
