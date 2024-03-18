@@ -23,10 +23,10 @@ abstract class AbstractService
     protected abstract function setModel(): string;
     protected abstract function setResource(): string;
 
-    protected function getCollection(): AnonymousResourceCollection
+    protected function getCollection(array $eagerLoad = []): AnonymousResourceCollection
     {
         return $this->resource::collection(
-            $this->model::all()
+            $this->model::with($eagerLoad)->get()
         );
     }
 

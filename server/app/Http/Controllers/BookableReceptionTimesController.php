@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookableReceptionTimesRequest;
+use App\Models\BookableReceptionTimes;
 use App\Services\ReceptionTimesService;
 use Illuminate\Http\JsonResponse;
 
@@ -12,36 +13,47 @@ class BookableReceptionTimesController extends Controller
     {
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
-        // TODO: show all appointments created
-    }
-
-    public function show()
-    {
-        // TODO: show an appointment
-    }
-
-    public function store(BookableReceptionTimesRequest $request): JsonResponse
-    {
-        // TODO: store new Reception Time created by Doctor
         return response()->json(
-            $this->service->createNewAppointment(
-                $request->getParams()
-            ),
+            $this->service->getEveryAppointments(),
             200
         );
     }
 
-    public function update()
+    public function show(BookableReceptionTimes $appointment): JsonResponse
+    {
+        return response()->json(
+            $this->service->getAppointment($appointment),
+            200
+        );
+    }
+
+    public function store(BookableReceptionTimesRequest $request): JsonResponse
+    {
+        return response()->json(
+            $this->service->createNewAppointment(
+                $request->getParams()
+            ),
+            201
+        );
+    }
+
+    public function update(BookableReceptionTimesRequest $request, BookableReceptionTimes $appointment): JsonResponse
     {
         // TODO: update existing Reception Time created by Doctor
         // TODO: if patient booked Doctor can't modify appointment
+        return response()->json(
+            $this->service->modifyAppointment($appointment, $request->getParams()),
+            201
+        );
     }
 
-    public function destroy()
+    public function destroy(BookableReceptionTimes $appointment): JsonResponse
     {
-        // TODO: delete an existing Reception Time created by Doctor
-        // TODO: if patient booked Doctor can't delete appointment
+        return response()->json(
+            $this->service->deleteAppointment($appointment),
+            200
+        );
     }
 }
