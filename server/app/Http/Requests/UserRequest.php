@@ -40,7 +40,7 @@ class UserRequest extends AbstractRequest
 
     /**
      * Returns the parameters from the request.
-     * 
+     *
      * @return array<string, string|null>
      */
     public function getParams(): array
@@ -57,7 +57,7 @@ class UserRequest extends AbstractRequest
     protected function uniqueOnPost(string $table, string $field): string
     {
         return $this->method() == self::METHOD_POST ?
-                    'unique:'.$table.','.$field :
-                    '';
+                    "unique:$table,$field" :
+                    "";
     }
 }

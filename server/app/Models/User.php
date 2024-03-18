@@ -16,6 +16,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    public static array $TOKEN_TYPE = [
+        'Patient-Token',
+        'Doctor-Token',
+        'Admin-Token'
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -48,9 +54,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function patient_details(): HasOne
+    public function patient_details(): HasOne|null
     {
-        return $this->hasRole(UserRolesEnum::PATIENT->value) ? 
+        return $this->hasRole(UserRolesEnum::PATIENT->value) ?
             $this->hasOne(PatientDetail::class) :
             null;
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Patient\PatientController;
 use App\Http\Controllers\RouteController;
@@ -51,8 +52,11 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::apiResource('/patient/register', PatientController::class)->only(['store']);
+Route::post('/login', [AuthController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/logout', [AuthController::class, 'destroy']);
+
     Route::apiResource('/routes', RouteController::class)->only(['index']);
 
     Route::group(['middleware' => ['role:admin', 'role:patient']], function () {

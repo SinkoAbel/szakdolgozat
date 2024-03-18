@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 use App\Models\PatientDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -26,7 +27,7 @@ class AuthService extends AbstractService
         return UserResource::class;
     }
 
-    public function register(UserRequest $request): UserResource
+    public function register(UserRequest $request): JsonResource
     {
         $role = $request->role;
 
@@ -62,7 +63,7 @@ class AuthService extends AbstractService
 
         if (Auth::attempt($credentials)) {
             $user = $this->model::where('email', $credentials['email'])->first();
-            return $user->createToken($loginRequest->tokenType)->plainTextToken;
+            return $user->createToken($loginRequest->token_type)->plainTextToken;
         }
 
         return [

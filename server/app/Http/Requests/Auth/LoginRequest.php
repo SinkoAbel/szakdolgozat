@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\AbstractRequest;
+use App\Models\User;
 use Illuminate\Validation\Rule;
 
 class LoginRequest extends AbstractRequest
@@ -23,22 +24,26 @@ class LoginRequest extends AbstractRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
+            'email' => [
+                'required',
+                'email',
+                'exists:users,email'
+            ],
             'password' => [
                 'required',
                 'string',
                 'max:150',
             ],
-            'tokenType' => [
+            'token_type' => [
                 'required',
-                Rule::in(['Patient-Token', 'Doctor-Token', 'Admin-Token'])
+                Rule::in(User::$TOKEN_TYPE)
             ]
         ];
     }
 
     /**
      * Get the params from the request.
-     *  
+     *
      * @return array<string, string>
      */
     public function getParams(): array
