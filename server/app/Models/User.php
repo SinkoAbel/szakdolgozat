@@ -60,26 +60,22 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function patient_details(): HasOne|null
+    public function patient_details(): HasOne
     {
-        return $this->hasRole(UserRolesEnum::PATIENT->value) ?
-            $this->hasOne(PatientDetail::class) :
-            null;
+        // TODO: check if role check is needed, as well as other eloquent functions
+        // return $this->hasRole(UserRolesEnum::PATIENT->value) ?
+        return $this->hasOne(PatientDetail::class);
     }
 
     // Doctor roles
-    public function bookable_reception_times(): HasMany|null
+    public function bookable_reception_times(): HasMany
     {
-        return $this->hasRole(UserRolesEnum::DOCTOR->value) ?
-            $this->hasMany(BookableReceptionTimes::class) :
-            null;
+        return $this->hasMany(BookableReceptionTimes::class);
     }
 
     // Patient roles
-    public function reserved_bookings(): HasMany|null
+    public function reserved_bookings(): HasMany
     {
-        return $this->hasRole(UserRolesEnum::PATIENT->value) ?
-            $this->hasMany(ReservedBookings::class) :
-            null;
+        return $this->hasMany(ReservedBookings::class);
     }
 }

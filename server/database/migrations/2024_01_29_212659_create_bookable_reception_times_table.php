@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('doctor_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->date('date');
-            $table->time('time');
-            $table->float('duration', 5, 2);
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->boolean('booked')->default(false);
             $table->timestamps();
         });
     }

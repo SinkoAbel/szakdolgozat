@@ -16,7 +16,6 @@ abstract class AbstractService
     protected string $model;
     protected string $resource;
 
-
     public function __construct()
     {
         $this->model = $this->setModel();
