@@ -1,28 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {ChakraProvider} from '@chakra-ui/react';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import Navbar from "./components/Navbar";
+import Home from "./screens/Home/Home";
+import Register from "./screens/Register/Register";
+import ClientLogin from "./screens/Login/Client/ClientLogin";
+import About from "./screens/About/About";
+import Locations from "./screens/Locations/Locations";
+import AdminLogin from "./screens/Login/Admin/AdminLogin";
+import PriceList from "./screens/PriceList/PriceList";
 
 function App() {
   return (
-      <ChakraProvider>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
-      </ChakraProvider>
+    <ChakraProvider>
+        <BrowserRouter>
+            <Navbar/>
+            <Routes>
+                <Route path="/" element={ <Home/> }/>
+                <Route path="/register" element={ <Register/> }/>
+                <Route path="/login" element={ <ClientLogin/> }/>
+                <Route path="/admin" element={ <AdminLogin/> }/>
+                <Route path="/about" element={ <About/> }/>
+                <Route path="/prices" element={ <PriceList/> }/>
+                <Route path="/service-locations" element={ <Locations/> }/>
+            </Routes>
+        </BrowserRouter>
+    </ChakraProvider>
   );
 }
 
