@@ -23,28 +23,24 @@ class BookableReceptionTimesRequest extends AbstractRequest
     {
         return [
             'doctor_user_id' => [
-                'required',
+                $this->isRequired([self::METHOD_POST]),
                 'numeric',
                 'exists:users,id',
                 'exists:model_has_roles,model_id,role_id,2',
             ],
             'date' => [
-                'required',
+                $this->isRequired([self::METHOD_POST]),
                 'date_format:Y-m-d'
             ],
             'start_time' => [
-                'required',
+                $this->isRequired([self::METHOD_POST]),
                 'date_format:H:i'
             ],
             'end_time' => [
-                'required',
+                $this->isRequired([self::METHOD_POST]),
                 'date_format:H:i',
                 'after:start_time'
             ],
-            'booked' => [
-                'required',
-                'boolean'
-            ]
         ];
     }
 
@@ -55,7 +51,6 @@ class BookableReceptionTimesRequest extends AbstractRequest
             'date' => $this->date,
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
-            'booked' => $this->booked,
         ];
     }
 }

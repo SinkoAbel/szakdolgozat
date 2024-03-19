@@ -56,17 +56,29 @@ class ReceptionTimesService extends AbstractService
     }
 
     public function createNewAppointment(array $params): BookableReceptionResource
-    {
+    {        
         $createdAppointment = $this->createRecord($params);
         $createdAppointment->load($this->eagerLoad);
 
         return new $this->resource($createdAppointment);
     }
 
-    public function modifyAppointment(BookableReceptionTimes $receptionTimes, array $requestParams): BookableReceptionResource
+    public function modifyAppointment(BookableReceptionTimes $receptionTime, array $requestParams): BookableReceptionResource|array
     {
-        // TODO: implement function
-        // TODO: if patient booked Doctor can't modify appointment
+        if ($receptionTime->booked) {
+            return [
+                'success' => false,
+                'message' => 'You can\'t delete this appointment, because a patient already booked. Please contact your administrator.',
+            ];
+        }       
+              
+        return $this->updateRecord($receptionTime, [
+            'doctor_user_id' => $requestParams['doctor_user_id'] ?? $receptionTime->doctor_user_id,
+            'date' => $requestParams['date'] ?? $receptionTime->date,
+            'start_time' => $requestParams['start_time'] ?? $receptionTime->start_time,
+            'end_time' => $requestParams['end_time'] ?? $receptionTime->end_time,
+            'booked' => $requestParams['booked'] ?? $receptionTime->booked, // TODO: should set from user.
+        ]);
     }
 
     public function deleteAppointment(BookableReceptionTimes $receptionTime): bool|array

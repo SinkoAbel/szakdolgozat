@@ -41,10 +41,11 @@ class BookableReceptionTimesController extends Controller
 
     public function update(BookableReceptionTimesRequest $request, BookableReceptionTimes $appointment): JsonResponse
     {
-        // TODO: update existing Reception Time created by Doctor
-        // TODO: if patient booked Doctor can't modify appointment
         return response()->json(
-            $this->service->modifyAppointment($appointment, $request->getParams()),
+            $this->service->modifyAppointment(
+                    $appointment,
+                    $request->getParams()
+            ),
             201
         );
     }
@@ -53,7 +54,7 @@ class BookableReceptionTimesController extends Controller
     {
         return response()->json(
             $this->service->deleteAppointment($appointment),
-            200
+            204
         );
     }
 }

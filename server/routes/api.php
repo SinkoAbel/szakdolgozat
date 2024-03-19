@@ -21,8 +21,7 @@ use Illuminate\Support\Facades\Route;
 //
 
 /**
- * TODO:
- * 1. admin abilities:
+ * Admin role abilities:
  *      - Get Admins
  *      - Get One Admin
  *      - Create Admin
@@ -39,14 +38,14 @@ use Illuminate\Support\Facades\Route;
  *      - Get User
  *      - Delete User
  *
- * 2. Doctor abilities
+ * 2. Doctor role abilities
  *      - Get One Doctor (Him-/Herself)
  *      - Update Doctor (Him-/Herself)
  *      - Can set free appointments
  *      - Can revoke it
  *      - Can see all of his/her appointments
  *
- * 3. Patient abilities
+ * 3. Patient role abilities
  *      - Get One Patient (Him-/Herself)
  *      - Update One Patient (Him-/Herself)
  *      - Can book free appointments
