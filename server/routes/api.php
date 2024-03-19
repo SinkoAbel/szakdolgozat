@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BookableReceptionTimesController;
 use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Patient\PatientController;
+use App\Http\Controllers\ReservedBookingsController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 
@@ -79,6 +80,6 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::group(['middleware' => ['role:patient']], function () {
-
+        Route::apiResource('/patinets/bookings', ReservedBookingsController::class)->only(['index', 'show', 'store']);
     });
 });

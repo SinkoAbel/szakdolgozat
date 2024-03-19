@@ -27,6 +27,13 @@ class ReceptionTimesService extends AbstractService
      * @var array
      */
     public array $eagerLoad = [];
+    
+    /**
+     * Extended eager load query with Patient details.
+     * 
+     * @var array
+     */
+    public array $extendedEagerLoad = [];
 
     public function __construct()
     {
@@ -41,17 +48,48 @@ class ReceptionTimesService extends AbstractService
                 );
             }
         ];
+        $this->extendedEagerLoad = [
+            'reserved_bookings' => function ($query) {
+                $query->select('*');
+            },
+            'reserved_bookings.patient_users' => function ($query) {
+                $query->select(
+                    'id',
+                    'first_name',
+                    'last_name',
+                    'email',
+                );
+            },
+            'reserved_bookings.patient_users.patient_details' => function ($query) {
+                $query->select(
+                    'id',
+                    'user_id',
+                    'birthday',
+                    'birthplace',
+                    'city',
+                    'zip',
+                    'street',
+                    'house_number',
+                    'insurance_number',
+                    'phone'
+                );
+            },
+        ];
     }
 
     public function getEveryAppointments(): AnonymousResourceCollection
     {
-        return $this->getCollection($this->eagerLoad);
+        return $this->getCollection(
+            array_merge($this->eagerLoad, $this->extendedEagerLoad)
+        );
     }
 
     public function getAppointment(BookableReceptionTimes $receptionTime): BookableReceptionResource
-    {
+    {        
         return new $this->resource(
-            $receptionTime->load($this->eagerLoad)
+            $receptionTime->load(
+                array_merge($this->eagerLoad, $this->extendedEagerLoad)
+            )
         );
     }
 
@@ -76,8 +114,7 @@ class ReceptionTimesService extends AbstractService
             'doctor_user_id' => $requestParams['doctor_user_id'] ?? $receptionTime->doctor_user_id,
             'date' => $requestParams['date'] ?? $receptionTime->date,
             'start_time' => $requestParams['start_time'] ?? $receptionTime->start_time,
-            'end_time' => $requestParams['end_time'] ?? $receptionTime->end_time,
-            'booked' => $requestParams['booked'] ?? $receptionTime->booked, // TODO: should set from user.
+            'end_time' => $requestParams['end_time'] ?? $receptionTime->end_time
         ]);
     }
 

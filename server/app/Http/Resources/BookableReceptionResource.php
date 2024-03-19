@@ -20,7 +20,8 @@ class BookableReceptionResource extends JsonResource
             'date' => $this->date->format('Y-m-d'),
             'start_time' => $this->start_time->format('H:i'),
             'end_time' => $this->end_time->format('H:i'),
-            'booked' => $this->booked
+            'booked' => $this->booked,
+            'booking_detail' => new ReservedBookingsResource($this->whenLoaded('reserved_bookings')),
         ];
     }
 }
