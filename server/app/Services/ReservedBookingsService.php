@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\BookableReceptionTimes;
 use App\Models\ReservedBookings;
 use App\Http\Resources\ReservedBookingsResource;
 
@@ -81,9 +82,14 @@ class ReservedBookingsService extends AbstractService
         ];
     }
     
-    public function getEveryBooking()
+    public function getEveryBooking(int $patientID)
     {
-        return $this->getCollection($this->eagerLoad);
+        return $this->getCollection(
+            $this->eagerLoad,
+            [
+                'filterForPatient' => $patientID
+            ]
+        );
     }
     
     public function getBooking(ReservedBookings $booking): ReservedBookingsResource
@@ -92,8 +98,15 @@ class ReservedBookingsService extends AbstractService
         return new $this->resource($booking);
     }
 
-    public function bookAppointment(array $requestParams): ReservedBookingsResource
+    public function bookAppointment(array $requestParams): ReservedBookingsResource|array
     {
+        if (! $this->checkIfAppointmentCanBooked($requestParams['receptionTimeID'])) {
+            return [
+                'success' => false,
+                'message' => 'The appointment already been booked.',
+            ];
+        }
+        
         $createdBooking = $this->createRecord([
             'bookable_reception_times_id' => $requestParams['receptionTimeID'],
             'patient_user_id' => $requestParams['patientID'],
@@ -106,5 +119,16 @@ class ReservedBookingsService extends AbstractService
         $createdBooking->load($this->eagerLoad);
         
         return new $this->resource($createdBooking);
+    }
+    
+    protected function checkIfAppointmentCanBooked(int $appointmentID): bool
+    {
+        $appointment = BookableReceptionTimes::find($appointmentID);
+        
+        if ($appointment->booked) {
+            return false;
+        }
+        
+        return true;
     }
 }

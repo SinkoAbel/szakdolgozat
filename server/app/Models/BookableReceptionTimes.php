@@ -37,8 +37,13 @@ class BookableReceptionTimes extends Model
         return $this->belongsTo(User::class, 'doctor_user_id');
     }
     
-    public function scopeRecordsForDoctor(Builder $query, int $doctorID): Builder
+    public function scopeFilterForDoctor(Builder $query, int $doctorID): Builder
     {
         return $query->where('doctor_user_id', $doctorID);
+    }
+    
+    public function scopeFilterBookedAppointments(Builder $query, bool $booked): Builder
+    {
+        return $query->where('booked', $booked);
     }
 }

@@ -13,10 +13,15 @@ class BookableReceptionTimesController extends Controller
     {
     }
 
-    public function index(): JsonResponse
+    public function index(BookableReceptionTimesRequest $request): JsonResponse
     {
+        $filters = $request->filters;
+        $filters['doctor_id'] = auth()->user()->id;
+        
         return response()->json(
-            $this->service->getEveryAppointments(),
+            $this->service->getEveryAppointments(
+                $filters
+            ),
             200
         );
     }

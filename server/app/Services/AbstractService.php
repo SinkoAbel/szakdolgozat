@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -23,10 +24,20 @@ abstract class AbstractService
     protected abstract function setModel(): string;
     protected abstract function setResource(): string;
 
-    protected function getCollection(array $eagerLoad = []): AnonymousResourceCollection
-    {
+    protected function getCollection(array $eagerLoad = [], array $scopes = []): AnonymousResourceCollection
+    {       
+        $modelQuery = $this->model::query();
+        
+        if ($eagerLoad) {
+            $modelQuery->with($eagerLoad);
+        }
+        
+        if ($scopes) {
+            $this->getScopes($modelQuery, $scopes);
+        }
+        
         return $this->resource::collection(
-            $this->model::with($eagerLoad)->get()
+            $modelQuery->get()
         );
     }
 
@@ -68,5 +79,14 @@ abstract class AbstractService
     protected function deleteRecord(Model $deletableRecord): bool
     {
         return $deletableRecord->delete();
+    }
+    
+    private function getScopes(Builder $query, array $scopes)
+    {
+        foreach ($scopes as $scope => $parameter) {
+            $query->$scope($parameter);
+        }
+        
+        return $query;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Enums\UserRolesEnum;
 use App\Http\Requests\Patient\PatientRequest;
 use App\Http\Resources\UserResource;
 use App\Models\PatientDetail;
@@ -30,7 +31,12 @@ class PatientService extends AbstractService
 
     public function getPatientCollection(): AnonymousResourceCollection
     {
-        return $this->getCollection();
+        return $this->getCollection(
+            [],
+            [
+                'filterUserRole' => UserRolesEnum::PATIENT->value
+            ]
+        );
     }
 
     public function getPatient(User $patient): UserResource

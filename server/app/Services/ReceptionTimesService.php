@@ -77,10 +77,14 @@ class ReceptionTimesService extends AbstractService
         ];
     }
 
-    public function getEveryAppointments(): AnonymousResourceCollection
-    {
+    public function getEveryAppointments(array $filters): AnonymousResourceCollection
+    {   
         return $this->getCollection(
-            array_merge($this->eagerLoad, $this->extendedEagerLoad)
+            array_merge($this->eagerLoad, $this->extendedEagerLoad),
+            [
+                'filterForDoctor' => $filters['doctor_id'],
+                'filterBookedAppointments' => $filters['booked'] ?? false
+            ]
         );
     }
 

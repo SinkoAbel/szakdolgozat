@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Enums\UserRolesEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -77,5 +78,10 @@ class User extends Authenticatable
     public function reserved_bookings(): HasMany
     {
         return $this->hasMany(ReservedBookings::class);
+    }
+    
+    public function scopeFilterUserRole(Builder $query, string $userRole): Builder
+    {
+        return $query->role($userRole);
     }
 }

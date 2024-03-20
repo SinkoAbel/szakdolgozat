@@ -29,7 +29,7 @@ class ReservedBookingsRequest extends AbstractRequest
                 $this->isRequired([self::METHOD_POST]),
                 'numeric',
                 'exists:users,id'
-            ]
+            ],
         ];
     }
 

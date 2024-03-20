@@ -16,7 +16,9 @@ class ReservedBookingsController extends Controller
     public function index(): JsonResponse
     {
         return response()->json(
-            $this->service->getEveryBooking(),
+            $this->service->getEveryBooking(
+                auth()->user()->id
+            ),
             200
         );
     }
@@ -25,8 +27,7 @@ class ReservedBookingsController extends Controller
     {
         return response()->json(
             $this->service->getBooking(
-                $booking,
-                $request->getParams()
+                $booking
             ),
             200
         );

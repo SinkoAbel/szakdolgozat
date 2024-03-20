@@ -41,6 +41,10 @@ class BookableReceptionTimesRequest extends AbstractRequest
                 'date_format:H:i',
                 'after:start_time'
             ],
+            'filters.booked' => [
+                'nullable',
+                'boolean'
+            ]
         ];
     }
 
