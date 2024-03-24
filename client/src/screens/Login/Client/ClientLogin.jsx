@@ -1,8 +1,27 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Checkbox, Flex, Text, FormControl, FormLabel, Heading, Input, Stack, Image } from '@chakra-ui/react'
+//import axios from 'axios';
+import axios from '../../../config/axios';
 
 const ClientLogin = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        
+        try {
+            await axios.post('/api/login', {
+                email: email,
+                password: password,
+                token_type: 'Patient-Token'
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <>
             <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
@@ -11,11 +30,11 @@ const ClientLogin = () => {
                         <Heading fontSize={'2xl'}>Jelentkezzen be</Heading>
                         <FormControl id="email">
                             <FormLabel>Email</FormLabel>
-                            <Input type="email" />
+                            <Input type="email" onChange={(e) => setEmail(e.target.value)}/>
                         </FormControl>
                         <FormControl id="password">
                             <FormLabel>Jelszó</FormLabel>
-                            <Input type="password" />
+                            <Input type="password" onChange={(e) => setPassword(e.target.value)}/>
                         </FormControl>
                         <Stack spacing={6}>
                             <Stack
@@ -25,7 +44,7 @@ const ClientLogin = () => {
                                 <Checkbox>Jegyezze meg</Checkbox>
                                 <Text color={'blue.500'}>Elfelejtett jelszó?</Text>
                             </Stack>
-                            <Button colorScheme={'blue'} variant={'solid'}>
+                            <Button colorScheme={'blue'} variant={'solid'} onClick={handleLogin}>
                                 Bejelentkezés
                             </Button>
                         </Stack>

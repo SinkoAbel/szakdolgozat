@@ -51,35 +51,36 @@ use Illuminate\Support\Facades\Route;
  *      - Update One Patient (Him-/Herself)
  *      - Can book free appointments
  */
+Route::middleware(['cors'])->group(function () {
+    Route::post('/patient/register', [PatientController::class, 'store']);
+    Route::post('/login', [AuthController::class, 'index']);
 
-Route::post('/patient/register', [PatientController::class, 'store']);
-Route::post('/login', [AuthController::class, 'index']);
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::delete('/logout', [AuthController::class, 'destroy']); // TODO: is it really needed?
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::delete('/logout', [AuthController::class, 'destroy']); // TODO: is it really needed?
+        Route::apiResource('/routes', RouteController::class)->only(['index']);
 
-    Route::apiResource('/routes', RouteController::class)->only(['index']);
-
-    // TODO: Admin can do everything with everyone?
-    Route::group(['middleware' => ['role:admin']], function () {
-        Route::prefix('super')->group(function () {
-            Route::apiResource('/admins', AdminController::class);
-            Route::apiResource('/doctors', DoctorController::class)->only(['index', 'store', 'destroy']);       
-            Route::apiResource('/patients', PatientController::class)->only(['index', 'destroy']);
+        // TODO: Admin can do everything with everyone?
+        Route::group(['middleware' => ['role:admin']], function () {
+            Route::prefix('super')->group(function () {
+                Route::apiResource('/admins', AdminController::class);
+                Route::apiResource('/doctors', DoctorController::class)->only(['index', 'store', 'destroy']);
+                Route::apiResource('/patients', PatientController::class)->only(['index', 'destroy']);
+            });
         });
-    });
 
-    Route::group(['middleware' => ['role:doctor|admin']], function () {
-        Route::prefix('/doctors')->group(function ()  {            
-            Route::apiResource('/', DoctorController::class)->only(['show', 'update']);
-            Route::apiResource('/appointments', BookableReceptionTimesController::class);
-        }); 
-    });
+        Route::group(['middleware' => ['role:doctor|admin']], function () {
+            Route::prefix('/doctors')->group(function ()  {
+                Route::apiResource('/', DoctorController::class)->only(['show', 'update']);
+                Route::apiResource('/appointments', BookableReceptionTimesController::class);
+            });
+        });
 
-    Route::group(['middleware' => ['role:patient|admin']], function () {
-        Route::prefix('patients')->group(function () {
-            Route::apiResource('/', PatientController::class)->only(['show', 'update']);
-            Route::apiResource('/bookings', ReservedBookingsController::class)->only(['index', 'show', 'store']);
+        Route::group(['middleware' => ['role:patient|admin']], function () {
+            Route::prefix('patients')->group(function () {
+                Route::apiResource('/', PatientController::class)->only(['show', 'update']);
+                Route::apiResource('/bookings', ReservedBookingsController::class)->only(['index', 'show', 'store']);
+            });
         });
     });
 });
