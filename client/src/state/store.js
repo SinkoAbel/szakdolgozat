@@ -2,6 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
+import registerPatientReducer from "./reducers/registerPatientSlice";
+import registerDoctorReducer from "./reducers/registerDoctorSlice";
+import registerAdminReducer from "./reducers/registerAdminSlice";
 
 const rootReducer = combineReducers({
     /**
@@ -10,6 +13,9 @@ const rootReducer = combineReducers({
      *          register: registerReducer,
      *          login: loginReducer,
      */
+    registerPatient: registerPatientReducer,
+    registerDoctor: registerDoctorReducer,
+    registerAdmin: registerAdminReducer
 });
 
 const persistConfig = {
