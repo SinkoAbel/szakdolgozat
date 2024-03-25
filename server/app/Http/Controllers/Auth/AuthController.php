@@ -14,7 +14,7 @@ class AuthController extends Controller
     {
     }
 
-    public function index(LoginRequest $request): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
         return response()->json(
             $this->service->login($request),
