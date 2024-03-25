@@ -56,13 +56,17 @@ class AuthService extends AbstractService
         return new $this->resource($user);
     }
 
-    public function login(LoginRequest $loginRequest): string|array
+    public function login(LoginRequest $loginRequest): array
     {
         $credentials = $loginRequest->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = $this->model::where('email', $credentials['email'])->first();
-            return $user->createToken($loginRequest->token_type)->plainTextToken;
+            $token = $user->createToken($loginRequest->token_type)->plainTextToken;
+
+            return [
+                'token' => $token
+            ];
         }
 
         return [

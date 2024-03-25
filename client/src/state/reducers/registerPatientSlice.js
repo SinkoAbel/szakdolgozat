@@ -52,7 +52,21 @@ export const registerPatientSlice = createSlice({
         },
         setPhone: (state, action) => {
             state.phone = action.payload;
-        }
+        },
+        resetState: (state) => {
+            state.first_name = '';
+            state.last_name = '';
+            state.email = '';
+            state.password = '';
+            state.birthday = '';
+            state.birthplace = '';
+            state.city = '';
+            state.zip = '';
+            state.street = '';
+            state.house_number = '';
+            state.insurance_number = '';
+            state.phone = '';
+        },
     }
 });
 
@@ -68,7 +82,8 @@ export const {
     setStreet,
     setHouseNumber,
     setInsuranceNumber,
-    setPhone
+    setPhone,
+    resetState,
 } = registerPatientSlice.actions;
 
 export default registerPatientSlice.reducer;

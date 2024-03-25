@@ -17,6 +17,8 @@ const ClientLogin = () => {
                 password: password,
                 token_type: 'Patient-Token'
             });
+
+            // TODO: handle login data
         } catch (err) {
             console.log(err);
         }
