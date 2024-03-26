@@ -5,17 +5,13 @@ import { combineReducers } from 'redux';
 import registerPatientReducer from "./reducers/registerPatientSlice";
 import registerDoctorReducer from "./reducers/registerDoctorSlice";
 import registerAdminReducer from "./reducers/registerAdminSlice";
+import authReducer from "./reducers/authSlice";
 
 const rootReducer = combineReducers({
-    /**
-     * TODO: Create reducers as I move along the applications.
-     *      Examples:
-     *          register: registerReducer,
-     *          login: loginReducer,
-     */
     registerPatient: registerPatientReducer,
     registerDoctor: registerDoctorReducer,
-    registerAdmin: registerAdminReducer
+    registerAdmin: registerAdminReducer,
+    auth: authReducer,
 });
 
 const persistConfig = {

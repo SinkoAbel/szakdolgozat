@@ -4,7 +4,14 @@ import { Box, Flex, Text, IconButton, Button, Stack, Collapse, Icon, Popover, Po
          useColorModeValue, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import {Link} from "react-router-dom";
+import { useSelector } from 'react-redux';
+
 export default function WithSubnavigation() {
+    const {
+        authenticated
+    } = useSelector((state) => state.authPatient);
+
+
     const { isOpen, onToggle } = useDisclosure()
 
     return (
