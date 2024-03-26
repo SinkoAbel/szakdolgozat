@@ -55,7 +55,7 @@ Route::post('/patient/register', [PatientController::class, 'store']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::delete('/logout', [AuthController::class, 'destroy']); // TODO: is it really needed?
+    Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::apiResource('/routes', RouteController::class)->only(['index']);
 

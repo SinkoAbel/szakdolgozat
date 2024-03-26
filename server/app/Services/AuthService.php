@@ -65,6 +65,7 @@ class AuthService extends AbstractService
             $token = $user->createToken($loginRequest->token_type)->plainTextToken;
 
             return [
+                'id' => $user->id,
                 'token' => $token
             ];
         }

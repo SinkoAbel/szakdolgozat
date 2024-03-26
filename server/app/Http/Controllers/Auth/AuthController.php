@@ -22,12 +22,12 @@ class AuthController extends Controller
         );
     }
 
-    public function destroy(Request $request): JsonResponse
+    public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();
 
         return response()->json([
-            'message' => 'Token revoked.'
+            'message' => 'Token revoked. User logged in.'
         ], 200);
     }
 }
