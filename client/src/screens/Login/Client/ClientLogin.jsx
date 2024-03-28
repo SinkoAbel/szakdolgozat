@@ -1,8 +1,32 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Checkbox, Flex, Text, FormControl, FormLabel, Heading, Input, Stack, Image } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../../config/auth';
+import { ROLE_PATIENT } from '../../../config/constants';
 
 const ClientLogin = () => {
+    const navigate = useNavigate();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [successfulLogin, setSuccessfulLogin] = useState(false);
+    const [loginError, setLoginError] = useState(false);
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        const response = login(setLoginError, setSuccessfulLogin, email, password, '/api/login', 'Patient-Token', ROLE_PATIENT);
+
+        if (response) {
+            setTimeout(() => {
+                navigate('/patient/dashboard');
+            }, 3000);
+        }
+    }
+
+    // TODO: vissza kéne kérni az egész User objektumot és eltárolni?
+
     return (
         <>
             <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
@@ -11,11 +35,11 @@ const ClientLogin = () => {
                         <Heading fontSize={'2xl'}>Jelentkezzen be</Heading>
                         <FormControl id="email">
                             <FormLabel>Email</FormLabel>
-                            <Input type="email" />
+                            <Input type="email" onChange={(e) => setEmail(e.target.value)}/>
                         </FormControl>
                         <FormControl id="password">
                             <FormLabel>Jelszó</FormLabel>
-                            <Input type="password" />
+                            <Input type="password" onChange={(e) => setPassword(e.target.value)}/>
                         </FormControl>
                         <Stack spacing={6}>
                             <Stack
@@ -25,9 +49,20 @@ const ClientLogin = () => {
                                 <Checkbox>Jegyezze meg</Checkbox>
                                 <Text color={'blue.500'}>Elfelejtett jelszó?</Text>
                             </Stack>
-                            <Button colorScheme={'blue'} variant={'solid'}>
+                            <Button colorScheme={'blue'} variant={'solid'} onClick={handleLogin}>
                                 Bejelentkezés
                             </Button>
+                            { successfulLogin &&
+                                <div className='py-3 bg-green-200 rounded-xl'>
+                                    <p className='font-bold text-center'>Sikeres bejelentkezés!</p>
+                                </div>
+                            }
+                            { loginError &&
+                                <div className='py-3 bg-red-200 rounded-xl'>
+                                    <p className='text-center font-bold'>Hiba!</p>
+                                    <p className='text-center font-bold'>Nem megfelelő email vagy jelszó!</p>
+                                </div>
+                            }                            
                         </Stack>
                     </Stack>
                 </Flex>

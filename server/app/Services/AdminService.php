@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Enums\UserRolesEnum;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -29,7 +30,12 @@ class AdminService extends AbstractService
     }
     public function getAllAdmins(): AnonymousResourceCollection
     {
-        return $this->getCollection();
+        return $this->getCollection(
+            [],
+            [
+                'filterUserRole' => UserRolesEnum::ADMIN->value
+            ]
+        );
     }
 
     public function getAdmin(User $admin): Model

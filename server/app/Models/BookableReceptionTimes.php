@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,13 +15,16 @@ class BookableReceptionTimes extends Model
     protected $fillable = [
         'doctor_user_id',
         'date',
-        'time',
-        'duration'
+        'start_time',
+        'end_time',
+        'booked',
     ];
 
     protected $casts = [
-        'date' => 'date',
-        'time' => 'time',
+        'date' => 'date:Y-m-d',
+        'start_time' => 'date:H:i',
+        'end_time' => 'date:H:i',
+        'booked' => 'boolean'
     ];
 
     public function reserved_bookings(): HasOne
@@ -28,9 +32,18 @@ class BookableReceptionTimes extends Model
         return $this->hasOne(ReservedBookings::class);
     }
 
-    // Doctor User
     public function doctor_users(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'doctor_user_id');
+    }
+    
+    public function scopeFilterForDoctor(Builder $query, int $doctorID): Builder
+    {
+        return $query->where('doctor_user_id', $doctorID);
+    }
+    
+    public function scopeFilterBookedAppointments(Builder $query, bool $booked): Builder
+    {
+        return $query->where('booked', $booked);
     }
 }

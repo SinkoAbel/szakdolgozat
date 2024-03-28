@@ -16,8 +16,8 @@ class ReservedBookingsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'bookable_reception_times' => BookableReceptionResource::collection($this->whenLoaded('bookable_reception_times')),
-            'patient' => $this->patient_users,
+            'bookable_reception_times' => $this->whenLoaded('bookable_reception_times'),
+            'patient' => $this->whenLoaded('patient_users'),
         ];
     }
 }

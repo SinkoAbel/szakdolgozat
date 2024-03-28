@@ -20,8 +20,16 @@ class ReservedBookingsRequest extends AbstractRequest
     public function rules(): array
     {
         return [
-            'bookable_reception_times_id' => 'required|numeric|exists:bookable_reception_times,id',
-            'patient_user_id' => 'nullable|numeric|exists:users,id'
+            'bookable_reception_times_id' => [
+                $this->isRequired([self::METHOD_POST]),
+                'numeric',
+                'exists:bookable_reception_times,id',
+            ],
+            'patient_user_id' => [
+                $this->isRequired([self::METHOD_POST]),
+                'numeric',
+                'exists:users,id'
+            ],
         ];
     }
 

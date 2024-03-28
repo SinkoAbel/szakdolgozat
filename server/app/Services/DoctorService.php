@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
+use App\Http\Enums\UserRolesEnum;
 use App\Http\Requests\Doctor\DoctorRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
@@ -30,7 +30,12 @@ class DoctorService extends AbstractService
 
     public function getEveryDoctor(): AnonymousResourceCollection
     {
-        return $this->getCollection();
+        return $this->getCollection(
+            [],
+            [
+                'filterUserRole' => UserRolesEnum::DOCTOR->value
+            ]
+        );
     }
 
     public function getDoctor(User $doctor): UserResource

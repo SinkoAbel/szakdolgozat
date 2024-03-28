@@ -6,7 +6,6 @@ use App\Http\Enums\UserRolesEnum;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
-use App\Models\PatientDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -41,7 +40,7 @@ class AuthService extends AbstractService
         $user = $this->createUserRecord($userData, $role);
 
         if (strtolower($role) == UserRolesEnum::PATIENT->value) {
-            PatientDetail::create([
+            $user->patient_details()->create([
                 'user_id' => $user->id,
                 'birthday' => $request->birthday,
                 'birthplace' => $request->birthplace,
@@ -54,26 +53,26 @@ class AuthService extends AbstractService
             ]);
         }
 
-        return $user;
+        return new $this->resource($user);
     }
 
-    public function login(LoginRequest $loginRequest): string|array
+    public function login(LoginRequest $loginRequest): array
     {
         $credentials = $loginRequest->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $user = $this->model::where('email', $credentials['email'])->first();
-            return $user->createToken($loginRequest->token_type)->plainTextToken;
+            $token = $user->createToken($loginRequest->token_type)->plainTextToken;
+
+            return [
+                'id' => $user->id,
+                'token' => $token
+            ];
         }
 
         return [
             'status' => '401',
             'message' => 'Wrong credentials!'
         ];
-    }
-
-    public function logout(Request $request)
-    {
-        return $request->user()->currentAccessToken()->delete();
     }
 }

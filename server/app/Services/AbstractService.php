@@ -2,9 +2,8 @@
 
 namespace App\Services;
 
-use App\Http\Resources\UserResource;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,10 +24,20 @@ abstract class AbstractService
     protected abstract function setModel(): string;
     protected abstract function setResource(): string;
 
-    protected function getCollection(): AnonymousResourceCollection
-    {
+    protected function getCollection(array $eagerLoad = [], array $scopes = []): AnonymousResourceCollection
+    {       
+        $modelQuery = $this->model::query();
+        
+        if ($eagerLoad) {
+            $modelQuery->with($eagerLoad);
+        }
+        
+        if ($scopes) {
+            $this->getScopes($modelQuery, $scopes);
+        }
+        
         return $this->resource::collection(
-            $this->model::all()
+            $modelQuery->get()
         );
     }
 
@@ -52,12 +61,12 @@ abstract class AbstractService
         return $this->model::create($newRecord);
     }
 
-    protected function createUserRecord(array $newRecord, string $role): JsonResource
+    protected function createUserRecord(array $newRecord, string $role): Model
     {
         $user = $this->model::create($newRecord);
         $user->assignRole($role);
 
-        return new $this->resource($user);
+        return $user;
     }
 
     protected function updateRecord(Model $model, array $dataSet): JsonResource
@@ -70,5 +79,14 @@ abstract class AbstractService
     protected function deleteRecord(Model $deletableRecord): bool
     {
         return $deletableRecord->delete();
+    }
+    
+    private function getScopes(Builder $query, array $scopes)
+    {
+        foreach ($scopes as $scope => $parameter) {
+            $query->$scope($parameter);
+        }
+        
+        return $query;
     }
 }

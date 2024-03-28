@@ -16,10 +16,12 @@ class BookableReceptionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'doctor' => $this->whenLoaded('doctors'),
+            'doctor' => $this->whenLoaded('doctor_users'),
             'date' => $this->date->format('Y-m-d'),
-            'time' => $this->time,
-            'duration' => $this->duration,
+            'start_time' => $this->start_time->format('H:i'),
+            'end_time' => $this->end_time->format('H:i'),
+            'booked' => $this->booked,
+            'booking_detail' => new ReservedBookingsResource($this->whenLoaded('reserved_bookings')),
         ];
     }
 }

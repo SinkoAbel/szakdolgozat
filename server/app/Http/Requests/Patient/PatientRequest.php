@@ -25,14 +25,14 @@ class PatientRequest extends UserRequest
         return array_merge(
         parent::rules(),
         [
-            'birthday'          => [$this->isRequired(), 'date_format:Y-m-d'],
-            'birthplace'        => [$this->isRequired(), 'string', 'max:80', 'regex:/^[a-zA-Z]+/'],
-            'city'              => [$this->isRequired(), 'string', 'max:80', 'regex:/^[a-zA-Z]+/'],
-            'zip'               => [$this->isRequired(), 'string', 'max:10'],
-            'street'            => [$this->isRequired(), 'string', 'max:50'],
-            'house_number'      => [$this->isRequired(), 'string', 'max:10'],
+            'birthday'          => [$this->isRequired([self::METHOD_POST]), 'date_format:Y-m-d'],
+            'birthplace'        => [$this->isRequired([self::METHOD_POST]), 'string', 'max:80', 'regex:/^[a-zA-Z]+/'],
+            'city'              => [$this->isRequired([self::METHOD_POST]), 'string', 'max:80', 'regex:/^[a-zA-Z]+/'],
+            'zip'               => [$this->isRequired([self::METHOD_POST]), 'string', 'max:10'],
+            'street'            => [$this->isRequired([self::METHOD_POST]), 'string', 'max:50'],
+            'house_number'      => [$this->isRequired([self::METHOD_POST]), 'string', 'max:10'],
             'insurance_number'  => ['required', 'string', 'max:15'],
-            'phone'             => [$this->isRequired(), 'string', 'max:30'],
+            'phone'             => [$this->isRequired([self::METHOD_POST]), 'string', 'max:30'],
         ]);
     }
 
