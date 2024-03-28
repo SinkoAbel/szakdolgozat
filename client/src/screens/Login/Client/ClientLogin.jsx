@@ -1,23 +1,12 @@
 'use client'
 import React, { useState } from 'react';
 import { Button, Checkbox, Flex, Text, FormControl, FormLabel, Heading, Input, Stack, Image } from '@chakra-ui/react'
-import axios from '../../../config/axios';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { setAuthenticated, setUserID, setToken, setUserType } from '../../../state/reducers/authSlice';
-import { ROLE_PATIENT } from '../../../config/constants';
 import { login } from '../../../config/auth';
+import { ROLE_PATIENT } from '../../../config/constants';
 
 const ClientLogin = () => {
     const navigate = useNavigate();
-
-    const {
-        authenticated
-    } = useSelector((state) => state.auth);
-
-    if (authenticated) {
-        navigate('/');
-    }
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -27,45 +16,16 @@ const ClientLogin = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        const loginStatus = login(setLoginError, setSuccessfulLogin, email, password, '/api/login', 'Patient-Token', ROLE_PATIENT);
+        const response = login(setLoginError, setSuccessfulLogin, email, password, '/api/login', 'Patient-Token', ROLE_PATIENT);
 
-        if (loginStatus) {
+        if (response) {
             setTimeout(() => {
                 navigate('/patient/dashboard');
             }, 3000);
         }
-
-        /*setLoginError(false);
-
-        if (!email || !password) {
-            setLoginError(true);
-            return;
-        }
-        
-        try {
-            const response = await axios.post('/api/login', {
-                email: email,
-                password: password,
-                token_type: 'Patient-Token'
-            });
-            
-            setLoginError(false);
-            setSuccessfulLogin(true);
-
-            setToken(response.data.token);
-            setUserID(response.data.id);
-            setAuthenticated(true);
-            setUserType(ROLE_PATIENT);
-
-            setTimeout(() => {
-                navigate('/patient/dashboard');
-            }, 3000);
-        } catch (err) {
-            console.log(err);
-            setLoginError(true);
-            setSuccessfulLogin(false);
-        }*/
     }
+
+    // TODO: vissza kéne kérni az egész User objektumot és eltárolni?
 
     return (
         <>

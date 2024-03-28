@@ -75,9 +75,4 @@ class AuthService extends AbstractService
             'message' => 'Wrong credentials!'
         ];
     }
-
-    public function logout(Request $request)
-    {
-        return $request->user()->currentAccessToken()->delete();
-    }
 }

@@ -10,8 +10,9 @@ import Locations from "./screens/Locations/Locations";
 import AdminLogin from "./screens/Login/Admin/AdminLogin";
 import PriceList from "./screens/PriceList/PriceList";
 import PatientDashboard from "./screens/Dashboards/Patient/PatientDashboard";
-import { useSelector } from "react-redux";
 import DoctorLogin from "./screens/Login/Doctor/DoctorLogin";
+import DoctorDashboard from "./screens/Dashboards/Doctor/DoctorDashboard";
+import DoctorAppointmentCreator from "./screens/Appointments/Doctor/DoctorAppointmentCreator";
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
                 <Route path="/prices" element={ <PriceList/> }/>
                 <Route path="/service-locations" element={ <Locations/> }/>
                 <Route path="/patient/dashboard" element={ <PatientDashboard/> }/>
+                <Route path="/doctor/dashboard" element={ <DoctorDashboard/> }/>
+                <Route path="/doctor/appointment/creator" element={ <DoctorAppointmentCreator/> }/>
             </Routes>
         </BrowserRouter>
     </ChakraProvider>

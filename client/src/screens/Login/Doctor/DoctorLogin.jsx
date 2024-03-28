@@ -1,17 +1,33 @@
 import { Button, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react'
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../../config/auth';
+import { ROLE_DOCTOR } from '../../../config/constants';
 
 const DoctorLogin = () => {
+    const navigate = useNavigate();
+
+    const authenticated = sessionStorage.getItem('authenticated') ?? false;
+
+    if (authenticated) {
+        navigate('/');
+    }
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    const [successfulLogin, setSuccessfulLogin] = useState();
-    const [loginError, setLoginError] = useState();
+    const [successfulLogin, setSuccessfulLogin] = useState(false);
+    const [loginError, setLoginError] = useState(false);
 
-    const handleLogin = () => {
-        // TODO:
-        console.log('doctor login');
+    const handleLogin = (event) => {
+        event.preventDefault();
+        const loginStatus = login(setLoginError, setSuccessfulLogin, email, password, '/api/login', 'Doctor-Token', ROLE_DOCTOR);
+
+        if (loginStatus) {
+            setTimeout(() => {
+                navigate('/doctor/dashboard')
+            }, 3000);
+        }
     }
 
     return (
