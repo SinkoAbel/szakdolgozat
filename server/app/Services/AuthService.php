@@ -68,16 +68,22 @@ class AuthService extends AbstractService
      * and return it with ID.
      *
      * @param LoginRequest $loginRequest
-     *
+     * @param string $role
      * @return array
      * @throws Exception
      */
-    public function login(LoginRequest $loginRequest): array
+    public function login(LoginRequest $loginRequest, string $role): array
     {
         $credentials = $loginRequest->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = $this->model::where('email', $credentials['email'])->first();
+            $user = $this->model::where('email', $credentials['email'])
+                ->first();
+
+            if (! $user->hasRole($role)) {
+                throw new Exception('Unauthorized!', 401);
+            }
+
             $token = $user->createToken($loginRequest->token_type)->plainTextToken;
 
             return [

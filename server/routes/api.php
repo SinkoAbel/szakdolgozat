@@ -52,7 +52,9 @@ use Illuminate\Support\Facades\Route;
  *      - Can book free appointments
  */
 Route::post('/patient/register', [PatientController::class, 'store']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/patient/login', [PatientController::class, 'login']);
+Route::post('/doctor/login', [DoctorController::class, 'login']);
+Route::post('/admin/login', [AdminController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);

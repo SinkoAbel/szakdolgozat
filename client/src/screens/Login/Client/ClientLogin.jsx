@@ -16,18 +16,18 @@ const ClientLogin = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        const response = login(setLoginError, setSuccessfulLogin, email, password, '/api/login', 'Patient-Token', ROLE_PATIENT);
+        const success = await login(setLoginError, setSuccessfulLogin, email, password, '/api/patient/login', 'Patient-Token', ROLE_PATIENT);
 
-        console.log(response);
+        if (!success) {
+            return;
+        }
 
-        if (response) {
+        if (!loginError) {
             setTimeout(() => {
                 navigate('/patient/dashboard');
-            }, 3000);
+            }, 3000);   
         }
     }
-
-    // TODO: vissza kéne kérni az egész User objektumot és eltárolni?
 
     return (
         <>

@@ -14,14 +14,6 @@ class AuthController extends Controller
     {
     }
 
-    public function login(LoginRequest $request): JsonResponse
-    {
-        return response()->json(
-            $this->service->login($request),
-            200
-        );
-    }
-
     public function logout(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();

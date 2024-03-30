@@ -3,15 +3,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../config/auth';
 import { ROLE_DOCTOR } from '../../../config/constants';
+import DoctorNavbar from "../../../components/Navbar/Doctor/DoctorNavbar";
 
-const DoctorLogin = () => {
+const DoctorLogin = (props) => {
     const navigate = useNavigate();
-
-    const authenticated = sessionStorage.getItem('authenticated') ?? false;
-
-    if (authenticated) {
-        navigate('/');
-    }
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -19,15 +14,17 @@ const DoctorLogin = () => {
     const [successfulLogin, setSuccessfulLogin] = useState(false);
     const [loginError, setLoginError] = useState(false);
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
-        const loginStatus = login(setLoginError, setSuccessfulLogin, email, password, '/api/login', 'Doctor-Token', ROLE_DOCTOR);
+        const success = await login(setLoginError, setSuccessfulLogin, email, password, '/api/doctor/login', 'Doctor-Token', ROLE_DOCTOR);
 
-        if (loginStatus) {
-            setTimeout(() => {
-                navigate('/doctor/dashboard');
-            }, 3000);
+        if (!success) {
+            return;
         }
+
+        setTimeout(() => {
+            navigate('/doctor/dashboard');
+        }, 3000);
     }
 
     return (

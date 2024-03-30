@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
+use App\Http\Enums\UserRolesEnum;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Doctor\DoctorRequest;
 use App\Models\User;
 use App\Services\AuthService;
@@ -16,6 +18,14 @@ class DoctorController extends Controller
      */
     public function __construct(protected DoctorService $doctorService, protected  AuthService $authService)
     {
+    }
+
+    public function login(LoginRequest $request): JsonResponse
+    {
+        return response()->json(
+            $this->authService->login($request, UserRolesEnum::DOCTOR->value),
+            200
+        );
     }
 
     public function index(): JsonResponse

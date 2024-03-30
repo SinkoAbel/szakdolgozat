@@ -1,7 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {ChakraProvider} from '@chakra-ui/react';
-import Navbar from "./components/Navbar";
 import Home from "./screens/Home/Home";
+import Navbar from "./components/Navbar/Navbar";
 import Register from "./screens/Register/Register";
 import ClientLogin from "./screens/Login/Client/ClientLogin";
 import About from "./screens/About/About";
@@ -13,35 +13,34 @@ import DoctorLogin from "./screens/Login/Doctor/DoctorLogin";
 import DoctorDashboard from "./screens/Dashboards/Doctor/DoctorDashboard";
 import DoctorAppointmentCreator from "./screens/Appointments/Doctor/DoctorAppointmentCreator";
 import DoctorCalendar from "./screens/Appointments/Doctor/DoctorCalendar";
-import { ROLE_ADMIN, ROLE_DOCTOR, ROLE_PATIENT } from "./config/constants";
-import PatientNavbar from "./components/Navbar/Patient/PatientNavbar";
+import NotFound from "./screens/404/NotFound";
+import {ROLE_ADMIN, ROLE_DOCTOR, ROLE_PATIENT} from "./config/constants";
 import DoctorNavbar from "./components/Navbar/Doctor/DoctorNavbar";
+import {useEffect, useState} from "react";
+import PatientNavbar from "./components/Navbar/Patient/PatientNavbar";
 import AdminNavbar from "./components/Navbar/Admin/AdminNavbar";
 
 function App() {
-  const role = window.sessionStorage.getItem('role');
 
-  let navbar;
+    // TODO: doesn't change automatically!
+    const role = window.sessionStorage.getItem('role') ?? null;
+    const [navbar, setNavbar] = useState(<Navbar/>);
 
-  switch (role) {
-    case ROLE_PATIENT:
-      navbar = <PatientNavbar/>;
-      break;
-    case ROLE_DOCTOR:
-      navbar = <DoctorNavbar/>;
-      break;
-    case ROLE_ADMIN:
-      navbar = <AdminNavbar/>;
-      break;
-    default:
-      navbar = <Navbar/>;
-  }
+    useEffect(() => {
+        switch (role) {
+            case ROLE_PATIENT: setNavbar(<PatientNavbar/>); break;
+            case ROLE_DOCTOR: setNavbar(<DoctorNavbar/>); break;
+            case ROLE_ADMIN: setNavbar(<AdminNavbar/>); break;
+            default: setNavbar(<Navbar/>);
+        }
+    }, [role]);
 
   return (
     <ChakraProvider>
         <BrowserRouter>
             {navbar}
             <Routes>
+                <Route path="*" element={ <NotFound/> }/>
                 <Route path="/" element={ <Home/> }/>
                 <Route path="/register" element={ <Register/> }/>
                 <Route path="/login" element={ <ClientLogin/> }/>

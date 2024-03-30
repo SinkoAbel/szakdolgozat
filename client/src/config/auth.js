@@ -15,37 +15,42 @@ export const login = async (
 
     if (!email || !password) {
         setLoginError(true);
-        return;
+        return false;
     }
     
-    await axios.post(endpoint, {
-        email: email,
-        password: password,
-        token_type: tokenType
-    }).then((response) => {
+    try {
+        const response = await axios.post(endpoint, {
+            email: email,
+            password: password,
+            token_type: tokenType
+        });
+
         if (response.status === 200) {
             setLoginError(false);
-            setSuccessfulLogin(true);;
+            setSuccessfulLogin(true);
 
             window.sessionStorage.setItem('token', 'Bearer ' +  response.data.token);
             window.sessionStorage.setItem('user_id', response.data.id);
             window.sessionStorage.setItem('authenticated', true);
             window.sessionStorage.setItem('role', role);
+
+            return true;
         } else {
             setLoginError(true);
             setSuccessfulLogin(false);
+            return false;
         }
-    }).catch((err) => {
+    } catch (err) {
         console.log(err);
         setLoginError(true);
         setSuccessfulLogin(false);
-    });
+        return false;
+    }
 }
 
 
 export const logout = async () => {
     const token = window.sessionStorage.getItem('token');
-    console.log(token);
 
     await axios.post('/api/logout', {}, {
         headers: {

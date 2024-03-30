@@ -10,51 +10,7 @@ import {
     Stack,
   } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { useNavigate } from 'react-router-dom';
-import { logout } from '../../../config/auth';
-
-const MenuItems = [
-    {
-        name: 'Panel',
-        link: '/doctor/dashboard',
-        action: null,
-    },
-    {
-        name: 'Naptár',
-        link: '/doctor/calendar',
-        action: null,
-    },
-    {
-        name: 'Időpont létrehozása',
-        link: '/doctor/appointment/creator',
-        action: null,
-    },
-   {
-        name: 'Kijelentkezés',
-        link: '#',
-    }
-];
-
-const NavLink = (props) => {
-  const { children } = props
-
-  return (
-    <Box
-      as="a"
-      px={2}
-      py={1}
-      rounded={'md'}
-      _hover={{
-        textDecoration: 'none',
-        bg: useColorModeValue('gray.200', 'gray.700'),
-      }}
-      href={children.link}
-      onClick={children.action}
-    >
-      {children.name}
-    </Box>
-  )
-}
+import {logout} from '../../../config/auth';
 
 
 const DoctorNavbar = () => {
@@ -73,9 +29,60 @@ const DoctorNavbar = () => {
                     />
                     <HStack spacing={8} alignItems={'center'}>
                         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
-                        {MenuItems.map((link) => (
-                            <NavLink key={link.name}>{link}</NavLink>
-                        ))}
+                            <Box
+                                as="a"
+                                px={2}
+                                py={1}
+                                rounded={'md'}
+                                _hover={{
+                                    textDecoration: 'none',
+                                    bg: useColorModeValue('gray.200', 'gray.700'),
+                                }}
+                                href={'/doctor/dashboard'}
+                                >
+                                    Kezelőfelület
+                            </Box>
+                            <Box
+                                as="a"
+                                px={2}
+                                py={1}
+                                rounded={'md'}
+                                _hover={{
+                                    textDecoration: 'none',
+                                    bg: useColorModeValue('gray.200', 'gray.700'),
+                                }}
+                                href={'/doctor/calendar'}
+                                >
+                                    Naptár
+                            </Box>
+                            <Box
+                                as="a"
+                                px={2}
+                                py={1}
+                                rounded={'md'}
+                                _hover={{
+                                    textDecoration: 'none',
+                                    bg: useColorModeValue('gray.200', 'gray.700'),
+                                }}
+                                href={'/doctor/appointment/creator'}
+                                >
+                                    Időpont létrehozása
+                            </Box>
+                            <Box
+                                as="a"
+                                px={2}
+                                py={1}
+                                rounded={'md'}
+                                _hover={{
+                                    textDecoration: 'none',
+                                    bg: useColorModeValue('gray.200', 'gray.700'),
+                                }}
+                                onClick={() => {
+                                    logout();
+                                }}
+                                >
+                                    Kifejelentkezés
+                            </Box>
                         </HStack>
                     </HStack>
                 </Flex>
@@ -83,9 +90,57 @@ const DoctorNavbar = () => {
                 {isOpen ? (
                 <Box pb={4} display={{ md: 'none' }}>
                     <Stack as={'nav'} spacing={4}>
-                        {MenuItems.map((link) => (
-                            <NavLink key={link.name}>{link}</NavLink>
-                        ))}
+                    <Box
+                        as="a"
+                        px={2}
+                        py={1}
+                        rounded={'md'}
+                        _hover={{
+                            textDecoration: 'none',
+                        }}
+                        href={'/doctor/dashboard'}
+                        >
+                            Kezelőfelület
+                    </Box>
+                        <Box
+                            as="a"
+                            px={2}
+                            py={1}
+                            rounded={'md'}
+                            _hover={{
+                                textDecoration: 'none',
+                            }}
+                            href={'/doctor/calendar'}
+                            >
+                                Naptár
+                        </Box>
+                        <Box
+                            as="a"
+                            px={2}
+                            py={1}
+                            rounded={'md'}
+                            _hover={{
+                                textDecoration: 'none',
+                            }}
+                            href={'/doctor/appointment/creator'}
+                            >
+                                Időpont létrehozása
+                        </Box>
+                        <Box
+                            as="a"
+                            px={2}
+                            py={1}
+                            rounded={'md'}
+                            _hover={{
+                                textDecoration: 'none',
+                            }}
+                            onClick={() => {
+                                logout();
+                            }}
+                            style={{cursor: 'pointer'}}
+                            >
+                                Kifejelentkezés
+                        </Box>
                     </Stack>
                 </Box>
                 ) : null}
