@@ -25,7 +25,7 @@ const DoctorLogin = () => {
 
         if (loginStatus) {
             setTimeout(() => {
-                navigate('/doctor/dashboard')
+                navigate('/doctor/dashboard');
             }, 3000);
         }
     }

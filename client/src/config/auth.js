@@ -23,13 +23,18 @@ export const login = async (
         password: password,
         token_type: tokenType
     }).then((response) => {
-        setLoginError(false);
-        setSuccessfulLogin(true);
+        if (response.status === 200) {
+            setLoginError(false);
+            setSuccessfulLogin(true);;
 
-        window.sessionStorage.setItem('token', 'Bearer ' +  response.data.token);
-        window.sessionStorage.setItem('user_id', response.data.id);
-        window.sessionStorage.setItem('authenticated', true);
-        window.sessionStorage.setItem('role', role);
+            window.sessionStorage.setItem('token', 'Bearer ' +  response.data.token);
+            window.sessionStorage.setItem('user_id', response.data.id);
+            window.sessionStorage.setItem('authenticated', true);
+            window.sessionStorage.setItem('role', role);
+        } else {
+            setLoginError(true);
+            setSuccessfulLogin(false);
+        }
     }).catch((err) => {
         console.log(err);
         setLoginError(true);
@@ -40,6 +45,7 @@ export const login = async (
 
 export const logout = async () => {
     const token = window.sessionStorage.getItem('token');
+    console.log(token);
 
     await axios.post('/api/logout', {}, {
         headers: {

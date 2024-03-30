@@ -17,7 +17,7 @@ class BookableReceptionTimesController extends Controller
     {
         $filters = $request->filters;
         $filters['doctor_id'] = auth()->user()->id;
-        
+
         return response()->json(
             $this->service->getEveryAppointments(
                 $filters

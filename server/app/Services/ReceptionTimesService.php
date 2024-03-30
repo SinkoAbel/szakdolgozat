@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Resources\BookableReceptionResource;
 use App\Models\BookableReceptionTimes;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class ReceptionTimesService.
@@ -27,10 +28,10 @@ class ReceptionTimesService extends AbstractService
      * @var array
      */
     public array $eagerLoad = [];
-    
+
     /**
      * Extended eager load query with Patient details.
-     * 
+     *
      * @var array
      */
     public array $extendedEagerLoad = [];
@@ -78,18 +79,17 @@ class ReceptionTimesService extends AbstractService
     }
 
     public function getEveryAppointments(array $filters): AnonymousResourceCollection
-    {   
+    {
         return $this->getCollection(
             array_merge($this->eagerLoad, $this->extendedEagerLoad),
             [
                 'filterForDoctor' => $filters['doctor_id'],
-                'filterBookedAppointments' => $filters['booked'] ?? false
             ]
         );
     }
 
     public function getAppointment(BookableReceptionTimes $receptionTime): BookableReceptionResource
-    {        
+    {
         return new $this->resource(
             $receptionTime->load(
                 array_merge($this->eagerLoad, $this->extendedEagerLoad)
@@ -98,22 +98,22 @@ class ReceptionTimesService extends AbstractService
     }
 
     public function createNewAppointment(array $params): BookableReceptionResource
-    {        
+    {
         $createdAppointment = $this->createRecord($params);
         $createdAppointment->load($this->eagerLoad);
 
         return new $this->resource($createdAppointment);
     }
 
-    public function modifyAppointment(BookableReceptionTimes $receptionTime, array $requestParams): BookableReceptionResource|array
+    public function modifyAppointment(BookableReceptionTimes $receptionTime, array $requestParams): BookableReceptionResource|JsonResource|array
     {
         if ($receptionTime->booked) {
             return [
                 'success' => false,
                 'message' => 'You can\'t delete this appointment, because a patient already booked. Please contact your administrator.',
             ];
-        }       
-              
+        }
+
         return $this->updateRecord($receptionTime, [
             'doctor_user_id' => $requestParams['doctor_user_id'] ?? $receptionTime->doctor_user_id,
             'date' => $requestParams['date'] ?? $receptionTime->date,

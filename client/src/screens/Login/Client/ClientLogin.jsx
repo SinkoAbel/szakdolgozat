@@ -18,6 +18,8 @@ const ClientLogin = () => {
         event.preventDefault();
         const response = login(setLoginError, setSuccessfulLogin, email, password, '/api/login', 'Patient-Token', ROLE_PATIENT);
 
+        console.log(response);
+
         if (response) {
             setTimeout(() => {
                 navigate('/patient/dashboard');

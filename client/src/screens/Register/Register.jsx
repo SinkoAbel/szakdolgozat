@@ -7,7 +7,7 @@ import { Flex, Box, FormControl, FormLabel, Input, InputGroup, InputLeftAddon, H
         FormErrorMessage} from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {useDispatch, useSelector} from "react-redux";
-import {resetState, setBirthday, setBirthplace, setCity, setEmail, setFirstName, setHouseNumber, setInsuranceNumber, setLastName, setPassword, setPhone, setStreet, setZip} from "../../state/reducers/registerPatientSlice";
+import {setBirthday, setBirthplace, setCity, setEmail, setFirstName, setHouseNumber, setInsuranceNumber, setLastName, setPassword, setPhone, setStreet, setZip} from "../../state/reducers/registerPatientSlice";
 import { registerPatientEndpoint } from '../../config/endpoints';
 import { ROLE_PATIENT } from '../../config/constants';
 import reactAxios from '../../config/axios';
@@ -144,7 +144,7 @@ const Register = () => {
             setSuccessfulRegistration(true);
             
             setTimeout(() => {
-                dispatch(resetState());
+                //dispatch(resetState());
                 navigate('/');
             }, 3000);
         }).catch(err => {

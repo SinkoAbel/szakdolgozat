@@ -4,9 +4,9 @@ import axios from "../../../config/axios";
 
 const DoctorAppointmentCreator = () => {
 
-    const [date, setDate] = useState('');
-    const [appointmentStart, setAppointmentStart] = useState('');
-    const [appointmentEnd, setAppointmentEnd] = useState('');
+    const [date, setDate] = useState(null);
+    const [appointmentStart, setAppointmentStart] = useState(null);
+    const [appointmentEnd, setAppointmentEnd] = useState(null);
 
     const [errorState, setErrorState] = useState(false);
     const [successState, setSuccssState] = useState(false);
@@ -14,22 +14,50 @@ const DoctorAppointmentCreator = () => {
     const [dateError, setDateError] = useState(false);
     const [appointmentStartError, setAppointmentStartError] = useState(false);
     const [appointmentEndError, setAppointmentEndError] = useState(false);
+    
+    const clearInputs = () => {
+        setDate(null);
+        setAppointmentStart(null);
+        setAppointmentEnd(null);
+    }
+
+    const defaultErrorFields = () => {
+        setDateError(false);
+        setAppointmentStartError(false);
+        setAppointmentEndError(false);
+    }
+
+    const defaultResponseStatuses = () => {
+        setSuccssState(false);
+        setErrorState(false);
+    }
 
     const handleAppointmentCreation = async (event) => {
         event.preventDefault();
-        setSuccssState(false);
-        setErrorState(false);
+        defaultResponseStatuses();
+        defaultErrorFields();
 
-        // TODO: Add validation!
         if (!date) {
-            // TODO: add error fields, look up Chakra UI DOC!!!
+            setDateError(true);
+        }
+
+        if (!appointmentStart) {
+            setAppointmentStartError(true);
+        }
+
+        if (!appointmentEnd) {
+            setAppointmentEndError(true);
+        }
+
+        if (dateError || appointmentStartError || appointmentEndError) {
+            return;
         }
 
         const token = window.sessionStorage.getItem('token');
-        const userID = window.sessionStorage.getItem('userID');
+        const doctorID = window.sessionStorage.getItem('user_id');
 
-        await axios.post('/api/', {
-            doctor_user_id: userID,
+        await axios.post('/api/doctors/appointments', {
+            doctor_user_id: doctorID,
             date: date,
             start_time: appointmentStart,
             end_time: appointmentEnd,
@@ -39,9 +67,11 @@ const DoctorAppointmentCreator = () => {
             }
         }).then((response) => {
             setSuccssState(true);
+            clearInputs();
         }).catch((err) => {
             console.log(err);
             setErrorState(true)
+            clearInputs();
         });
     }
 
@@ -79,18 +109,27 @@ const DoctorAppointmentCreator = () => {
                                 <Input type="date" onChange={(e) => {
                                     setDate(e.target.value);
                                 }}/>
+                                { dateError &&
+                                    <p className="text-red-500 mt-1">A dátum kitöltése kötelező!</p>
+                                }
                             </FormControl>
                             <FormControl isRequired>
                                 <FormLabel>Rendelés kezdete</FormLabel>
                                 <Input type="time" onChange={(e) => {
                                     setAppointmentStart(e.target.value);
                                 }}/>
+                                { appointmentStartError &&
+                                    <p className="text-red-500 mt-1">A kezdő indőpont megadása kötelező!</p>
+                                }
                             </FormControl>
                             <FormControl isRequired>
                                 <FormLabel>Rendelés vége</FormLabel>
                                 <Input type="time" onChange={(e) => {
                                     setAppointmentEnd(e.target.value);
                                 }}/>
+                                { appointmentEndError &&
+                                    <p className="text-red-500 mt-1">Az időpont végének megadása kötelező!</p>
+                                }
                             </FormControl>
                         </Stack>
                     </Box>

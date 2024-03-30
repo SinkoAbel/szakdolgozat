@@ -53,7 +53,7 @@ export const registerPatientSlice = createSlice({
         setPhone: (state, action) => {
             state.phone = action.payload;
         },
-        resetState: (state) => {
+        resetState: (state, action) => {
             state.first_name = '';
             state.last_name = '';
             state.email = '';
