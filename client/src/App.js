@@ -20,26 +20,29 @@ import {useEffect, useState} from "react";
 import PatientNavbar from "./components/Navbar/Patient/PatientNavbar";
 import AdminNavbar from "./components/Navbar/Admin/AdminNavbar";
 import Appointment from "./screens/Appointment/Appointment";
+import AppointmentDetail from "./screens/Appointments/Doctor/AppointmentDetail";
 
 function App() {
 
     // TODO: doesn't change automatically!
-    const role = window.sessionStorage.getItem('role') ?? null;
-    const [navbar, setNavbar] = useState(<Navbar/>);
-
-    useEffect(() => {
-        switch (role) {
-            case ROLE_PATIENT: setNavbar(<PatientNavbar/>); break;
-            case ROLE_DOCTOR: setNavbar(<DoctorNavbar/>); break;
-            case ROLE_ADMIN: setNavbar(<AdminNavbar/>); break;
-            default: setNavbar(<Navbar/>);
-        }
-    }, [role]);
+    const role = window.sessionStorage.getItem('role');
 
   return (
     <ChakraProvider>
         <BrowserRouter>
-            {navbar}
+            { role && role === ROLE_PATIENT &&
+                <PatientNavbar/>
+            }
+            { role && role === ROLE_DOCTOR &&
+                <DoctorNavbar/>
+            }
+            { role && role === ROLE_ADMIN &&
+                <AdminNavbar/>
+            }
+            {
+                !role &&
+                    <Navbar/>
+            }
             <Routes>
                 <Route path="*" element={ <NotFound/> }/>
                 <Route path="/" element={ <Home/> }/>
@@ -55,6 +58,7 @@ function App() {
                 <Route path="/doctor/appointment/creator" element={ <DoctorAppointmentCreator/> }/>
                 <Route path="/doctor/calendar" element={ <DoctorCalendar/> }/>
                 <Route path="/appointment/:appointmentId" element={ <Appointment/> }/>
+                <Route path="/appointment/detail/:appointmentId" element={ <AppointmentDetail/> }/>
             </Routes>
         </BrowserRouter>
     </ChakraProvider>

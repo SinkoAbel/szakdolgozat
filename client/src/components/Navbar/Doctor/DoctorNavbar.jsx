@@ -11,9 +11,11 @@ import {
   } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import {logout} from '../../../config/auth';
+import {useNavigate} from "react-router-dom";
 
 
 const DoctorNavbar = () => {
+    const navigate = useNavigate();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
@@ -79,6 +81,7 @@ const DoctorNavbar = () => {
                                 }}
                                 onClick={() => {
                                     logout();
+                                    navigate('/');
                                 }}
                                 >
                                     Kifejelentkezés
@@ -136,6 +139,7 @@ const DoctorNavbar = () => {
                             }}
                             onClick={() => {
                                 logout();
+                                navigate('/');
                             }}
                             style={{cursor: 'pointer'}}
                             >

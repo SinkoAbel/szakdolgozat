@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "../../../config/axios";
 import {IconButton, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
-import {DeleteIcon, EditIcon} from "@chakra-ui/icons";
+import {DeleteIcon, EditIcon, SearchIcon} from "@chakra-ui/icons";
 import {Link} from "react-router-dom";
 
 const DoctorDashboard = () => {
@@ -52,6 +52,7 @@ const DoctorDashboard = () => {
                             <Th>Kezdet</Th>
                             <Th>Vég</Th>
                             <Th>Státusz</Th>
+                            <Th>Részletek</Th>
                             <Th>Módosítás</Th>
                             <Th>Törlés</Th>
                         </Tr>
@@ -65,6 +66,18 @@ const DoctorDashboard = () => {
                                         <Td>{appointment.start_time}</Td>
                                         <Td>{appointment.end_time}</Td>
                                         <Td>{appointment.booked ? 'Foglalt' : 'Szabad'}</Td>
+                                        <Td>
+                                            { appointment.booked &&
+                                                <Link to={`/appointment/detail/${appointment.id}`}>
+                                                    <IconButton
+                                                        colorScheme='teal'
+                                                        aria-label='Időpont módosítás'
+                                                        size='md'
+                                                        icon={<SearchIcon/>}
+                                                    />
+                                                </Link>
+                                            }
+                                        </Td>
                                         <Td>
                                             { (!appointment.booked && appointment.date >= today) &&
                                                 <Link to={`/appointment/${appointment.id}`}>
