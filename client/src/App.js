@@ -19,6 +19,7 @@ import DoctorNavbar from "./components/Navbar/Doctor/DoctorNavbar";
 import {useEffect, useState} from "react";
 import PatientNavbar from "./components/Navbar/Patient/PatientNavbar";
 import AdminNavbar from "./components/Navbar/Admin/AdminNavbar";
+import Appointment from "./screens/Appointment/Appointment";
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
                 <Route path="/doctor/dashboard" element={ <DoctorDashboard/> }/>
                 <Route path="/doctor/appointment/creator" element={ <DoctorAppointmentCreator/> }/>
                 <Route path="/doctor/calendar" element={ <DoctorCalendar/> }/>
+                <Route path="/appointment/:appointmentId" element={ <Appointment/> }/>
             </Routes>
         </BrowserRouter>
     </ChakraProvider>
