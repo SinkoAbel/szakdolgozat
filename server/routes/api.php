@@ -71,22 +71,30 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::group(['middleware' => ['role:doctor|patient|admin']], function () {
-        Route::apiResource('/doctors/appointments', BookableReceptionTimesController::class)->only(['index']);
+        Route::apiResource('/appointments', BookableReceptionTimesController::class)->only(['index']);
     });
 
     Route::group(['middleware' => ['role:doctor|admin']], function () {
         Route::prefix('/doctors')->group(function ()  {
-            Route::apiResource('/', DoctorController::class)->only(['show', 'update']);
-            Route::apiResource('/appointments', BookableReceptionTimesController::class)->only(['show', 'store', 'update', 'delete']);
+            Route::get('/{doctor}', [DoctorController::class, 'show']);
+            Route::put('/{doctor}', [DoctorController::class, 'update']);
         });
+
+        Route::apiResource('/appointments', BookableReceptionTimesController::class)->only(['show', 'store', 'update', 'delete']);
     });
 
     Route::group(['middleware' => ['role:patient|admin']], function () {
-        Route::apiResource('/doctors/list', DoctorController::class)->only(['index']);
+        Route::apiResource('/list/doctors', DoctorController::class)->only(['index']);
 
         Route::prefix('patients')->group(function () {
-            Route::apiResource('/', PatientController::class)->only(['show', 'update']);
-            Route::apiResource('/bookings', ReservedBookingsController::class)->only(['index', 'show', 'store']);
+            Route::get('/{patient}', [PatientController::class, 'show']);
+            Route::put('/{patient}', [PatientController::class, 'update']);
+        });
+
+        Route::prefix('bookings')->group(function () {
+            Route::get('/', [ReservedBookingsController::class, 'index']);
+            Route::get('/{booking}', [ReservedBookingsController::class, 'show']);
+            Route::post('/', [ReservedBookingsController::class, 'store']);
         });
     });
 });

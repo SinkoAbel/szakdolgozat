@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,9 +31,20 @@ class ReservedBookings extends Model
     {
         return $this->belongsTo(BookableReceptionTimes::class, 'bookable_reception_times_id');
     }
-    
+
     public function scopeFilterForPatient(Builder $query, int $patientID): Builder
     {
         return $query->where('patient_user_id', $patientID);
+    }
+
+    public function scopeFromToday(Builder $query, bool $required): Builder
+    {
+        if ($required) {
+            return $query->whereHas('bookable_reception_times', function ($query) {
+                $query->where('date', '>=', Carbon::now()->format('Y-m-d'));
+            });
+        } else {
+            return $query;
+        }
     }
 }

@@ -30,6 +30,10 @@ class ReservedBookingsRequest extends AbstractRequest
                 'numeric',
                 'exists:users,id'
             ],
+            'filters.from_today' => [
+                'nullable',
+                'boolean'
+            ]
         ];
     }
 

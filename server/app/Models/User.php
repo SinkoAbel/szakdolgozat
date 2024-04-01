@@ -74,12 +74,11 @@ class User extends Authenticatable
         return $this->hasMany(BookableReceptionTimes::class);
     }
 
-    // Patient roles
     public function reserved_bookings(): HasMany
     {
         return $this->hasMany(ReservedBookings::class);
     }
-    
+
     public function scopeFilterUserRole(Builder $query, string $userRole): Builder
     {
         return $query->role($userRole);
