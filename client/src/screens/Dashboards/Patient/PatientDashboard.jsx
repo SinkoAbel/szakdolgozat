@@ -1,10 +1,13 @@
 
 const PatientDashboard = () => {
 
-    // Show the booked appointments here for the user.
-    // If no appointments booked tell it to the user.
-    // TODO: get the user's data.
-    // Welcome message!
+    // TODO: írjuk ki, a mai naptól kezdve a lefoglalt/elkövetkező időpontokat.
+    /**
+     * Mi kell ehhez? Kérjük le a felhasználóhoz tartozó lefoglalt időpontokat
+     * AHOL a lefoglalt időponthoz tartozó dátum >= mai nap Y-m-d dátuma.
+     */
+    const endpoint = '/api/'
+
     return (
         <>
             <h2>Üdvözöljük a Medicare időpontfoglaló rendszerében!</h2>

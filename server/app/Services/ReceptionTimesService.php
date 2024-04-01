@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Enums\UserRolesEnum;
 use App\Http\Resources\BookableReceptionResource;
 use App\Models\BookableReceptionTimes;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -78,13 +79,27 @@ class ReceptionTimesService extends AbstractService
         ];
     }
 
-    public function getEveryAppointments(array $filters): AnonymousResourceCollection
+    public function getEveryAppointments(array $filters, string $role = 'doctor'): AnonymousResourceCollection
     {
+        $scopes = null;
+
+        if ($role == UserRolesEnum::DOCTOR->value) {
+            $scopes = [
+                'filterForDoctor' => $filters['doctor_id']
+            ];
+        }
+
+        if ($role == UserRolesEnum::PATIENT->value) {
+            $scopes = [
+                'filterForDoctor' => $filters['doctor'],
+                'filterBookedAppointments' => $filters['booked'],
+                'filterFromToday' => true
+            ];
+        }
+
         return $this->getCollection(
             array_merge($this->eagerLoad, $this->extendedEagerLoad),
-            [
-                'filterForDoctor' => $filters['doctor_id'],
-            ]
+            $scopes
         );
     }
 

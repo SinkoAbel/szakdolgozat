@@ -65,19 +65,25 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::group(['middleware' => ['role:admin']], function () {
         Route::prefix('super')->group(function () {
             Route::apiResource('/admins', AdminController::class);
-            Route::apiResource('/doctors', DoctorController::class)->only(['index', 'store', 'destroy']);
+            Route::apiResource('/doctors', DoctorController::class)->only(['store', 'destroy']);
             Route::apiResource('/patients', PatientController::class)->only(['index', 'destroy']);
         });
+    });
+
+    Route::group(['middleware' => ['role:doctor|patient|admin']], function () {
+        Route::apiResource('/doctors/appointments', BookableReceptionTimesController::class)->only(['index']);
     });
 
     Route::group(['middleware' => ['role:doctor|admin']], function () {
         Route::prefix('/doctors')->group(function ()  {
             Route::apiResource('/', DoctorController::class)->only(['show', 'update']);
-            Route::apiResource('/appointments', BookableReceptionTimesController::class);
+            Route::apiResource('/appointments', BookableReceptionTimesController::class)->only(['show', 'store', 'update', 'delete']);
         });
     });
 
     Route::group(['middleware' => ['role:patient|admin']], function () {
+        Route::apiResource('/doctors/list', DoctorController::class)->only(['index']);
+
         Route::prefix('patients')->group(function () {
             Route::apiResource('/', PatientController::class)->only(['show', 'update']);
             Route::apiResource('/bookings', ReservedBookingsController::class)->only(['index', 'show', 'store']);

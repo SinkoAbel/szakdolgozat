@@ -14,7 +14,8 @@ use Illuminate\Http\JsonResponse;
 class DoctorController extends Controller
 {
     /**
-     * @param DoctorService $service
+     * @param DoctorService $doctorService
+     * @param AuthService $authService
      */
     public function __construct(protected DoctorService $doctorService, protected  AuthService $authService)
     {

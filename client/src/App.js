@@ -16,11 +16,12 @@ import DoctorCalendar from "./screens/Appointments/Doctor/DoctorCalendar";
 import NotFound from "./screens/404/NotFound";
 import {ROLE_ADMIN, ROLE_DOCTOR, ROLE_PATIENT} from "./config/constants";
 import DoctorNavbar from "./components/Navbar/Doctor/DoctorNavbar";
-import {useEffect, useState} from "react";
 import PatientNavbar from "./components/Navbar/Patient/PatientNavbar";
 import AdminNavbar from "./components/Navbar/Admin/AdminNavbar";
 import Appointment from "./screens/Appointment/Appointment";
 import AppointmentDetail from "./screens/Appointments/Doctor/AppointmentDetail";
+import PatientHistory from "./screens/PatientHistory/PatientHistory";
+import PatientBooker from "./screens/Appointments/Patient/PatientBooker";
 
 function App() {
 
@@ -59,6 +60,8 @@ function App() {
                 <Route path="/doctor/calendar" element={ <DoctorCalendar/> }/>
                 <Route path="/appointment/:appointmentId" element={ <Appointment/> }/>
                 <Route path="/appointment/detail/:appointmentId" element={ <AppointmentDetail/> }/>
+                <Route path="/patient/history" element={ <PatientHistory/> }/>
+                <Route path="/patient/booking" element={ <PatientBooker/> }/>
             </Routes>
         </BrowserRouter>
     </ChakraProvider>
