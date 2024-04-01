@@ -15,7 +15,7 @@ import BookingModal from "../../../components/Modal/BookingModal";
 const PatientBooker = () => {
     const token = window.sessionStorage.getItem('token');
     const userID = window.sessionStorage.getItem('user_id');
-    const doctorListEndpoint = '/api/doctors/list';
+    const doctorListEndpoint = '/api/list/doctors';
 
     const [doctorsList, setDoctorsList] = useState([]);
     const [appointmentsList, setAppointmentsList] = useState([]);
@@ -40,7 +40,7 @@ const PatientBooker = () => {
     }
 
     const fetchAppointments = async (doctorID) => {
-        const appointmentEndpoint = `/api/doctors/appointments?filters[booked]=0&filters[doctor]=${doctorID}`;
+        const appointmentEndpoint = `/api/appointments?filters[booked]=0&filters[doctor]=${doctorID}`;
 
         await axios.get(appointmentEndpoint, {
             headers: {

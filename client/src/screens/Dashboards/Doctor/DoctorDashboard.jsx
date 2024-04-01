@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 const DoctorDashboard = () => {
     const token = window.sessionStorage.getItem('token');
 
-    const endpoint = '/api/doctors/appointments';
+    const endpoint = '/api/appointments';
     const date = new Date();
     const today = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 

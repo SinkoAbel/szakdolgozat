@@ -18,7 +18,7 @@ const Appointment = () => {
     const appointmentObject = useParams();
     const appointmentID = appointmentObject.appointmentId;
     const token = window.sessionStorage.getItem('token');
-    const endpoint = `/api/doctors/appointments/${appointmentID}`;
+    const endpoint = `/api/appointments/${appointmentID}`;
 
     const fetchAppointment = async () => {
         await axios.get(endpoint, {

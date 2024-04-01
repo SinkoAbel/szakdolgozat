@@ -9,7 +9,7 @@ const DoctorCalendar = () => {
     const token = window.sessionStorage.getItem('token');
 
     const fetchData = async () => {
-        await axios.get('/api/doctors/appointments', {
+        await axios.get('/api/appointments', {
             headers: {
                 Authorization: token
             }

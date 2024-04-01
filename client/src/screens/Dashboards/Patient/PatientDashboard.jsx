@@ -1,19 +1,78 @@
+import {useEffect, useState} from "react";
+import axios from "../../../config/axios";
+import {Table, TableContainer, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
 
 const PatientDashboard = () => {
+    const userID = window.sessionStorage.getItem('user_id');
+    const token = window.sessionStorage.getItem('token');
+    const endpoint = '/api/patients/' + userID;
 
-    // TODO: írjuk ki, a mai naptól kezdve a lefoglalt/elkövetkező időpontokat.
-    /**
-     * Mi kell ehhez? Kérjük le a felhasználóhoz tartozó lefoglalt időpontokat
-     * AHOL a lefoglalt időponthoz tartozó dátum >= mai nap Y-m-d dátuma.
-     */
-    const endpoint = '/api/'
+    const [userData, setUserData] = useState([]);
+    const [forthcomingAppointments, setForthcomingAppointments] = useState([]);
+    
+    useEffect(() => {
+        fetchUserData();
+        fetchForthComingAppointments();
+    }, []);
+
+    const fetchUserData = async () => {
+        await axios.get(endpoint, {
+            headers: {
+                Authorization: token
+            }
+        }).then(response => {
+            setUserData(response.data);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    const fetchForthComingAppointments = async () => {
+        await axios.get('/api/bookings?filters[from_today]=1', {
+            headers: {
+                Authorization: token
+            }
+        }).then(response => {
+            setForthcomingAppointments(response.data);
+        }).catch(err => {
+            console.log(err);
+        });
+    }
 
     return (
         <>
-            <h2>Üdvözöljük a Medicare időpontfoglaló rendszerében!</h2>
             <div>
+                <h2>{'Üdvözöljük ' + userData.last_name + ' ' + userData.first_name + ' a Medicare időpontfoglaló rendszerében!'}</h2>
+                {
+
+                }
                 <h3>Jelenleg nem rendelkezik időpont foglalálssal.</h3>
-                <p>Amennyiben időpontot kíván foglalni kérem válasszon szakorvosaink közül.</p>
+                <p>Amennyiben időpontot kíván foglalni kérem kattintson az időpontfoglalás menüpontra.</p>
+            </div>
+            <div>
+                <p>Közelgő időpontok:</p>
+                <TableContainer>
+                    <Table>
+                        <Thead>
+                            <Th>Dátum</Th>
+                            <Th>Időpont kezdete</Th>
+                            <Th>Időpont vége</Th>
+                        </Thead>
+                        <Tbody>
+                            {
+                                forthcomingAppointments.map((appointment) => {
+                                    return (
+                                        <Tr>
+                                            <Td>{appointment.bookable_reception_times.date}</Td>
+                                            <Td>{appointment.bookable_reception_times.start_time}</Td>
+                                            <Td>{appointment.bookable_reception_times.end_time}</Td>
+                                        </Tr>
+                                    );
+                                })
+                            }
+                        </Tbody>
+                    </Table>
+                </TableContainer>
             </div>
         </>
     );

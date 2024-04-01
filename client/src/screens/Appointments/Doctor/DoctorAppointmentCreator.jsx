@@ -82,7 +82,7 @@ const DoctorAppointmentCreator = () => {
         const token = window.sessionStorage.getItem('token');
         const doctorID = window.sessionStorage.getItem('user_id');
 
-        await axios.post('/api/doctors/appointments', {
+        await axios.post('/api/appointments', {
             doctor_user_id: doctorID,
             date: date,
             start_time: appointmentStart,

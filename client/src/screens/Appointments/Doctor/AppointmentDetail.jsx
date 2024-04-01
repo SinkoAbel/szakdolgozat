@@ -13,7 +13,7 @@ const AppointmentDetail = () => {
     const appointment = useParams();
     const appointmentID = appointment.appointmentId;
     const token = window.sessionStorage.getItem('token');
-    const endpoint = `/api/doctors/appointments/${appointmentID}`;
+    const endpoint = `/api/appointments/${appointmentID}`;
 
     useEffect(() => {
         const fetchAPI = async () => {

@@ -24,7 +24,7 @@ const BookingModal = (props) => {
         setSuccess(false);
         setFail(false);
 
-        const bookingEndpoint = '/api/patients/bookings';
+        const bookingEndpoint = '/api/bookings';
 
         await axios.post(bookingEndpoint, {
             bookable_reception_times_id: props.receptionTimeID,
