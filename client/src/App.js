@@ -20,8 +20,8 @@ import PatientNavbar from "./components/Navbar/Patient/PatientNavbar";
 import AdminNavbar from "./components/Navbar/Admin/AdminNavbar";
 import Appointment from "./screens/Appointment/Appointment";
 import AppointmentDetail from "./screens/Appointments/Doctor/AppointmentDetail";
-import PatientHistory from "./screens/PatientHistory/PatientHistory";
 import PatientBooker from "./screens/Appointments/Patient/PatientBooker";
+import PatientProfile from "./screens/Profiles/Patient/PatientProfile";
 
 function App() {
 
@@ -60,8 +60,8 @@ function App() {
                 <Route path="/doctor/calendar" element={ <DoctorCalendar/> }/>
                 <Route path="/appointment/:appointmentId" element={ <Appointment/> }/>
                 <Route path="/appointment/detail/:appointmentId" element={ <AppointmentDetail/> }/>
-                <Route path="/patient/history" element={ <PatientHistory/> }/>
                 <Route path="/patient/booking" element={ <PatientBooker/> }/>
+                <Route path="/patient/profile" element={ <PatientProfile/> }/>
             </Routes>
         </BrowserRouter>
     </ChakraProvider>

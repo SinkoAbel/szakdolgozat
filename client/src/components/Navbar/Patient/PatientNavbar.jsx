@@ -66,9 +66,9 @@ const PatientNavbar = () => {
                                     textDecoration: 'none',
                                     bg: useColorModeValue('gray.200', 'gray.700'),
                                 }}
-                                href={'/patient/history'}
+                                href={'/patient/profile'}
                             >
-                                Történet
+                                Profile
                             </Box>
                             <Box
                                 as="a"
@@ -125,9 +125,9 @@ const PatientNavbar = () => {
                                 _hover={{
                                     textDecoration: 'none',
                                 }}
-                                href={'/patient/history'}
+                                href={'/patient/profile'}
                             >
-                                Történet
+                                Profil
                             </Box>
                             <Box
                                 as="a"
