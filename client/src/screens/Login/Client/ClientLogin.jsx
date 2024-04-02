@@ -4,9 +4,12 @@ import { Button, Checkbox, Flex, Text, FormControl, FormLabel, Heading, Input, S
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../config/auth';
 import { ROLE_PATIENT } from '../../../config/constants';
+import {setLoggedInTrue, setPatientRole} from "../../../state/reducers/authenticationSlice";
+import {useDispatch} from "react-redux";
 
 const ClientLogin = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,6 +27,8 @@ const ClientLogin = () => {
 
         if (!loginError) {
             setTimeout(() => {
+                dispatch(setPatientRole());
+                dispatch(setLoggedInTrue());
                 navigate('/patient/dashboard');
             }, 3000);   
         }

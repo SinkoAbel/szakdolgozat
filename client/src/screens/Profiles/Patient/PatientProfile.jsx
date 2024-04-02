@@ -19,6 +19,7 @@ const PatientProfile = () => {
             }
         }).then(response => {
             setUserData(response.data);
+            console.log(response.data);
         }).catch(err => {
             console.log(err);
         });
@@ -39,7 +40,13 @@ const PatientProfile = () => {
     }
 
     /**
-     * TODO: felhasználói adatok megjelenítése, lehetőség a módosításra.
+     * TODO: Felhasználói adatok megjelenítése egy táblázatban.
+     * TODO: Hozzunk létre egy gombot Módosítás címmel.
+     * TODO: FONTOS! NEM MINDEN ADAT MÓDOSÍTHATÓ!!!
+     * TODO: Mit lehet módosítani?: email, city, street, house_number, zip, phone.
+     * TODO: Ha a felhasználó rákattintott akkor a Táblázat cserélődjön le egy input mezőre minden elemnél, ahol a default value
+     *      legyen a felhasználó adata. Ezen módosíthat.
+     * TODO: Legyen egy Mentése, és egy Mégse gomb.
      */
 
     return (

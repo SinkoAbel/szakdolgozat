@@ -60,15 +60,6 @@ export default function WithSubnavigation() {
                             Bejelentkezés
                         </Link>
                     </Button>
-                    <Button as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'}>
-                        <Link onClick={async () => {
-                            await logout().then(() => {
-                                navigate('/');
-                            });
-                        }}>
-                            Kijelentkezés
-                        </Link>
-                    </Button>
                     <Button
                         as={'a'}
                         display={{ base: 'none', md: 'inline-flex' }}

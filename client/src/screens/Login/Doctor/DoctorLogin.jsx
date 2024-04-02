@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../config/auth';
 import { ROLE_DOCTOR } from '../../../config/constants';
-import DoctorNavbar from "../../../components/Navbar/Doctor/DoctorNavbar";
+import {useDispatch} from "react-redux";
+import {setAdminRole, setDoctorRole, setLoggedInTrue} from "../../../state/reducers/authenticationSlice";
 
 const DoctorLogin = (props) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -24,6 +26,8 @@ const DoctorLogin = (props) => {
 
         setTimeout(() => {
             navigate('/doctor/dashboard');
+            dispatch(setDoctorRole());
+            dispatch(setLoggedInTrue());
         }, 3000);
     }
 

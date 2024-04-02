@@ -1,7 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import axios from "../../config/axios";
 import {useNavigate, useParams} from "react-router-dom";
-import {Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useColorModeValue} from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    Flex,
+    FormControl,
+    FormLabel,
+    Heading,
+    IconButton,
+    Input,
+    Stack,
+    useColorModeValue
+} from "@chakra-ui/react";
+import {ArrowBackIcon} from "@chakra-ui/icons";
 
 const Appointment = () => {
     const navigate = useNavigate();
@@ -58,7 +70,7 @@ const Appointment = () => {
     }, []);
 
     return (
-        <>
+        <div className="bg-gray-50">
             <Flex
                 minH={'100vh'}
                 align={'center'}
@@ -120,12 +132,19 @@ const Appointment = () => {
                             _hover={{
                                 bg: 'blue.500',
                             }}>
-                            Időpont felvétele
+                            Időpont módosítása
+                        </Button>
+                        <Button
+                            size="lg"
+                            colorScheme={'teal'}
+                            onClick={() => navigate('/doctor/dashboard')}
+                        >
+                            Vissza
                         </Button>
                     </Stack>
                 </Stack>
             </Flex>
-        </>
+        </div>
     );
 };
 

@@ -12,10 +12,13 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import {logout} from '../../../config/auth';
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setGuestRole, setLoggedInFalse} from "../../../state/reducers/authenticationSlice";
 
 
 const DoctorNavbar = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
@@ -81,6 +84,8 @@ const DoctorNavbar = () => {
                                 }}
                                 onClick={() => {
                                     logout();
+                                    dispatch(setLoggedInFalse());
+                                    dispatch(setGuestRole());
                                     navigate('/');
                                 }}
                                 >
@@ -139,6 +144,8 @@ const DoctorNavbar = () => {
                             }}
                             onClick={() => {
                                 logout();
+                                dispatch(setGuestRole());
+                                dispatch(setLoggedInFalse());
                                 navigate('/');
                             }}
                             style={{cursor: 'pointer'}}

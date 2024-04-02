@@ -12,10 +12,13 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import {logout} from '../../../config/auth';
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {setGuestRole, setLoggedInFalse} from "../../../state/reducers/authenticationSlice";
 
 
 const PatientNavbar = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
@@ -68,7 +71,7 @@ const PatientNavbar = () => {
                                 }}
                                 href={'/patient/profile'}
                             >
-                                Profile
+                                Profil
                             </Box>
                             <Box
                                 as="a"
@@ -81,10 +84,14 @@ const PatientNavbar = () => {
                                 }}
                                 onClick={() => {
                                     logout();
-                                    navigate('/');
+                                    setTimeout(() => {
+                                        dispatch(setLoggedInFalse());
+                                        dispatch(setGuestRole());
+                                        navigate('/');
+                                    }, 3000);
                                 }}
                             >
-                                Kifejelentkezés
+                                Kijelentkezés
                             </Box>
                         </HStack>
                     </HStack>
@@ -139,11 +146,13 @@ const PatientNavbar = () => {
                                 }}
                                 onClick={() => {
                                     logout();
+                                    dispatch(setLoggedInFalse());
+                                    dispatch(setGuestRole());
                                     navigate('/');
                                 }}
                                 style={{cursor: 'pointer'}}
                             >
-                                Kifejelentkezés
+                                Kijelentkezés
                             </Box>
                         </Stack>
                     </Box>

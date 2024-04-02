@@ -22,28 +22,34 @@ import Appointment from "./screens/Appointment/Appointment";
 import AppointmentDetail from "./screens/Appointments/Doctor/AppointmentDetail";
 import PatientBooker from "./screens/Appointments/Patient/PatientBooker";
 import PatientProfile from "./screens/Profiles/Patient/PatientProfile";
+import {useSelector} from "react-redux";
 
 function App() {
+    const {
+        role
+    } = useSelector((state) => state.authentication)
 
-    // TODO: doesn't change automatically!
-    const role = window.sessionStorage.getItem('role');
+    let navbar;
+
+    switch (role) {
+        case ROLE_PATIENT:
+            navbar = <PatientNavbar/>;
+            break;
+        case ROLE_DOCTOR:
+            navbar = <DoctorNavbar/>;
+            break;
+        case ROLE_ADMIN:
+            navbar = <AdminNavbar/>;
+            break;
+        default:
+            navbar = <Navbar/>;
+            break;
+    }
 
   return (
     <ChakraProvider>
         <BrowserRouter>
-            { role && role === ROLE_PATIENT &&
-                <PatientNavbar/>
-            }
-            { role && role === ROLE_DOCTOR &&
-                <DoctorNavbar/>
-            }
-            { role && role === ROLE_ADMIN &&
-                <AdminNavbar/>
-            }
-            {
-                !role &&
-                    <Navbar/>
-            }
+            {navbar}
             <Routes>
                 <Route path="*" element={ <NotFound/> }/>
                 <Route path="/" element={ <Home/> }/>
