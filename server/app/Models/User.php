@@ -63,8 +63,6 @@ class User extends Authenticatable
 
     public function patient_details(): HasOne
     {
-        // TODO: check if role check is needed, as well as other eloquent functions
-        // return $this->hasRole(UserRolesEnum::PATIENT->value) ?
         return $this->hasOne(PatientDetail::class);
     }
 

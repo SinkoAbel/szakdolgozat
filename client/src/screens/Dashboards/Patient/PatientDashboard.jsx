@@ -41,13 +41,8 @@ const PatientDashboard = () => {
 
     return (
         <>
-            <div>
+            <div className="my-4">
                 <h2>{'Üdvözöljük ' + userData.last_name + ' ' + userData.first_name + ' a Medicare időpontfoglaló rendszerében!'}</h2>
-                {
-
-                }
-                <h3>Jelenleg nem rendelkezik időpont foglalálssal.</h3>
-                <p>Amennyiben időpontot kíván foglalni kérem kattintson az időpontfoglalás menüpontra.</p>
             </div>
             <div>
                 <p>Közelgő időpontok:</p>
