@@ -23,6 +23,7 @@ import AppointmentDetail from "./screens/Appointments/Doctor/AppointmentDetail";
 import PatientBooker from "./screens/Appointments/Patient/PatientBooker";
 import PatientProfile from "./screens/Profiles/Patient/PatientProfile";
 import {useSelector} from "react-redux";
+import AdminDashboard from "./screens/Dashboards/Admin/AdminDashboard";
 
 function App() {
     const {
@@ -62,6 +63,7 @@ function App() {
                 <Route path="/service-locations" element={ <Locations/> }/>
                 <Route path="/patient/dashboard" element={ <PatientDashboard/> }/>
                 <Route path="/doctor/dashboard" element={ <DoctorDashboard/> }/>
+                <Route path="/admin/dashboard" element={ <AdminDashboard/> }/>
                 <Route path="/doctor/appointment/creator" element={ <DoctorAppointmentCreator/> }/>
                 <Route path="/doctor/calendar" element={ <DoctorCalendar/> }/>
                 <Route path="/appointment/:appointmentId" element={ <Appointment/> }/>

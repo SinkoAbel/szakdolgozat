@@ -66,7 +66,7 @@ class User extends Authenticatable
         return $this->hasOne(PatientDetail::class);
     }
 
-    // Doctor roles
+
     public function bookable_reception_times(): HasMany
     {
         return $this->hasMany(BookableReceptionTimes::class);

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../../../config/auth';
 import { ROLE_DOCTOR } from '../../../config/constants';
 import {useDispatch} from "react-redux";
-import {setAdminRole, setDoctorRole, setLoggedInTrue} from "../../../state/reducers/authenticationSlice";
+import {setDoctorRole, setLoggedInTrue} from "../../../state/reducers/authenticationSlice";
 
 const DoctorLogin = (props) => {
     const navigate = useNavigate();
