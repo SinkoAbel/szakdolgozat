@@ -29,6 +29,7 @@ export const login = async (
             setLoginError(false);
             setSuccessfulLogin(true);
 
+            // TODO: should replace session with state?
             window.sessionStorage.setItem('token', 'Bearer ' +  response.data.token);
             window.sessionStorage.setItem('user_id', response.data.id);
             window.sessionStorage.setItem('authenticated', true);

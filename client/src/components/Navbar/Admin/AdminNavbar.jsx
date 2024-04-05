@@ -47,7 +47,7 @@ const AdminNavbar = () => {
                                 }}
                                 href={'/admin/update/users'}
                             >
-                                Felhasználó módosítása
+                                Felhasználók kezelése
                             </Box>
                             <Box
                                 as="a"
@@ -61,19 +61,6 @@ const AdminNavbar = () => {
                                 href={'/admin/create/users'}
                             >
                                 Felhasználó létrehozása
-                            </Box>
-                            <Box
-                                as="a"
-                                px={2}
-                                py={1}
-                                rounded={'md'}
-                                _hover={{
-                                    textDecoration: 'none',
-                                    bg: useColorModeValue('gray.200', 'gray.700'),
-                                }}
-                                href={'/admin/modify/appointments'}
-                            >
-                                Időpontok módosítása
                             </Box>
                             <Box
                                 as="a"
@@ -122,7 +109,7 @@ const AdminNavbar = () => {
                                 }}
                                 href={'/admin/update/users'}
                             >
-                                Felhasználó módosítása
+                                Felhasználó kezelése
                             </Box>
                             <Box
                                 as="a"
@@ -135,18 +122,6 @@ const AdminNavbar = () => {
                                 href={'/admin/create/users'}
                             >
                                 Felhasználó létrehozása
-                            </Box>
-                            <Box
-                                as="a"
-                                px={2}
-                                py={1}
-                                rounded={'md'}
-                                _hover={{
-                                    textDecoration: 'none',
-                                }}
-                                href={'/admin/modify/appointments'}
-                            >
-                                Időpontok módosítása
                             </Box>
                             <Box
                                 as="a"

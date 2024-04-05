@@ -7,6 +7,7 @@ use App\Http\Controllers\Doctor\DoctorController;
 use App\Http\Controllers\Patient\PatientController;
 use App\Http\Controllers\ReservedBookingsController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,9 +62,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('/routes', RouteController::class)->only(['index']);
 
-    // TODO: Admin can do everything with everyone?
     Route::group(['middleware' => ['role:admin']], function () {
         Route::prefix('super')->group(function () {
+            Route::apiResource('/users', UserController::class)->only(['index']);
             Route::apiResource('/admins', AdminController::class);
             Route::apiResource('/doctors', DoctorController::class)->only(['store', 'destroy']);
             Route::apiResource('/patients', PatientController::class)->only(['index', 'destroy']);

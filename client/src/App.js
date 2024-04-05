@@ -24,6 +24,8 @@ import PatientBooker from "./screens/Appointments/Patient/PatientBooker";
 import PatientProfile from "./screens/Profiles/Patient/PatientProfile";
 import {useSelector} from "react-redux";
 import AdminDashboard from "./screens/Dashboards/Admin/AdminDashboard";
+import CreateUser from "./screens/Admin/CreateUser/CreateUser";
+import UpdateUser from "./screens/Admin/UpdateUser/UpdateUser";
 
 function App() {
     const {
@@ -70,6 +72,8 @@ function App() {
                 <Route path="/appointment/detail/:appointmentId" element={ <AppointmentDetail/> }/>
                 <Route path="/patient/booking" element={ <PatientBooker/> }/>
                 <Route path="/patient/profile" element={ <PatientProfile/> }/>
+                <Route path="/admin/create/users" element={ <CreateUser/> }/>
+                <Route path="/admin/update/users" element={ <UpdateUser /> }/>
             </Routes>
         </BrowserRouter>
     </ChakraProvider>
