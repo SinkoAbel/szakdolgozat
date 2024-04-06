@@ -16,7 +16,8 @@ const CreateUser = () => {
     const [fieldError, setFieldError] = useState(false);
     const [requestSent, setRequestSent] = useState(false);
 
-    const endpoint = '/api/super/admins';
+    const endpointAdmin = '/api/super/admins';
+    const endpointDoctor = '/api/super/doctors';
 
     const roleObject = [
         {
@@ -44,7 +45,10 @@ const CreateUser = () => {
             return;
         }
 
-        await axios.post(endpoint, {
+        await axios.post(role === ROLE_ADMIN ?
+                                endpointAdmin :
+                                endpointDoctor,
+        {
             first_name: firstName,
             last_name: lastName,
             email: firstName.toLowerCase() + "." + lastName.toLowerCase() + "@medicare.com",
