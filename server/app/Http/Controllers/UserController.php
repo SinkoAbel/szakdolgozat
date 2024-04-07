@@ -29,6 +29,7 @@ class UserController extends Controller
      * @OA\Get(
      *      path="/api/super/users",
      *      operationId="getEveryUsersOrByRole",
+     *      security={{"bearer_token":{}}},
      *      tags={"Users by roles"},
      *      summary="Get every users. Can provider role filter.",
      *      description="Returns every users of the system.",

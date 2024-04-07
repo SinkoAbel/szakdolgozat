@@ -1,0 +1,37 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Szakdolgozat API dokumentáció",
+        "description": "Ez a dokuemntáció a szakdolgozat szerver oldalához készült endpoint dokumentáció.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/super/users": {
+            "get": {
+                "tags": [
+                    "Users by roles"
+                ],
+                "summary": "Get every users. Can provider role filter.",
+                "description": "Returns every users of the system.",
+                "operationId": "getEveryUsersOrByRole",
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "path",
+                        "description": "Request that could contain the filter."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfull request."
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        }
+    }
+}
