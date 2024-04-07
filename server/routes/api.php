@@ -22,36 +22,6 @@ use Illuminate\Support\Facades\Route;
 */
 //
 
-/**
- * Admin role abilities:
- *      - Get Admins
- *      - Get One Admin
- *      - Create Admin
- *      - Update Admin
- *      - Delete Admin
- *
- *      - Get Doctors
- *      - Get One Doctor
- *      - Create Doctor
- *      - Delete Doctor
- *      - Update Doctor
- *
- *      - Get Users
- *      - Get User
- *      - Delete User
- *
- * 2. Doctor role abilities
- *      - Get One Doctor (Him-/Herself)
- *      - Update Doctor (Him-/Herself)
- *      - Can set free appointments
- *      - Can revoke it
- *      - Can see all of his/her appointments
- *
- * 3. Patient role abilities
- *      - Get One Patient (Him-/Herself)
- *      - Update One Patient (Him-/Herself)
- *      - Can book free appointments
- */
 Route::post('/patient/register', [PatientController::class, 'store']);
 Route::post('/patient/login', [PatientController::class, 'login']);
 Route::post('/doctor/login', [DoctorController::class, 'login']);

@@ -139,7 +139,6 @@ class ReceptionTimesService extends AbstractService
 
     public function deleteAppointment(BookableReceptionTimes $receptionTime): bool|array
     {
-        // TODO: if a Patient booked Doctor can't delete appointment
         if ($receptionTime->booked) {
             return [
                 'success' => false,
