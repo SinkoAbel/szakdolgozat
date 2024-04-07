@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {ArrowBackIcon} from "@chakra-ui/icons";
+
 import {Button, FormControl, FormLabel, Input, Select} from "@chakra-ui/react";
 import {ROLE_DOCTOR, ROLE_ADMIN} from "../../../config/constants";
 import axios from "../../../config/axios";

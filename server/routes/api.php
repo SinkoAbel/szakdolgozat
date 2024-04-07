@@ -64,10 +64,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::group(['middleware' => ['role:admin']], function () {
         Route::prefix('super')->group(function () {
-            Route::apiResource('/users', UserController::class)->only(['index']);
+            Route::apiResource('/users', UserController::class)->only(['index', 'show']);
             Route::apiResource('/admins', AdminController::class);
-            Route::apiResource('/doctors', DoctorController::class)->only(['store', 'destroy']);
-            Route::apiResource('/patients', PatientController::class)->only(['index', 'destroy']);
+            Route::apiResource('/doctors', DoctorController::class)->only(['store', 'update', 'destroy']);
+            Route::apiResource('/patients', PatientController::class)->only(['index', 'update', 'destroy']);
         });
     });
 

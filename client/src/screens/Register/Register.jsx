@@ -2,9 +2,9 @@
 import React from 'react';
 import { useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import { Flex, Box, FormControl, FormLabel, Input, InputGroup, InputLeftAddon, HStack, InputRightElement, Stack, Button, Heading, Text,
+import { Flex, Box, FormControl, FormLabel, Input, InputGroup, HStack, InputRightElement, Stack, Button, Heading, Text,
         useColorModeValue, 
-        FormErrorMessage} from '@chakra-ui/react';
+} from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import {useDispatch, useSelector} from "react-redux";
 import {resetState, setBirthday, setBirthplace, setCity, setEmail, setFirstName, setHouseNumber, setInsuranceNumber, setLastName, setPassword, setPhone, setStreet, setZip} from "../../state/reducers/registerPatientSlice";
@@ -12,7 +12,6 @@ import { registerPatientEndpoint } from '../../config/endpoints';
 import { ROLE_PATIENT } from '../../config/constants';
 import reactAxios from '../../config/axios';
 
-// TODO: create info for successfull registration before navigating to home-page!
 const Register = () => {
     const {
         first_name,

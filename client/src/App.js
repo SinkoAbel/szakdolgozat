@@ -64,18 +64,30 @@ function App() {
                 <Route path="/about" element={ <About/> }/>
                 <Route path="/prices" element={ <PriceList/> }/>
                 <Route path="/service-locations" element={ <Locations/> }/>
-                <Route path="/patient/dashboard" element={ <PatientDashboard/> }/>
-                <Route path="/doctor/dashboard" element={ <DoctorDashboard/> }/>
-                <Route path="/admin/dashboard" element={ <AdminDashboard/> }/>
-                <Route path="/doctor/appointment/creator" element={ <DoctorAppointmentCreator/> }/>
-                <Route path="/doctor/calendar" element={ <DoctorCalendar/> }/>
-                <Route path="/appointment/:appointmentId" element={ <Appointment/> }/>
-                <Route path="/appointment/detail/:appointmentId" element={ <AppointmentDetail/> }/>
-                <Route path="/patient/booking" element={ <PatientBooker/> }/>
-                <Route path="/patient/profile" element={ <PatientProfile/> }/>
-                <Route path="/admin/create/users" element={ <CreateUser/> }/>
-                <Route path="/admin/update/users" element={ <UpdateUser /> }/>
-                <Route path="/admin/update/users/:userId" element={ <UpdatePage /> }/>
+                { role === ROLE_ADMIN &&
+                    <>
+                        <Route path="/admin/dashboard" element={ <AdminDashboard/> }/>
+                        <Route path="/admin/create/users" element={ <CreateUser/> }/>
+                        <Route path="/admin/update/users" element={ <UpdateUser /> }/>
+                        <Route path="/admin/update/users/:userId" element={ <UpdatePage /> }/>
+                    </>
+                }
+                { role === ROLE_DOCTOR &&
+                        <>
+                            <Route path="/doctor/dashboard" element={ <DoctorDashboard/> }/>
+                            <Route path="/doctor/appointment/creator" element={ <DoctorAppointmentCreator/> }/>
+                            <Route path="/doctor/calendar" element={ <DoctorCalendar/> }/>
+                            <Route path="/appointment/:appointmentId" element={ <Appointment/> }/>
+                            <Route path="/appointment/detail/:appointmentId" element={ <AppointmentDetail/> }/>
+                        </>
+                }
+                { role === ROLE_PATIENT &&
+                        <>
+                            <Route path="/patient/dashboard" element={ <PatientDashboard/> }/>
+                            <Route path="/patient/booking" element={ <PatientBooker/> }/>
+                            <Route path="/patient/profile" element={ <PatientProfile/> }/>
+                        </>
+                }
             </Routes>
         </BrowserRouter>
     </ChakraProvider>

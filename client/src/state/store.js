@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
     key: 'root',
     storage: storage,
+    purge: true,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

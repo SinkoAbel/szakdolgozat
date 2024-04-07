@@ -8,13 +8,10 @@ import {
     FormControl,
     FormLabel,
     Heading,
-    IconButton,
     Input,
     Stack,
     useColorModeValue
 } from "@chakra-ui/react";
-import {ArrowBackIcon} from "@chakra-ui/icons";
-
 const Appointment = () => {
     const navigate = useNavigate();
 

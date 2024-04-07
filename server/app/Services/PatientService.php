@@ -47,6 +47,8 @@ class PatientService extends AbstractService
 
     public function updatePatient(PatientRequest $request, User $patient): UserResource|JsonResource
     {
+        $isAdmin = $request->user()->roles->pluck('name')[0] == UserRolesEnum::ADMIN->value;
+
         PatientDetail::where('insurance_number', $patient->patient_details->insurance_number)
             ->update([
                 'city' => $request->city ?? $patient->patient_details->city,
@@ -54,12 +56,17 @@ class PatientService extends AbstractService
                 'street' => $request->street ?? $patient->patient_details->street,
                 'house_number' => $request->house_number ?? $patient->patient_details->house_number,
                 'phone' => $request->phone ?? $patient->patient_details->phone,
+                'birthday' => $request->birthday ?? $patient->patient_details->birthday,
+                'birthplace' => $request->birthplace ?? $patient->patient_details->birthplace,
+                'insurance_number' => $request->insurance_number ?? $patient->patient_details->insurance_number,
             ]);
 
 
         $userData = [
             'email' => $request->email ?? $patient->email,
             'password' => $request->password ?? $patient->password,
+            'first_name' => $request->first_name ?? $patient->first_name,
+            'last_name' => $request->last_name ?? $patient->last_name,
         ];
 
         return $this->updateRecord($patient, $userData);

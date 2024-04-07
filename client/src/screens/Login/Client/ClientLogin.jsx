@@ -74,7 +74,6 @@ const ClientLogin = () => {
                     </Stack>
                 </Flex>
                 <Flex flex={1}>
-                    {/* TODO: replace picture with more medical alike */}
                     <Image
                         alt={'ClientLogin Image'}
                         objectFit={'cover'}
