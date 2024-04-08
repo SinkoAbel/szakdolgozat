@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\BookableReceptionTimes;
 use App\Models\ReservedBookings;
 use App\Http\Resources\ReservedBookingsResource;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * Class ReservedBookingsService.
@@ -13,7 +14,7 @@ class ReservedBookingsService extends AbstractService
 {
     /**
      * Set the model of the service class.
-     * 
+     *
      * @return string
      */
     protected function setModel(): string {
@@ -22,20 +23,20 @@ class ReservedBookingsService extends AbstractService
 
     /**
      * Set the Resource class of the service class.
-     * 
+     *
      * @return string
      */
     protected function setResource(): string {
         return ReservedBookingsResource::class;
     }
-    
+
     /**
      * Eager load relationship query.
-     * 
+     *
      * @var array
      */
     public array $eagerLoad = [];
-    
+
     public function __construct() {
         parent::__construct();
         $this->eagerLoad = [
@@ -81,17 +82,18 @@ class ReservedBookingsService extends AbstractService
             },
         ];
     }
-    
-    public function getEveryBooking(int $patientID)
+
+    public function getEveryBooking(int $patientID, ?array $filters = []): AnonymousResourceCollection
     {
         return $this->getCollection(
             $this->eagerLoad,
             [
-                'filterForPatient' => $patientID
+                'filterForPatient' => $patientID,
+                'fromToday' => $filters['from_today'] ?? false
             ]
         );
     }
-    
+
     public function getBooking(ReservedBookings $booking): ReservedBookingsResource
     {
         $booking->load($this->eagerLoad);
@@ -106,29 +108,29 @@ class ReservedBookingsService extends AbstractService
                 'message' => 'The appointment already been booked.',
             ];
         }
-        
+
         $createdBooking = $this->createRecord([
             'bookable_reception_times_id' => $requestParams['receptionTimeID'],
             'patient_user_id' => $requestParams['patientID'],
         ]);
-        
+
         $createdBooking->bookable_reception_times()->update([
             'booked' => true
         ]);
-        
+
         $createdBooking->load($this->eagerLoad);
-        
+
         return new $this->resource($createdBooking);
     }
-    
+
     protected function checkIfAppointmentCanBooked(int $appointmentID): bool
     {
         $appointment = BookableReceptionTimes::find($appointmentID);
-        
+
         if ($appointment->booked) {
             return false;
         }
-        
+
         return true;
     }
 }

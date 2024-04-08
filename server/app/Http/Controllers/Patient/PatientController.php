@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Http\Enums\UserRolesEnum;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Patient\PatientRequest;
 use App\Models\User;
 use App\Services\AuthService;
@@ -14,6 +16,14 @@ class PatientController extends Controller
 {
     public function __construct(protected PatientService $userService, protected AuthService $authService)
     {
+    }
+
+    public function login(LoginRequest $request): JsonResponse
+    {
+        return response()->json(
+            $this->authService->login($request, UserRolesEnum::PATIENT->value),
+            200
+        );
     }
 
     public function index(): JsonResponse

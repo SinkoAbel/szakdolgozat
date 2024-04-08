@@ -7,6 +7,7 @@ use App\Http\Requests\Doctor\DoctorRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class DoctorService.
@@ -38,14 +39,24 @@ class DoctorService extends AbstractService
         );
     }
 
-    public function getDoctor(User $doctor): UserResource
+    public function getDoctor(User $doctor): JsonResource
     {
         return $this->getRecord($doctor);
     }
 
-    public function updateDoctor(DoctorRequest $request, User $doctor): UserResource
+    public function updateDoctor(DoctorRequest $request, User $doctor): JsonResource
     {
-        return $this->updateRecord($doctor, $request);
+        $doctorData = [
+            'first_name' => $request->first_name ?? $doctor->first_name,
+            'last_name' => $request->last_name ?? $doctor->last_name,
+            'email' => $request->email ?? $doctor->email,
+        ];
+
+        if (isset($request->password)) {
+            $doctorData['password'] = $request->password;
+        }
+
+        return $this->updateRecord($doctor, $doctorData);
     }
 
     public function deleteDoctor(User $doctor): bool

@@ -4,9 +4,12 @@ import { Button, Checkbox, Flex, Text, FormControl, FormLabel, Heading, Input, S
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../config/auth';
 import { ROLE_PATIENT } from '../../../config/constants';
+import {setLoggedInTrue, setPatientRole, setToken, setUserId} from "../../../state/reducers/authenticationSlice";
+import {useDispatch} from "react-redux";
 
 const ClientLogin = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,16 +19,22 @@ const ClientLogin = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        const response = login(setLoginError, setSuccessfulLogin, email, password, '/api/login', 'Patient-Token', ROLE_PATIENT);
+        const success = await login(setLoginError, setSuccessfulLogin, email, password, '/api/patient/login', 'Patient-Token');
 
-        if (response) {
+        if (!success) {
+            return;
+        }
+
+        if (!loginError) {
             setTimeout(() => {
+                dispatch(setToken(success.token));
+                dispatch(setUserId(success.userID));
+                dispatch(setLoggedInTrue());
+                dispatch(setPatientRole());
                 navigate('/patient/dashboard');
-            }, 3000);
+            }, 2000);   
         }
     }
-
-    // TODO: vissza kéne kérni az egész User objektumot és eltárolni?
 
     return (
         <>
@@ -67,12 +76,11 @@ const ClientLogin = () => {
                     </Stack>
                 </Flex>
                 <Flex flex={1}>
-                    {/* TODO: replace picture with more medical alike */}
                     <Image
                         alt={'ClientLogin Image'}
                         objectFit={'cover'}
                         src={
-                            'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80'
+                            'https://carbona.hu/wp-content/uploads/2019/08/carbona-gyogyaszat-orvosi-vizsgalat-uj-960x640.jpg'
                         }
                     />
                 </Flex>

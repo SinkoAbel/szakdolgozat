@@ -3,15 +3,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../config/auth';
 import { ROLE_DOCTOR } from '../../../config/constants';
+import {useDispatch} from "react-redux";
+import {setDoctorRole, setLoggedInTrue, setToken, setUserId} from "../../../state/reducers/authenticationSlice";
 
-const DoctorLogin = () => {
+const DoctorLogin = (props) => {
     const navigate = useNavigate();
-
-    const authenticated = sessionStorage.getItem('authenticated') ?? false;
-
-    if (authenticated) {
-        navigate('/');
-    }
+    const dispatch = useDispatch();
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -19,15 +16,21 @@ const DoctorLogin = () => {
     const [successfulLogin, setSuccessfulLogin] = useState(false);
     const [loginError, setLoginError] = useState(false);
 
-    const handleLogin = (event) => {
+    const handleLogin = async (event) => {
         event.preventDefault();
-        const loginStatus = login(setLoginError, setSuccessfulLogin, email, password, '/api/login', 'Doctor-Token', ROLE_DOCTOR);
+        const success = await login(setLoginError, setSuccessfulLogin, email, password, '/api/doctor/login', 'Doctor-Token');
 
-        if (loginStatus) {
-            setTimeout(() => {
-                navigate('/doctor/dashboard')
-            }, 3000);
+        if (!success) {
+            return;
         }
+
+        setTimeout(() => {
+            navigate('/doctor/dashboard');
+            dispatch(setDoctorRole());
+            dispatch(setLoggedInTrue());
+            dispatch(setToken(success.token));
+            dispatch(setUserId(success.userID));
+        }, 2000);
     }
 
     return (

@@ -44,6 +44,12 @@ class BookableReceptionTimesRequest extends AbstractRequest
             'filters.booked' => [
                 'nullable',
                 'boolean'
+            ],
+            'filters.doctor' => [
+                'nullable',
+                'numeric',
+                'exists:users,id',
+                'exists:model_has_roles,model_id,role_id,2',
             ]
         ];
     }

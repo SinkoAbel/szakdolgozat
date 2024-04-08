@@ -8,6 +8,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class AdminService.
@@ -38,14 +39,24 @@ class AdminService extends AbstractService
         );
     }
 
-    public function getAdmin(User $admin): Model
+    public function getAdmin(User $admin): JsonResource
     {
         return $this->getRecord($admin);
     }
 
-    public function updateAdmin(UserRequest $request, User $admin): Model
+    public function updateAdmin(UserRequest $request, User $admin): JsonResource
     {
-        return $this->updateRecord($admin, $request);
+        $updatedObject = [
+            'first_name' => $request->first_name ?? $admin->first_name,
+            'last_name' => $request->last_name ?? $admin->last_name,
+            'email' => $request->email ?? $admin->email,
+        ];
+
+        if (isset($request->password)) {
+            $updatedObject['password'] = $request->password;
+        }
+
+        return $this->updateRecord($admin, $updatedObject);
     }
 
     public function deleteAdmin(User $admin): bool

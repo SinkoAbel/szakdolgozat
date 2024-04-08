@@ -31,7 +31,7 @@ class PatientRequest extends UserRequest
             'zip'               => [$this->isRequired([self::METHOD_POST]), 'string', 'max:10'],
             'street'            => [$this->isRequired([self::METHOD_POST]), 'string', 'max:50'],
             'house_number'      => [$this->isRequired([self::METHOD_POST]), 'string', 'max:10'],
-            'insurance_number'  => ['required', 'string', 'max:15'],
+            'insurance_number'  => [$this->isRequired([self::METHOD_POST]), 'string', 'max:15'],
             'phone'             => [$this->isRequired([self::METHOD_POST]), 'string', 'max:30'],
         ]);
     }

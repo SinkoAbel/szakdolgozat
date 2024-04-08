@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Enums\UserRolesEnum;
 use App\Http\Requests\BookableReceptionTimesRequest;
 use App\Models\BookableReceptionTimes;
 use App\Services\ReceptionTimesService;
@@ -16,11 +17,16 @@ class BookableReceptionTimesController extends Controller
     public function index(BookableReceptionTimesRequest $request): JsonResponse
     {
         $filters = $request->filters;
-        $filters['doctor_id'] = auth()->user()->id;
-        
+        $role = $request->user()->roles->pluck('name')[0];
+
+        if ($request->user()->hasRole(UserRolesEnum::DOCTOR->value)) {
+            $filters['doctor_id'] = auth()->user()->id;
+        }
+
         return response()->json(
             $this->service->getEveryAppointments(
-                $filters
+                $filters,
+                $role
             ),
             200
         );

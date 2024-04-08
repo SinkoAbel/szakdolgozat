@@ -10,14 +10,15 @@ use Illuminate\Http\JsonResponse;
 class ReservedBookingsController extends Controller
 {
     public function __construct(protected ReservedBookingsService $service)
-    {        
+    {
     }
-    
-    public function index(): JsonResponse
+
+    public function index(ReservedBookingsRequest $request): JsonResponse
     {
         return response()->json(
             $this->service->getEveryBooking(
-                auth()->user()->id
+                auth()->user()->id,
+                $request->filters
             ),
             200
         );
@@ -42,16 +43,4 @@ class ReservedBookingsController extends Controller
             201
         );
     }
-
-    // TODO: see if these
-    /*
-    public function update(ReservedBookingsRequest $request, ReservedBookings $booking): JsonResponse
-    {
-        return response()->json();
-    }
-
-    public function destroy(ReservedBookingsRequest $request, ReservedBookings $booking): JsonResponse
-    {
-        return response()->json();
-    }*/
 }

@@ -63,23 +63,20 @@ class User extends Authenticatable
 
     public function patient_details(): HasOne
     {
-        // TODO: check if role check is needed, as well as other eloquent functions
-        // return $this->hasRole(UserRolesEnum::PATIENT->value) ?
         return $this->hasOne(PatientDetail::class);
     }
 
-    // Doctor roles
+
     public function bookable_reception_times(): HasMany
     {
         return $this->hasMany(BookableReceptionTimes::class);
     }
 
-    // Patient roles
     public function reserved_bookings(): HasMany
     {
         return $this->hasMany(ReservedBookings::class);
     }
-    
+
     public function scopeFilterUserRole(Builder $query, string $userRole): Builder
     {
         return $query->role($userRole);

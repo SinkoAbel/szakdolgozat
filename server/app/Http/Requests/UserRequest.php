@@ -33,10 +33,11 @@ class UserRequest extends AbstractRequest
                 'string',
                 'max:60'
             ],
-            'email'             => [
+            'email' => [
                 $this->isRequired([self::METHOD_POST]),
                 'email',
-                $this->isUnique('users', 'email', [self::METHOD_POST, self::METHOD_PUT])],
+                $this->isUnique('users', 'email', [self::METHOD_POST])
+            ],
             'password' => [
                 $this->isRequired([self::METHOD_POST]),
                 'string',

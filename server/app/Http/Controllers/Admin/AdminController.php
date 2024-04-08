@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Enums\UserRolesEnum;
 use App\Http\Requests\Admin\AdminRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use App\Services\AdminService;
 use App\Services\AuthService;
@@ -13,6 +15,14 @@ class AdminController extends Controller
 {
     public function __construct(protected AdminService $adminService, protected AuthService $authService)
     {
+    }
+
+    public function login(LoginRequest $request): JsonResponse
+    {
+        return response()->json(
+            $this->authService->login($request, UserRolesEnum::ADMIN->value),
+            200
+        );
     }
 
     public function index(): JsonResponse

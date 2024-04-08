@@ -7,7 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Exception;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +26,13 @@ class AuthService extends AbstractService
         return UserResource::class;
     }
 
+
+    /**
+     * Register new User for the system.
+     *
+     * @param UserRequest $request
+     * @return JsonResource
+     */
     public function register(UserRequest $request): JsonResource
     {
         $role = $request->role;
@@ -56,12 +63,27 @@ class AuthService extends AbstractService
         return new $this->resource($user);
     }
 
-    public function login(LoginRequest $loginRequest): array
+    /**
+     * Handle login, issue new token,
+     * and return it with ID.
+     *
+     * @param LoginRequest $loginRequest
+     * @param string $role
+     * @return array
+     * @throws Exception
+     */
+    public function login(LoginRequest $loginRequest, string $role): array
     {
         $credentials = $loginRequest->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = $this->model::where('email', $credentials['email'])->first();
+            $user = $this->model::where('email', $credentials['email'])
+                ->first();
+
+            if (! $user->hasRole($role)) {
+                throw new Exception('Unauthorized!', 401);
+            }
+
             $token = $user->createToken($loginRequest->token_type)->plainTextToken;
 
             return [
@@ -70,9 +92,7 @@ class AuthService extends AbstractService
             ];
         }
 
-        return [
-            'status' => '401',
-            'message' => 'Wrong credentials!'
-        ];
+        throw new Exception('Wrong credentials', 401);
     }
+
 }

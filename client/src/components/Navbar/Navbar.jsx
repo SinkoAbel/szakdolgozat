@@ -3,15 +3,10 @@
 import { Box, Flex, Text, IconButton, Button, Stack, Collapse, Icon, Popover, PopoverTrigger, PopoverContent,
          useColorModeValue, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons'
-import {Link, useNavigate} from "react-router-dom";
-import { logout } from '../../config/auth';
+import {Link} from "react-router-dom";
 
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
-    const navigate = useNavigate();
-
-    // TODO: láthatóságot állítani authenticated session alapján.
-
     return (
         <Box>
             <Flex
@@ -58,15 +53,6 @@ export default function WithSubnavigation() {
                     <Button as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'}>
                         <Link to="/login">
                             Bejelentkezés
-                        </Link>
-                    </Button>
-                    <Button as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'}>
-                        <Link onClick={async () => {
-                            await logout().then(() => {
-                                navigate('/');
-                            });
-                        }}>
-                            Kijelentkezés
                         </Link>
                     </Button>
                     <Button
