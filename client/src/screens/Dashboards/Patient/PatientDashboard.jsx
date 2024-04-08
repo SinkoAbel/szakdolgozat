@@ -1,11 +1,14 @@
 import {useEffect, useState} from "react";
 import axios from "../../../config/axios";
 import {Table, TableContainer, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 
 const PatientDashboard = () => {
-    const userID = window.sessionStorage.getItem('user_id');
-    const token = window.sessionStorage.getItem('token');
-    const endpoint = '/api/patients/' + userID;
+    const {
+        userId,
+        token
+    } = useSelector((state) => state.authentication);
+    const endpoint = '/api/patients/' + userId;
 
     const [userData, setUserData] = useState([]);
     const [forthcomingAppointments, setForthcomingAppointments] = useState([]);
@@ -52,6 +55,7 @@ const PatientDashboard = () => {
                             <Th>Dátum</Th>
                             <Th>Időpont kezdete</Th>
                             <Th>Időpont vége</Th>
+                            <Th>Orvos</Th>
                         </Thead>
                         <Tbody>
                             {
@@ -61,6 +65,7 @@ const PatientDashboard = () => {
                                             <Td>{appointment.bookable_reception_times.date}</Td>
                                             <Td>{appointment.bookable_reception_times.start_time}</Td>
                                             <Td>{appointment.bookable_reception_times.end_time}</Td>
+                                            <Td>{appointment.bookable_reception_times.doctor_users.last_name + ' ' + appointment.bookable_reception_times.doctor_users.first_name}</Td>
                                         </Tr>
                                     );
                                 })

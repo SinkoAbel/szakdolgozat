@@ -2,9 +2,15 @@ import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Stack, useCo
 import { useState } from "react";
 import axios from "../../../config/axios";
 import {useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const DoctorAppointmentCreator = () => {
     const navigate = useNavigate();
+
+    const {
+        userId,
+        token
+    } = useSelector((state) => state.authentication);
 
     const [date, setDate] = useState(null);
     const [appointmentStart, setAppointmentStart] = useState(null);
@@ -79,11 +85,8 @@ const DoctorAppointmentCreator = () => {
             return;
         }
 
-        const token = window.sessionStorage.getItem('token');
-        const doctorID = window.sessionStorage.getItem('user_id');
-
         await axios.post('/api/appointments', {
-            doctor_user_id: doctorID,
+            doctor_user_id: userId,
             date: date,
             start_time: appointmentStart,
             end_time: appointmentEnd,

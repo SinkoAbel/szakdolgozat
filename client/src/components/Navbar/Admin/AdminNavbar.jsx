@@ -1,13 +1,16 @@
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Box, Flex, HStack, IconButton, Stack, useColorModeValue, useDisclosure} from "@chakra-ui/react";
 import {CloseIcon, HamburgerIcon} from "@chakra-ui/icons";
 import {logout} from "../../../config/auth";
-import {setGuestRole, setLoggedInFalse} from "../../../state/reducers/authenticationSlice";
+import {setGuestRole, setLoggedInFalse, setToken, setUserId} from "../../../state/reducers/authenticationSlice";
 
 const AdminNavbar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {
+        token
+    } = useSelector((state) => state.authentication);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
@@ -72,9 +75,11 @@ const AdminNavbar = () => {
                                     bg: useColorModeValue('gray.200', 'gray.700'),
                                 }}
                                 onClick={() => {
-                                    logout();
-                                    dispatch(setLoggedInFalse());
+                                    logout(token);
+                                    dispatch(setToken(''));
                                     dispatch(setGuestRole());
+                                    dispatch(setLoggedInFalse());
+                                    dispatch(setUserId(''));
                                     navigate('/');
                                 }}
                             >
@@ -132,9 +137,11 @@ const AdminNavbar = () => {
                                     textDecoration: 'none',
                                 }}
                                 onClick={() => {
-                                    logout();
+                                    logout(token);
+                                    dispatch(setToken(''));
                                     dispatch(setGuestRole());
                                     dispatch(setLoggedInFalse());
+                                    dispatch(setUserId(''));
                                     navigate('/');
                                 }}
                                 style={{cursor: 'pointer'}}

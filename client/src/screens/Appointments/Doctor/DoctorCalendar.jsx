@@ -3,10 +3,14 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from "moment";
 import axios from "../../../config/axios";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const DoctorCalendar = () => {
     const [calendarEvents, setCalendarEvents] = useState([]);
-    const token = window.sessionStorage.getItem('token');
+
+    const {
+        token
+    } = useSelector((state) => state.authentication);
 
     const fetchData = async () => {
         await axios.get('/api/appointments', {
@@ -14,12 +18,12 @@ const DoctorCalendar = () => {
                 Authorization: token
             }
         }).then((response) => {
-            const formattedEvents = response.data.map((event) => ({
+            const eventsObject = response.data.map((event) => ({
                 title: (event.booked ? 'Foglalt' : 'Szabad') + ' időpont',
                 start: moment(event.date + 'T' + event.start_time).toDate(),
                 end: moment(event.date + 'T' + event.end_time).toDate()
             }));
-            setCalendarEvents(formattedEvents);
+            setCalendarEvents(eventsObject);
         }).catch((err) => {
             console.log(err);
         });

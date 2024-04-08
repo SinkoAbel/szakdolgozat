@@ -1,5 +1,6 @@
 import sessionStorage from "redux-persist/es/storage/session";
 import axios from "../config/axios";
+import { useSelector } from "react-redux";
 
 export const login = async (
     setLoginError,
@@ -8,7 +9,6 @@ export const login = async (
     password,
     endpoint,
     tokenType,
-    role
 ) => {
     setLoginError(false);
     setSuccessfulLogin(false);
@@ -29,12 +29,10 @@ export const login = async (
             setLoginError(false);
             setSuccessfulLogin(true);
 
-            window.sessionStorage.setItem('token', 'Bearer ' +  response.data.token);
-            window.sessionStorage.setItem('user_id', response.data.id);
-            window.sessionStorage.setItem('authenticated', true);
-            window.sessionStorage.setItem('role', role);
-
-            return true;
+            return {
+                token: `Bearer ${response.data.token}`,
+                userID: response.data.id
+            };
         } else {
             setLoginError(true);
             setSuccessfulLogin(false);
@@ -49,19 +47,12 @@ export const login = async (
 }
 
 
-export const logout = async () => {
-    const token = window.sessionStorage.getItem('token');
-
+export const logout = async (token) => {
     await axios.post('/api/logout', {}, {
         headers: {
             Authorization: token
         }
     }).then((response) => {
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('user_id');
-        sessionStorage.removeItem('authenticated');
-        sessionStorage.removeItem('role');
-
         return true;
     }).catch((err) => {
         console.log(err);

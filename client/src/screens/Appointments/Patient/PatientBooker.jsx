@@ -11,10 +11,14 @@ import {
     Tr,
 } from "@chakra-ui/react";
 import BookingModal from "../../../components/Modal/BookingModal";
+import { useSelector } from "react-redux";
 
 const PatientBooker = () => {
-    const token = window.sessionStorage.getItem('token');
-    const userID = window.sessionStorage.getItem('user_id');
+    const {
+        userId,
+        token
+    } = useSelector((state) => state.authentication);
+
     const doctorListEndpoint = '/api/list/doctors';
 
     const [doctorsList, setDoctorsList] = useState([]);
@@ -99,7 +103,7 @@ const PatientBooker = () => {
                                                     <Td>
                                                         <BookingModal
                                                             receptionTimeID={appointment.id}
-                                                            userID={userID}
+                                                            userID={userId}
                                                             doctorID={selectedDoctorId}
                                                             fetchAppointments={fetchAppointments}
                                                         />

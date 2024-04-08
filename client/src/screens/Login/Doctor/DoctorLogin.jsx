@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../../../config/auth';
 import { ROLE_DOCTOR } from '../../../config/constants';
 import {useDispatch} from "react-redux";
-import {setDoctorRole, setLoggedInTrue} from "../../../state/reducers/authenticationSlice";
+import {setDoctorRole, setLoggedInTrue, setToken, setUserId} from "../../../state/reducers/authenticationSlice";
 
 const DoctorLogin = (props) => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const DoctorLogin = (props) => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        const success = await login(setLoginError, setSuccessfulLogin, email, password, '/api/doctor/login', 'Doctor-Token', ROLE_DOCTOR);
+        const success = await login(setLoginError, setSuccessfulLogin, email, password, '/api/doctor/login', 'Doctor-Token');
 
         if (!success) {
             return;
@@ -28,6 +28,8 @@ const DoctorLogin = (props) => {
             navigate('/doctor/dashboard');
             dispatch(setDoctorRole());
             dispatch(setLoggedInTrue());
+            dispatch(setToken(success.token));
+            dispatch(setUserId(success.userID));
         }, 3000);
     }
 

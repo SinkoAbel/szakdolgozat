@@ -3,9 +3,12 @@ import axios from "../../../config/axios";
 import {IconButton, Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr} from "@chakra-ui/react";
 import {DeleteIcon, EditIcon, SearchIcon} from "@chakra-ui/icons";
 import {Link} from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const DoctorDashboard = () => {
-    const token = window.sessionStorage.getItem('token');
+    const {
+        token
+    } = useSelector((state) => state.authentication);
 
     const endpoint = '/api/appointments';
     const date = new Date();

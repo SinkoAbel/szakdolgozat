@@ -12,8 +12,12 @@ import {
     Stack,
     useColorModeValue
 } from "@chakra-ui/react";
+import { useSelector } from 'react-redux';
 const Appointment = () => {
     const navigate = useNavigate();
+    const {
+        token
+    } = useSelector((state) => state.authentication);
 
     const [details, setDetails] = useState([]);
 
@@ -26,7 +30,8 @@ const Appointment = () => {
 
     const appointmentObject = useParams();
     const appointmentID = appointmentObject.appointmentId;
-    const token = window.sessionStorage.getItem('token');
+    
+
     const endpoint = `/api/appointments/${appointmentID}`;
 
     const fetchAppointment = async () => {

@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import axios from "../../../config/axios";
 import {Button, FormControl, Input, Table, TableContainer, Tbody, Td, Tr} from "@chakra-ui/react";
+import { useSelector } from 'react-redux';
 
 const PatientProfile = () => {
-    const userID = window.sessionStorage.getItem('user_id');
-    const token = window.sessionStorage.getItem('token');
-    const endpoint = '/api/patients/' + userID;
+    const {
+        userId,
+        token
+    } = useSelector((state) => state.authentication);
+    const endpoint = '/api/patients/' + userId;
 
     const [userData, setUserData] = useState([]);
     const [updateState, setUpdateState] = useState(false);
@@ -32,7 +35,6 @@ const PatientProfile = () => {
             }
         }).then(response => {
             setUserData(response.data);
-            console.log(response.data);
             setLoading(false);
 
             setUpdatedEmail(response.data.email);

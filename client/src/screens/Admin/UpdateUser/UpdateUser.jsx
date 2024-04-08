@@ -4,6 +4,7 @@ import axios from "../../../config/axios";
 import {DeleteIcon, EditIcon} from "@chakra-ui/icons";
 import {getRoleAlias, ROLE_ADMIN, ROLE_DOCTOR, ROLE_PATIENT} from "../../../config/constants";
 import {Link} from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const UpdateUser = () => {
     const everyUserFilterValue = 'everyUser';
@@ -11,7 +12,11 @@ const UpdateUser = () => {
     const adminEndpoint = '/api/super/admins';
     const doctorEndpoint = '/api/super/doctors';
     const patientEndpoint = '/api/super/patients';
-    const userID = window.sessionStorage.getItem('user_id');
+
+    const {
+        userId,
+        token
+    } = useSelector((state) => state.authentication);
 
     const [users, setUsers] = useState([]);
 
@@ -22,7 +27,7 @@ const UpdateUser = () => {
     const fetchUsers = async () => {
         await axios.get('/api/super/users', {
             headers: {
-                Authorization: window.sessionStorage.getItem('token')
+                Authorization: token
             }
         }).then(response => {
             setUsers(response.data);
@@ -51,7 +56,7 @@ const UpdateUser = () => {
 
         await axios.delete(deleteEndpoint + `/${userID}`, {
             headers: {
-                Authorization: window.sessionStorage.getItem('token')
+                Authorization: token
             }
         }).then(response => {
             fetchUsers();
@@ -70,7 +75,7 @@ const UpdateUser = () => {
 
         await axios.get(filterEndpoint, {
             headers: {
-                Authorization: window.sessionStorage.getItem('token')
+                Authorization: token
             }
         }).then(response => {
             setUsers(response.data);
@@ -111,7 +116,7 @@ const UpdateUser = () => {
                     </Thead>
                     <Tbody>
                         {users.map(user => {
-                            const currentUser = user.id == userID;
+                            const currentUser = user.id == userId;
 
                             return (
                                 <Tr key={user.id}>

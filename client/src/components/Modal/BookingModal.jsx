@@ -9,6 +9,7 @@ import {
     ModalOverlay, useDisclosure
 } from "@chakra-ui/react";
 import axios from "../../config/axios";
+import { useSelector } from 'react-redux';
 
 const BookingModal = (props) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -18,6 +19,10 @@ const BookingModal = (props) => {
     const [success, setSuccess] = useState(false);
     const [fail, setFail] = useState(false);
     const [requestDispatched, setRequestDispatched] = useState(false);
+
+    const {
+        token
+    } = useSelector((state) => state.authentication)
 
     const handleAppointmentBooking = async () => {
         setRequestDispatched(true);
@@ -31,7 +36,7 @@ const BookingModal = (props) => {
             patient_user_id: props.userID
         }, {
             headers: {
-                Authorization: window.sessionStorage.getItem('token')
+                Authorization: token
             }
         }).then(response => {
             setSuccess(true);

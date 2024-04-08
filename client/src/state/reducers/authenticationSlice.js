@@ -6,6 +6,8 @@ export const authenticationSlice = createSlice({
     initialState: {
         loggedIn: false,
         role: 'guest',
+        token: '',
+        userId: '',
     },
     reducers: {
         setLoggedInTrue: (state) => {
@@ -25,7 +27,13 @@ export const authenticationSlice = createSlice({
         },
         setGuestRole: (state) => {
             state.role = 'guest';
-        }
+        },
+        setToken: (state, action) => {
+            state.token = action.payload;
+        },
+        setUserId: (state, action) => {
+            state.userId = action.payload;
+        },
     }
 });
 
@@ -36,6 +44,8 @@ export const {
     setDoctorRole,
     setAdminRole,
     setGuestRole,
+    setToken,
+    setUserId,
 } = authenticationSlice.actions;
 
 export default authenticationSlice.reducer;

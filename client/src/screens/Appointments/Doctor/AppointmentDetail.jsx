@@ -3,6 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import axios from "../../../config/axios";
 import {IconButton, Table, TableContainer, Tbody, Td, Tr} from "@chakra-ui/react";
 import {ArrowBackIcon} from "@chakra-ui/icons";
+import { useSelector } from 'react-redux';
 
 const AppointmentDetail = () => {
     const navigate = useNavigate();
@@ -12,7 +13,10 @@ const AppointmentDetail = () => {
 
     const appointment = useParams();
     const appointmentID = appointment.appointmentId;
-    const token = window.sessionStorage.getItem('token');
+    const {
+        token
+    } = useSelector((state) => state.authentication);
+
     const endpoint = `/api/appointments/${appointmentID}`;
 
     useEffect(() => {

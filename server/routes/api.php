@@ -42,7 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::group(['middleware' => ['role:doctor|patient|admin']], function () {
-        Route::apiResource('/appointments', BookableReceptionTimesController::class)->only(['index']);
+        Route::get('/appointments', [BookableReceptionTimesController::class, 'index']);
     });
 
     Route::group(['middleware' => ['role:doctor|admin']], function () {
@@ -51,7 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/{doctor}', [DoctorController::class, 'update']);
         });
 
-        Route::apiResource('/appointments', BookableReceptionTimesController::class)->only(['show', 'store', 'update', 'delete']);
+        Route::apiResource('/appointments', BookableReceptionTimesController::class)->only(['show', 'store', 'update', 'destroy']);
     });
 
     Route::group(['middleware' => ['role:patient|admin']], function () {

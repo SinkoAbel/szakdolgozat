@@ -52,6 +52,10 @@ class DoctorService extends AbstractService
             'email' => $request->email ?? $doctor->email,
         ];
 
+        if (isset($request->password)) {
+            $doctorData['password'] = $request->password;
+        }
+
         return $this->updateRecord($doctor, $doctorData);
     }
 

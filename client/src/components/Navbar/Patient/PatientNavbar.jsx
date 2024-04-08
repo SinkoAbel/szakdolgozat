@@ -12,13 +12,16 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import {logout} from '../../../config/auth';
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {setGuestRole, setLoggedInFalse} from "../../../state/reducers/authenticationSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {setGuestRole, setLoggedInFalse, setToken, setUserId} from "../../../state/reducers/authenticationSlice";
 
 
 const PatientNavbar = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {
+        token
+    } = useSelector((state) => state.authentication);
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
@@ -83,12 +86,12 @@ const PatientNavbar = () => {
                                     bg: useColorModeValue('gray.200', 'gray.700'),
                                 }}
                                 onClick={() => {
-                                    logout();
-                                    setTimeout(() => {
-                                        dispatch(setLoggedInFalse());
-                                        dispatch(setGuestRole());
-                                        navigate('/');
-                                    }, 3000);
+                                    logout(token);
+                                    dispatch(setToken(''));
+                                    dispatch(setGuestRole());
+                                    dispatch(setLoggedInFalse());
+                                    dispatch(setUserId(''));
+                                    navigate('/');
                                 }}
                             >
                                 Kijelentkezés
@@ -145,9 +148,11 @@ const PatientNavbar = () => {
                                     textDecoration: 'none',
                                 }}
                                 onClick={() => {
-                                    logout();
-                                    dispatch(setLoggedInFalse());
+                                    logout(token);
+                                    dispatch(setToken(''));
                                     dispatch(setGuestRole());
+                                    dispatch(setLoggedInFalse());
+                                    dispatch(setUserId(''));
                                     navigate('/');
                                 }}
                                 style={{cursor: 'pointer'}}

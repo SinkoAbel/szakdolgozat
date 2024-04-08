@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import {getRoleAlias, ROLE_ADMIN, ROLE_DOCTOR, ROLE_PATIENT} from "../../../config/constants";
 import {ArrowBackIcon} from "@chakra-ui/icons";
+import { useSelector } from 'react-redux';
 
 const UpdatePage = () => {
     const params = useParams();
@@ -35,6 +36,11 @@ const UpdatePage = () => {
     const [updatedBirthday, setUpdatedBirthday] = useState('');
     const [updatedBirthplace, setUpdatedBirthplace] = useState('');
     const [updatedInsuranceNumber, setUpdatedInsuranceNumber] = useState('');
+    const [updatedPassword, setUpdatedPassword] = useState('');
+
+    const {
+        token
+    } = useSelector((state) => state.authentication)
 
     useEffect(() => {
         fetchUserData();
@@ -43,10 +49,9 @@ const UpdatePage = () => {
     const fetchUserData = async () => {
         await axios.get(endpoint, {
             headers: {
-                Authorization: window.sessionStorage.getItem('token')
+                Authorization: token
             }
         }).then(response => {
-            console.log(response.data);
             setPersonalData(response.data);
             setLoading(false);
 
@@ -91,7 +96,8 @@ const UpdatePage = () => {
 
         basicDataPackage = {
             first_name: updatedFirstName,
-            last_name: updatedLastName
+            last_name: updatedLastName,
+            password: updatedPassword,
         }
 
         // Create the final Update data package based on role.
@@ -109,12 +115,11 @@ const UpdatePage = () => {
 
         await axios.put(updateEndpoint, finalDataPackage, {
             headers: {
-                Authorization: window.sessionStorage.getItem('token')
+                Authorization: token
             }
         }).then(response => {
             setUpdateState(false);
             fetchUserData();
-            console.log(response.data);
         }).catch(err => {
             setUpdateState(false);
             console.error(err);
@@ -139,9 +144,11 @@ const UpdatePage = () => {
     }
 
     if (loading) {
-        return <div className="text-center">
-            <p>Adatok betöltése...</p>
-        </div>
+        return (
+            <div className="text-center">
+                <p>Adatok betöltése...</p>
+            </div>
+        )
     }
 
     return (
@@ -218,6 +225,14 @@ const UpdatePage = () => {
                             placeholder="Keresztnév:"
                             defaultValue={personalData.first_name}
                             onChange={(e) => setUpdatedFirstName(e.target.value)}
+                        />
+                    </FormControl>
+                    <FormControl className="mb-5">
+                        <FormLabel>Jelszó: (megadása nem kötelező)</FormLabel>
+                        <Input
+                            type='text'
+                            placeholder="Jelszó:"
+                            onChange={(e) => setUpdatedPassword(e.target.value)}
                         />
                     </FormControl>
                     { personalData.role[0].name !== ROLE_PATIENT &&

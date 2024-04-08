@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {login} from "../../../config/auth";
 import {ROLE_ADMIN} from "../../../config/constants";
-import {setAdminRole, setLoggedInTrue} from "../../../state/reducers/authenticationSlice";
+import {setAdminRole, setLoggedInTrue, setToken, setUserId} from "../../../state/reducers/authenticationSlice";
 import {Button, FormControl, FormLabel, Heading, Input, Stack} from "@chakra-ui/react";
 
 const AdminLogin = () => {
@@ -24,8 +24,7 @@ const AdminLogin = () => {
             email,
             password,
             '/api/admin/login',
-            'Admin-Token',
-            ROLE_ADMIN
+            'Admin-Token'
         );
 
         if (!success) {
@@ -36,6 +35,8 @@ const AdminLogin = () => {
             navigate('/admin/dashboard');
             dispatch(setAdminRole());
             dispatch(setLoggedInTrue());
+            dispatch(setToken(success.token));
+            dispatch(setUserId(success.userID));
         }, 3000);
     }
 
