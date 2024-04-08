@@ -100,7 +100,7 @@ const DoctorAppointmentCreator = () => {
 
             setTimeout(() => {
                 navigate('/doctor/dashboard');
-            }, 3000);
+            }, 2000);
         }).catch((err) => {
             console.log(err);
             setErrorState(true)

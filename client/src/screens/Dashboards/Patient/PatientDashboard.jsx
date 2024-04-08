@@ -12,6 +12,7 @@ const PatientDashboard = () => {
 
     const [userData, setUserData] = useState([]);
     const [forthcomingAppointments, setForthcomingAppointments] = useState([]);
+    const [loading, setLoading] = useState(true);
     
     useEffect(() => {
         fetchUserData();
@@ -25,8 +26,10 @@ const PatientDashboard = () => {
             }
         }).then(response => {
             setUserData(response.data);
+            setLoading(false);
         }).catch(err => {
             console.log(err);
+            setLoading(false);
         });
     }
 
@@ -40,6 +43,14 @@ const PatientDashboard = () => {
         }).catch(err => {
             console.log(err);
         });
+    }
+
+    if (loading) {
+        return (
+            <div className="text-center">
+                <p>Adatok betöltése folyamatban...</p>
+            </div>
+        )
     }
 
     return (

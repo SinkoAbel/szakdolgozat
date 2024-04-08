@@ -30,7 +30,7 @@ const DoctorLogin = (props) => {
             dispatch(setLoggedInTrue());
             dispatch(setToken(success.token));
             dispatch(setUserId(success.userID));
-        }, 3000);
+        }, 2000);
     }
 
     return (

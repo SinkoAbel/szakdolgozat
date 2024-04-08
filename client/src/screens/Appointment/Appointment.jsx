@@ -60,7 +60,7 @@ const Appointment = () => {
 
             setTimeout(() => {
                 navigate('/doctor/dashboard');
-            }, 3000);
+            }, 2000);
         }).catch(err => {
             console.log(err);
             setError(true);

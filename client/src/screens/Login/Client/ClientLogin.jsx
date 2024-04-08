@@ -32,7 +32,7 @@ const ClientLogin = () => {
                 dispatch(setLoggedInTrue());
                 dispatch(setPatientRole());
                 navigate('/patient/dashboard');
-            }, 3000);   
+            }, 2000);   
         }
     }
 

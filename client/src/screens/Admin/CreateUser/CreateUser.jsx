@@ -66,14 +66,14 @@ const CreateUser = () => {
 
             setTimeout(() => {
                 resetState();
-            }, 3000);
+            }, 2000);
         }).catch(err => {
             console.log(err);
             setError(true);
 
             setTimeout(() => {
                 resetState();
-            }, 3000);
+            }, 2000);
         });
     }
 

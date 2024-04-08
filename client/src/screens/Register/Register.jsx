@@ -145,7 +145,7 @@ const Register = () => {
             setTimeout(() => {
                 dispatch(resetState());
                 navigate('/');
-            }, 3000);
+            }, 2000);
         }).catch(err => {
             console.log(err);
         });
