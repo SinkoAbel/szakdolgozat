@@ -6,8 +6,12 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use OpenApi\Annotations as OA;
 
+/**
+ * @group Every User
+ *
+ * APIs for every user of the system.
+ */
 class UserController extends Controller
 {
     protected string $model;
@@ -20,29 +24,14 @@ class UserController extends Controller
     }
 
     /**
-     * This function returns every users
-     * of the system. When provided it
-     * filters for Role.
+     * GET - every user of the system if role filter not provided.
+     *
+     * @authenticated
+     * @apiResourceCollection App\Http\Resources\UserResource
+     * @apiResourceModel App\Models\User
+     *
      * @param Request $request
      * @return JsonResponse
-     *
-     * @OA\Get(
-     *      path="/api/super/users",
-     *      operationId="getEveryUsersOrByRole",
-     *      security={{"bearer_token":{}}},
-     *      tags={"Users by roles"},
-     *      summary="Get every users. Can provider role filter.",
-     *      description="Returns every users of the system.",
-     *      @OA\Parameter(
-     *          name="request",
-     *          in="path",
-     *          description="Request that could contain the filter.",
-     *      ),
-     *      @OA\Response(
-     *          response="200",
-     *          description="Successfull request."
-     *      ),
-     * )
      */
     public function index(Request $request): JsonResponse
     {
@@ -59,6 +48,17 @@ class UserController extends Controller
         );
     }
 
+    /**
+     * GET - a user of the system.
+     * Regardless of user role.
+     *
+     * @authenticated
+     * @apiResource App\Http\Resources\UserResource
+     * @apiResourceModel App\Models\User
+     *
+     * @param User $user
+     * @return JsonResponse
+     */
     public function show(User $user): JsonResponse
     {
         return response()->json(

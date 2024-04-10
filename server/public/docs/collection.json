@@ -1,0 +1,1450 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost:8000"
+        }
+    ],
+    "info": {
+        "name": "Laravel",
+        "_postman_id": "be35bf56-796b-4372-8deb-7394b02f83d2",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Admin Handling",
+            "description": "\nAPIs for Admin data.",
+            "item": [
+                {
+                    "name": "Login process of admins users.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/admin\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/admin\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"xy.yahoo.com\",\"password\":\"my$ecretpassword\",\"token_type\":\"Patient-Token\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"id\": 4,\n      \"token\": Bearer 4|qe$a21dadasd1313$qas\n }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET all admin users.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/admins",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/admins"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"rosemary.erdman@example.com\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"kaylah59@example.org\",\"patient_detail\":null,\"role\":[]}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST - create a new admin user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/admins",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/admins"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"Jakab\",\"last_name\":\"Gipsz\",\"email\":\"jakab.gipsz@gmail.com\",\"password\":\"jakabgipspasswd\",\"role\":\"patient\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"monique.stracke@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET - the requested admin user data.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/admins\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/admins\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the admin."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"romaguera.blake@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT - update the specific admin user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/admins\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/admins\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the admin."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"Jakab\",\"last_name\":\"Gipsz\",\"email\":\"jakab.gipsz@gmail.com\",\"password\":\"jakabgipspasswd\",\"role\":\"patient\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"satterfield.tremaine@example.com\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE - delete the specific admin user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/admins\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/admins\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the admin."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    true\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    false\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    false\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Auth",
+            "description": "\nAuthentication data.",
+            "item": [
+                {
+                    "name": "Logout - handle the logout process.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Revokes the requester user's access token."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    'message': 'Token revoked. User logged out.'\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Bookable Reception Times",
+            "description": "\nGroups the API methods of the Bookable Appointments.",
+            "item": [
+                {
+                    "name": "GET - every bookable reception times for a specific doctor.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/appointments",
+                            "query": [
+                                {
+                                    "key": "doctor_user_id",
+                                    "value": "18953246.72",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "date",
+                                    "value": "2024-04-10",
+                                    "description": "Must be a valid date in the format Y-m-d.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "start_time",
+                                    "value": "20%3A54",
+                                    "description": "Must be a valid date in the format H:i.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "end_time",
+                                    "value": "2084-08-20",
+                                    "description": "Must be a valid date in the format H:i. Must be a date after start_time.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filters[]",
+                                    "value": "",
+                                    "description": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filters.booked",
+                                    "value": "1",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filters.doctor",
+                                    "value": "54782128.88634",
+                                    "description": "",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/appointments?doctor_user_id=18953246.72&date=2024-04-10&start_time=20%3A54&end_time=2084-08-20&filters[]=&filters.booked=1&filters.doctor=54782128.88634"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "If the requester user id a doctor it will get its own appointments."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":7,\"date\":\"2023-03-19\",\"start_time\":\"10:00\",\"end_time\":\"10:30\",\"booked\":false},{\"id\":7,\"date\":\"2023-03-19\",\"start_time\":\"10:00\",\"end_time\":\"10:30\",\"booked\":false}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST - create a bookable reception time.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/appointments",
+                            "query": [
+                                {
+                                    "key": "doctor_user_id",
+                                    "value": "110",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "date",
+                                    "value": "2024-04-10",
+                                    "description": "Must be a valid date in the format Y-m-d.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "start_time",
+                                    "value": "20%3A54",
+                                    "description": "Must be a valid date in the format H:i.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "end_time",
+                                    "value": "2035-02-22",
+                                    "description": "Must be a valid date in the format H:i. Must be a date after start_time.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filters[]",
+                                    "value": "",
+                                    "description": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filters.booked",
+                                    "value": "1",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filters.doctor",
+                                    "value": "1329563.19",
+                                    "description": "",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/appointments?doctor_user_id=110&date=2024-04-10&start_time=20%3A54&end_time=2035-02-22&filters[]=&filters.booked=1&filters.doctor=1329563.19"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":7,\"date\":\"2023-03-19\",\"start_time\":\"10:00\",\"end_time\":\"10:30\",\"booked\":false}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET - a bookable reception time.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/appointments\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/appointments\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "7",
+                                    "description": "The ID of the appointment."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":7,\"date\":\"2023-03-19\",\"start_time\":\"10:00\",\"end_time\":\"10:30\",\"booked\":false}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT - modify a bookable reception time.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/appointments\/:id",
+                            "query": [
+                                {
+                                    "key": "doctor_user_id",
+                                    "value": "26.379222095",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "date",
+                                    "value": "2024-04-10",
+                                    "description": "Must be a valid date in the format Y-m-d.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "start_time",
+                                    "value": "20%3A54",
+                                    "description": "Must be a valid date in the format H:i.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "end_time",
+                                    "value": "2066-10-04",
+                                    "description": "Must be a valid date in the format H:i. Must be a date after start_time.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filters[]",
+                                    "value": "",
+                                    "description": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filters.booked",
+                                    "value": "",
+                                    "description": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filters.doctor",
+                                    "value": "395.860425",
+                                    "description": "",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/appointments\/:id?doctor_user_id=26.379222095&date=2024-04-10&start_time=20%3A54&end_time=2066-10-04&filters[]=&filters.booked=&filters.doctor=395.860425",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "7",
+                                    "description": "The ID of the appointment."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "It can be modified if a patient user is not\nbooked it."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":7,\"date\":\"2023-03-19\",\"start_time\":\"10:00\",\"end_time\":\"10:30\",\"booked\":false}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE - delete a bookable reception time.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/appointments\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/appointments\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "7",
+                                    "description": "The ID of the appointment."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "It can not be deleted if a patient user booked."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n     true\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n     'success': false,\n     'message': 'You can'\\t delete this appointment, because it is booked. Please contact administrator.'\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Doctor Handling",
+            "description": "\nAPIs for Doctor data.",
+            "item": [
+                {
+                    "name": "Login process of doctor users.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/doctor\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/doctor\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"xy.yahoo.com\",\"password\":\"my$ecretpassword\",\"token_type\":\"Patient-Token\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n       \"id\": 4,\n       \"token\": Bearer 4|qe$a21dadasd1313$qas\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST - create a new doctor.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/doctors",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/doctors"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"Jakab\",\"last_name\":\"Gipsz\",\"email\":\"jakab.gipsz@gmail.com\",\"password\":\"jakabgipspasswd\",\"role\":\"patient\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"luigi.bauch@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT - modify the doctor whose id is sent.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/doctors\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/doctors\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the doctor."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"Jakab\",\"last_name\":\"Gipsz\",\"email\":\"jakab.gipsz@gmail.com\",\"password\":\"jakabgipspasswd\",\"role\":\"patient\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"pstanton@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE - delete the doctor user whose id is sent.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/doctors\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/doctors\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the doctor."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    true\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\n    false\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    false\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET - the requested doctor data.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/doctors\/:doctor_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/doctors\/:doctor_id",
+                            "variable": [
+                                {
+                                    "id": "doctor_id",
+                                    "key": "doctor_id",
+                                    "value": "2",
+                                    "description": "The ID of the doctor."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"vandervort.orie@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT - modify the doctor whose id is sent.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/doctors\/:doctor_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/doctors\/:doctor_id",
+                            "variable": [
+                                {
+                                    "id": "doctor_id",
+                                    "key": "doctor_id",
+                                    "value": "2",
+                                    "description": "The ID of the doctor."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"Jakab\",\"last_name\":\"Gipsz\",\"email\":\"jakab.gipsz@gmail.com\",\"password\":\"jakabgipspasswd\",\"role\":\"patient\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"harvey.rylee@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET - every doctor user of the system.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/list\/doctors",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/list\/doctors"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"murazik.antwon@example.com\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"reece40@example.net\",\"patient_detail\":null,\"role\":[]}]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Every User",
+            "description": "\nAPIs for every user of the system.",
+            "item": [
+                {
+                    "name": "GET - every user of the system if role filter not provided.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/users"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"mwalsh@example.com\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"destany.lockman@example.org\",\"patient_detail\":null,\"role\":[]}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET - a user of the system.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the user."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Regardless of user role."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"tkrajcik@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Patient Handling",
+            "description": "\nAPIs for Patient data.",
+            "item": [
+                {
+                    "name": "POST - create\/register a new patient user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/patient\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/patient\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"Jakab\",\"last_name\":\"Gipsz\",\"email\":\"jakab.gipsz@gmail.com\",\"password\":\"jakabgipspasswd\",\"role\":\"patient\",\"birthday\":\"1985-09-15\",\"birthplace\":\"Budapest\",\"city\":\"Eger\",\"zip\":\"3600\",\"street\":\"Le\u00e1nyka utca\",\"house_number\":\"6.\",\"insurance_number\":\"123 123 123\",\"phone\":\"+36 36 460 1231\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"cbreitenberg@example.com\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Login process of patients.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/patient\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/patient\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"xy.yahoo.com\",\"password\":\"my$ecretpassword\",\"token_type\":\"Patient-Token\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n       \"id\": 4,\n       \"token\": Bearer 4|qe$a21dadasd1313$qas\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET - get every patient users of the system.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/patients",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/patients"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"august.senger@example.org\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"kristoffer.beahan@example.org\",\"patient_detail\":null,\"role\":[]}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "UPDATE - modify patient users data.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/patients\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/patients\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the patient."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"Jakab\",\"last_name\":\"Gipsz\",\"email\":\"jakab.gipsz@gmail.com\",\"password\":\"jakabgipspasswd\",\"role\":\"patient\",\"birthday\":\"1985-09-15\",\"birthplace\":\"Budapest\",\"city\":\"Eger\",\"zip\":\"3600\",\"street\":\"Le\u00e1nyka utca\",\"house_number\":\"6.\",\"insurance_number\":\"123 123 123\",\"phone\":\"+36 36 460 1231\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"bbayer@example.net\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "DELETE - delete a specific patient user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/super\/patients\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/super\/patients\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "2",
+                                    "description": "The ID of the patient."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    ['message': User deleted successfully.]\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 500,
+                            "body": "{\n    ['message': 'Delete was not successful!']\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET - get the requested patient user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/patients\/:patient_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/patients\/:patient_id",
+                            "variable": [
+                                {
+                                    "id": "patient_id",
+                                    "key": "patient_id",
+                                    "value": "2",
+                                    "description": "The ID of the patient."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"imann@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "UPDATE - modify patient users data.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/patients\/:patient_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/patients\/:patient_id",
+                            "variable": [
+                                {
+                                    "id": "patient_id",
+                                    "key": "patient_id",
+                                    "value": "2",
+                                    "description": "The ID of the patient."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"first_name\":\"Jakab\",\"last_name\":\"Gipsz\",\"email\":\"jakab.gipsz@gmail.com\",\"password\":\"jakabgipspasswd\",\"role\":\"patient\",\"birthday\":\"1985-09-15\",\"birthplace\":\"Budapest\",\"city\":\"Eger\",\"zip\":\"3600\",\"street\":\"Le\u00e1nyka utca\",\"house_number\":\"6.\",\"insurance_number\":\"123 123 123\",\"phone\":\"+36 36 460 1231\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"sonny.pacocha@example.com\",\"patient_detail\":null,\"role\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Reserved Bookings",
+            "description": "\nGroups the APIs of Reserved Bookings,\nthat happens when a patient books an appointment.",
+            "item": [
+                {
+                    "name": "GET - every reserved booking's data.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bookings",
+                            "query": [
+                                {
+                                    "key": "bookable_reception_times_id",
+                                    "value": "21454724.004077",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "patient_user_id",
+                                    "value": "10236900",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filters[]",
+                                    "value": "",
+                                    "description": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filters.from_today",
+                                    "value": "",
+                                    "description": "",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/bookings?bookable_reception_times_id=21454724.004077&patient_user_id=10236900&filters[]=&filters.from_today="
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1},{\"id\":1}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET - a reserved appointment's details.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bookings\/:booking_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/bookings\/:booking_id",
+                            "variable": [
+                                {
+                                    "id": "booking_id",
+                                    "key": "booking_id",
+                                    "value": "1",
+                                    "description": "The ID of the booking."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST - book a reception time created by a doctor user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/bookings",
+                            "query": [
+                                {
+                                    "key": "bookable_reception_times_id",
+                                    "value": "82155.4",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "patient_user_id",
+                                    "value": "1.435",
+                                    "description": "",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filters[]",
+                                    "value": "",
+                                    "description": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "filters.from_today",
+                                    "value": "1",
+                                    "description": "",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/bookings?bookable_reception_times_id=82155.4&patient_user_id=1.435&filters[]=&filters.from_today=1"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1}}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "type": "string"
+            }
+        ]
+    }
+}

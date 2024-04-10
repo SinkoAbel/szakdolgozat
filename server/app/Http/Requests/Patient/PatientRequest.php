@@ -52,4 +52,43 @@ class PatientRequest extends UserRequest
             ]
         );
     }
+
+    public function bodyParameters(): array
+    {
+        return array_merge([
+            'birthday' => [
+                'description' => 'Birthday of the patient.',
+                'example' => '1985-09-15'
+            ],
+            'birthplace' => [
+                'description' => 'Birthplace of the patient.',
+                'example' => 'Budapest'
+            ],
+            'city' => [
+                'description' => 'Current living city of the patient.',
+                'example' => 'Eger'
+            ],
+            'zip' => [
+                'description' => 'Zip of the patient current living place.',
+                'example' => '3600'
+            ],
+            'street' => [
+                'description' => 'Street of the living place of the patient.',
+                'example' => 'Leányka utca'
+            ],
+            'house_number' => [
+                'description' => 'Current house number of the patient.',
+                'example' => '6.'
+            ],
+            'insurance_number' => [
+                'description' => 'Insurance (TAJ) number of the patient.',
+                'example' => '123 123 123'
+            ],
+            'phone' => [
+                'description' => 'Phone number of the patient.',
+                'example' => '+36 36 460 1231'
+            ],
+
+        ], parent::bodyParameters());
+    }
 }

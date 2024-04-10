@@ -1,0 +1,2112 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  /api/admin/login:
+    post:
+      summary: 'Login process of admins users.'
+      operationId: loginProcessOfAdminsUsers
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n      \"id\": 4,\n      \"token\": Bearer 4|qe$a21dadasd1313$qas\n }"
+      tags:
+        - 'Admin Handling'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: "User's e-mail address. Must be a valid email address."
+                  example: xy.yahoo.com
+                password:
+                  type: string
+                  description: "User's password. Must not be greater than 150 characters."
+                  example: my$ecretpassword
+                token_type:
+                  type: string
+                  description: ''
+                  example: Patient-Token
+                  enum:
+                    - Patient-Token
+                    - Doctor-Token
+                    - Admin-Token
+              required:
+                - email
+                - password
+                - token_type
+      security: []
+  /api/super/admins:
+    get:
+      summary: 'GET all admin users.'
+      operationId: gETAllAdminUsers
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: null
+                      first_name: null
+                      last_name: null
+                      email: rosemary.erdman@example.com
+                      patient_detail: null
+                      role: []
+                    -
+                      id: null
+                      first_name: null
+                      last_name: null
+                      email: kaylah59@example.org
+                      patient_detail: null
+                      role: []
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: null
+                        first_name: null
+                        last_name: null
+                        email: rosemary.erdman@example.com
+                        patient_detail: null
+                        role: []
+                      -
+                        id: null
+                        first_name: null
+                        last_name: null
+                        email: kaylah59@example.org
+                        patient_detail: null
+                        role: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: null
+                        first_name:
+                          type: string
+                          example: null
+                        last_name:
+                          type: string
+                          example: null
+                        email:
+                          type: string
+                          example: rosemary.erdman@example.com
+                        patient_detail:
+                          type: string
+                          example: null
+                        role:
+                          type: array
+                          example: []
+      tags:
+        - 'Admin Handling'
+    post:
+      summary: 'POST - create a new admin user.'
+      operationId: pOSTCreateANewAdminUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: monique.stracke@example.org
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: monique.stracke@example.org
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Admin Handling'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'First name of the system user. Must not be greater than 60 characters.'
+                  example: Jakab
+                last_name:
+                  type: string
+                  description: 'Last name of the system user. Must not be greater than 60 characters.'
+                  example: Gipsz
+                email:
+                  type: string
+                  description: 'Email address of the system user. Must be a valid email address.'
+                  example: jakab.gipsz@gmail.com
+                password:
+                  type: string
+                  description: 'Password of the system user. Must not be greater than 150 characters.'
+                  example: jakabgipspasswd
+                role:
+                  type: string
+                  description: 'Role of the current user.'
+                  example: patient
+                  enum:
+                    - patient
+                    - doctor
+                    - admin
+              required:
+                - first_name
+                - last_name
+                - email
+                - password
+                - role
+  '/api/super/admins/{id}':
+    get:
+      summary: 'GET - the requested admin user data.'
+      operationId: gETTheRequestedAdminUserData
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: romaguera.blake@example.org
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: romaguera.blake@example.org
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Admin Handling'
+    put:
+      summary: 'PUT - update the specific admin user.'
+      operationId: pUTUpdateTheSpecificAdminUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: satterfield.tremaine@example.com
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: satterfield.tremaine@example.com
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Admin Handling'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'First name of the system user. Must not be greater than 60 characters.'
+                  example: Jakab
+                last_name:
+                  type: string
+                  description: 'Last name of the system user. Must not be greater than 60 characters.'
+                  example: Gipsz
+                email:
+                  type: string
+                  description: 'Email address of the system user. Must be a valid email address.'
+                  example: jakab.gipsz@gmail.com
+                password:
+                  type: string
+                  description: 'Password of the system user. Must not be greater than 150 characters.'
+                  example: jakabgipspasswd
+                role:
+                  type: string
+                  description: 'Role of the current user.'
+                  example: patient
+                  enum:
+                    - patient
+                    - doctor
+                    - admin
+    delete:
+      summary: 'DELETE - delete the specific admin user.'
+      operationId: dELETEDeleteTheSpecificAdminUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    true\n}"
+        404:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    false\n}"
+        500:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    false\n}"
+      tags:
+        - 'Admin Handling'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the admin.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/logout:
+    post:
+      summary: 'Logout - handle the logout process.'
+      operationId: logoutHandleTheLogoutProcess
+      description: "Revokes the requester user's access token."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    'message': 'Token revoked. User logged out.'\n}"
+      tags:
+        - Auth
+  /api/appointments:
+    get:
+      summary: 'GET - every bookable reception times for a specific doctor.'
+      operationId: gETEveryBookableReceptionTimesForASpecificDoctor
+      description: 'If the requester user id a doctor it will get its own appointments.'
+      parameters:
+        -
+          in: query
+          name: doctor_user_id
+          description: ''
+          example: 18953246.72
+          required: false
+          schema:
+            type: number
+            description: ''
+            example: 18953246.72
+        -
+          in: query
+          name: date
+          description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+          example: '2024-04-10'
+          required: false
+          schema:
+            type: string
+            description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+            example: '2024-04-10'
+        -
+          in: query
+          name: start_time
+          description: 'Must be a valid date in the format <code>H:i</code>.'
+          example: '20:54'
+          required: false
+          schema:
+            type: string
+            description: 'Must be a valid date in the format <code>H:i</code>.'
+            example: '20:54'
+        -
+          in: query
+          name: end_time
+          description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+          example: '2084-08-20'
+          required: false
+          schema:
+            type: string
+            description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+            example: '2084-08-20'
+        -
+          in: query
+          name: filters
+          description: ''
+          example: []
+          required: false
+          schema:
+            type: object
+            description: ''
+            example: []
+            properties: {  }
+        -
+          in: query
+          name: filters.booked
+          description: ''
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: ''
+            example: true
+        -
+          in: query
+          name: filters.doctor
+          description: ''
+          example: 54782128.88634
+          required: false
+          schema:
+            type: number
+            description: ''
+            example: 54782128.88634
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 7
+                      date: '2023-03-19'
+                      start_time: '10:00'
+                      end_time: '10:30'
+                      booked: false
+                    -
+                      id: 7
+                      date: '2023-03-19'
+                      start_time: '10:00'
+                      end_time: '10:30'
+                      booked: false
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 7
+                        date: '2023-03-19'
+                        start_time: '10:00'
+                        end_time: '10:30'
+                        booked: false
+                      -
+                        id: 7
+                        date: '2023-03-19'
+                        start_time: '10:00'
+                        end_time: '10:30'
+                        booked: false
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 7
+                        date:
+                          type: string
+                          example: '2023-03-19'
+                        start_time:
+                          type: string
+                          example: '10:00'
+                        end_time:
+                          type: string
+                          example: '10:30'
+                        booked:
+                          type: boolean
+                          example: false
+      tags:
+        - 'Bookable Reception Times'
+    post:
+      summary: 'POST - create a bookable reception time.'
+      operationId: pOSTCreateABookableReceptionTime
+      description: ''
+      parameters:
+        -
+          in: query
+          name: doctor_user_id
+          description: ''
+          example: 110.0
+          required: true
+          schema:
+            type: number
+            description: ''
+            example: 110.0
+        -
+          in: query
+          name: date
+          description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+          example: '2024-04-10'
+          required: true
+          schema:
+            type: string
+            description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+            example: '2024-04-10'
+        -
+          in: query
+          name: start_time
+          description: 'Must be a valid date in the format <code>H:i</code>.'
+          example: '20:54'
+          required: true
+          schema:
+            type: string
+            description: 'Must be a valid date in the format <code>H:i</code>.'
+            example: '20:54'
+        -
+          in: query
+          name: end_time
+          description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+          example: '2035-02-22'
+          required: true
+          schema:
+            type: string
+            description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+            example: '2035-02-22'
+        -
+          in: query
+          name: filters
+          description: ''
+          example: []
+          required: false
+          schema:
+            type: object
+            description: ''
+            example: []
+            properties: {  }
+        -
+          in: query
+          name: filters.booked
+          description: ''
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: ''
+            example: true
+        -
+          in: query
+          name: filters.doctor
+          description: ''
+          example: 1329563.19
+          required: false
+          schema:
+            type: number
+            description: ''
+            example: 1329563.19
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 7
+                    date: '2023-03-19'
+                    start_time: '10:00'
+                    end_time: '10:30'
+                    booked: false
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 7
+                      date:
+                        type: string
+                        example: '2023-03-19'
+                      start_time:
+                        type: string
+                        example: '10:00'
+                      end_time:
+                        type: string
+                        example: '10:30'
+                      booked:
+                        type: boolean
+                        example: false
+      tags:
+        - 'Bookable Reception Times'
+  '/api/appointments/{id}':
+    get:
+      summary: 'GET - a bookable reception time.'
+      operationId: gETABookableReceptionTime
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 7
+                    date: '2023-03-19'
+                    start_time: '10:00'
+                    end_time: '10:30'
+                    booked: false
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 7
+                      date:
+                        type: string
+                        example: '2023-03-19'
+                      start_time:
+                        type: string
+                        example: '10:00'
+                      end_time:
+                        type: string
+                        example: '10:30'
+                      booked:
+                        type: boolean
+                        example: false
+      tags:
+        - 'Bookable Reception Times'
+    put:
+      summary: 'PUT - modify a bookable reception time.'
+      operationId: pUTModifyABookableReceptionTime
+      description: "It can be modified if a patient user is not\nbooked it."
+      parameters:
+        -
+          in: query
+          name: doctor_user_id
+          description: ''
+          example: 26.379222095
+          required: false
+          schema:
+            type: number
+            description: ''
+            example: 26.379222095
+        -
+          in: query
+          name: date
+          description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+          example: '2024-04-10'
+          required: false
+          schema:
+            type: string
+            description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+            example: '2024-04-10'
+        -
+          in: query
+          name: start_time
+          description: 'Must be a valid date in the format <code>H:i</code>.'
+          example: '20:54'
+          required: false
+          schema:
+            type: string
+            description: 'Must be a valid date in the format <code>H:i</code>.'
+            example: '20:54'
+        -
+          in: query
+          name: end_time
+          description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+          example: '2066-10-04'
+          required: false
+          schema:
+            type: string
+            description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+            example: '2066-10-04'
+        -
+          in: query
+          name: filters
+          description: ''
+          example: []
+          required: false
+          schema:
+            type: object
+            description: ''
+            example: []
+            properties: {  }
+        -
+          in: query
+          name: filters.booked
+          description: ''
+          example: false
+          required: false
+          schema:
+            type: boolean
+            description: ''
+            example: false
+        -
+          in: query
+          name: filters.doctor
+          description: ''
+          example: 395.860425
+          required: false
+          schema:
+            type: number
+            description: ''
+            example: 395.860425
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 7
+                    date: '2023-03-19'
+                    start_time: '10:00'
+                    end_time: '10:30'
+                    booked: false
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 7
+                      date:
+                        type: string
+                        example: '2023-03-19'
+                      start_time:
+                        type: string
+                        example: '10:00'
+                      end_time:
+                        type: string
+                        example: '10:30'
+                      booked:
+                        type: boolean
+                        example: false
+      tags:
+        - 'Bookable Reception Times'
+    delete:
+      summary: 'DELETE - delete a bookable reception time.'
+      operationId: dELETEDeleteABookableReceptionTime
+      description: 'It can not be deleted if a patient user booked.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n     true\n}"
+        500:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n     'success': false,\n     'message': 'You can'\\t delete this appointment, because it is booked. Please contact administrator.'\n}"
+      tags:
+        - 'Bookable Reception Times'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the appointment.'
+        example: 7
+        required: true
+        schema:
+          type: integer
+  /api/doctor/login:
+    post:
+      summary: 'Login process of doctor users.'
+      operationId: loginProcessOfDoctorUsers
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n       \"id\": 4,\n       \"token\": Bearer 4|qe$a21dadasd1313$qas\n}"
+      tags:
+        - 'Doctor Handling'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: "User's e-mail address. Must be a valid email address."
+                  example: xy.yahoo.com
+                password:
+                  type: string
+                  description: "User's password. Must not be greater than 150 characters."
+                  example: my$ecretpassword
+                token_type:
+                  type: string
+                  description: ''
+                  example: Patient-Token
+                  enum:
+                    - Patient-Token
+                    - Doctor-Token
+                    - Admin-Token
+              required:
+                - email
+                - password
+                - token_type
+      security: []
+  /api/super/doctors:
+    post:
+      summary: 'POST - create a new doctor.'
+      operationId: pOSTCreateANewDoctor
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: luigi.bauch@example.org
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: luigi.bauch@example.org
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Doctor Handling'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'First name of the system user. Must not be greater than 60 characters.'
+                  example: Jakab
+                last_name:
+                  type: string
+                  description: 'Last name of the system user. Must not be greater than 60 characters.'
+                  example: Gipsz
+                email:
+                  type: string
+                  description: 'Email address of the system user. Must be a valid email address.'
+                  example: jakab.gipsz@gmail.com
+                password:
+                  type: string
+                  description: 'Password of the system user. Must not be greater than 150 characters.'
+                  example: jakabgipspasswd
+                role:
+                  type: string
+                  description: 'Role of the current user.'
+                  example: patient
+                  enum:
+                    - patient
+                    - doctor
+                    - admin
+              required:
+                - first_name
+                - last_name
+                - email
+                - password
+                - role
+  '/api/super/doctors/{id}':
+    put:
+      summary: 'PUT - modify the doctor whose id is sent.'
+      operationId: pUTModifyTheDoctorWhoseIdIsSent
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: pstanton@example.org
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: pstanton@example.org
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Doctor Handling'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'First name of the system user. Must not be greater than 60 characters.'
+                  example: Jakab
+                last_name:
+                  type: string
+                  description: 'Last name of the system user. Must not be greater than 60 characters.'
+                  example: Gipsz
+                email:
+                  type: string
+                  description: 'Email address of the system user. Must be a valid email address.'
+                  example: jakab.gipsz@gmail.com
+                password:
+                  type: string
+                  description: 'Password of the system user. Must not be greater than 150 characters.'
+                  example: jakabgipspasswd
+                role:
+                  type: string
+                  description: 'Role of the current user.'
+                  example: patient
+                  enum:
+                    - patient
+                    - doctor
+                    - admin
+    delete:
+      summary: 'DELETE - delete the doctor user whose id is sent.'
+      operationId: dELETEDeleteTheDoctorUserWhoseIdIsSent
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    true\n}"
+        404:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    false\n}"
+        500:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    false\n}"
+      tags:
+        - 'Doctor Handling'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the doctor.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  '/api/doctors/{doctor_id}':
+    get:
+      summary: 'GET - the requested doctor data.'
+      operationId: gETTheRequestedDoctorData
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: vandervort.orie@example.org
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: vandervort.orie@example.org
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Doctor Handling'
+    put:
+      summary: 'PUT - modify the doctor whose id is sent.'
+      operationId: pUTModifyTheDoctorWhoseIdIsSent
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: harvey.rylee@example.org
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: harvey.rylee@example.org
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Doctor Handling'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'First name of the system user. Must not be greater than 60 characters.'
+                  example: Jakab
+                last_name:
+                  type: string
+                  description: 'Last name of the system user. Must not be greater than 60 characters.'
+                  example: Gipsz
+                email:
+                  type: string
+                  description: 'Email address of the system user. Must be a valid email address.'
+                  example: jakab.gipsz@gmail.com
+                password:
+                  type: string
+                  description: 'Password of the system user. Must not be greater than 150 characters.'
+                  example: jakabgipspasswd
+                role:
+                  type: string
+                  description: 'Role of the current user.'
+                  example: patient
+                  enum:
+                    - patient
+                    - doctor
+                    - admin
+    parameters:
+      -
+        in: path
+        name: doctor_id
+        description: 'The ID of the doctor.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/list/doctors:
+    get:
+      summary: 'GET - every doctor user of the system.'
+      operationId: gETEveryDoctorUserOfTheSystem
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: null
+                      first_name: null
+                      last_name: null
+                      email: murazik.antwon@example.com
+                      patient_detail: null
+                      role: []
+                    -
+                      id: null
+                      first_name: null
+                      last_name: null
+                      email: reece40@example.net
+                      patient_detail: null
+                      role: []
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: null
+                        first_name: null
+                        last_name: null
+                        email: murazik.antwon@example.com
+                        patient_detail: null
+                        role: []
+                      -
+                        id: null
+                        first_name: null
+                        last_name: null
+                        email: reece40@example.net
+                        patient_detail: null
+                        role: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: null
+                        first_name:
+                          type: string
+                          example: null
+                        last_name:
+                          type: string
+                          example: null
+                        email:
+                          type: string
+                          example: murazik.antwon@example.com
+                        patient_detail:
+                          type: string
+                          example: null
+                        role:
+                          type: array
+                          example: []
+      tags:
+        - 'Doctor Handling'
+  /api/super/users:
+    get:
+      summary: 'GET - every user of the system if role filter not provided.'
+      operationId: gETEveryUserOfTheSystemIfRoleFilterNotProvided
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: null
+                      first_name: null
+                      last_name: null
+                      email: mwalsh@example.com
+                      patient_detail: null
+                      role: []
+                    -
+                      id: null
+                      first_name: null
+                      last_name: null
+                      email: destany.lockman@example.org
+                      patient_detail: null
+                      role: []
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: null
+                        first_name: null
+                        last_name: null
+                        email: mwalsh@example.com
+                        patient_detail: null
+                        role: []
+                      -
+                        id: null
+                        first_name: null
+                        last_name: null
+                        email: destany.lockman@example.org
+                        patient_detail: null
+                        role: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: null
+                        first_name:
+                          type: string
+                          example: null
+                        last_name:
+                          type: string
+                          example: null
+                        email:
+                          type: string
+                          example: mwalsh@example.com
+                        patient_detail:
+                          type: string
+                          example: null
+                        role:
+                          type: array
+                          example: []
+      tags:
+        - 'Every User'
+  '/api/super/users/{id}':
+    get:
+      summary: 'GET - a user of the system.'
+      operationId: gETAUserOfTheSystem
+      description: 'Regardless of user role.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: tkrajcik@example.org
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: tkrajcik@example.org
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Every User'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the user.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/patient/register:
+    post:
+      summary: 'POST - create/register a new patient user.'
+      operationId: pOSTCreateregisterANewPatientUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: cbreitenberg@example.com
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: cbreitenberg@example.com
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Patient Handling'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'First name of the system user. Must not be greater than 60 characters.'
+                  example: Jakab
+                last_name:
+                  type: string
+                  description: 'Last name of the system user. Must not be greater than 60 characters.'
+                  example: Gipsz
+                email:
+                  type: string
+                  description: 'Email address of the system user. Must be a valid email address.'
+                  example: jakab.gipsz@gmail.com
+                password:
+                  type: string
+                  description: 'Password of the system user. Must not be greater than 150 characters.'
+                  example: jakabgipspasswd
+                role:
+                  type: string
+                  description: 'Role of the current user.'
+                  example: patient
+                  enum:
+                    - patient
+                    - doctor
+                    - admin
+                birthday:
+                  type: string
+                  description: 'Birthday of the patient. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '1985-09-15'
+                birthplace:
+                  type: string
+                  description: 'Birthplace of the patient. Must match the regex /^[a-zA-Z]+/. Must not be greater than 80 characters.'
+                  example: Budapest
+                city:
+                  type: string
+                  description: 'Current living city of the patient. Must match the regex /^[a-zA-Z]+/. Must not be greater than 80 characters.'
+                  example: Eger
+                zip:
+                  type: string
+                  description: 'Zip of the patient current living place. Must not be greater than 10 characters.'
+                  example: '3600'
+                street:
+                  type: string
+                  description: 'Street of the living place of the patient. Must not be greater than 50 characters.'
+                  example: 'Leányka utca'
+                house_number:
+                  type: string
+                  description: 'Current house number of the patient. Must not be greater than 10 characters.'
+                  example: '6.'
+                insurance_number:
+                  type: string
+                  description: 'Insurance (TAJ) number of the patient. Must not be greater than 15 characters.'
+                  example: '123 123 123'
+                phone:
+                  type: string
+                  description: 'Phone number of the patient. Must not be greater than 30 characters.'
+                  example: '+36 36 460 1231'
+              required:
+                - first_name
+                - last_name
+                - email
+                - password
+                - role
+                - birthday
+                - birthplace
+                - city
+                - zip
+                - street
+                - house_number
+                - insurance_number
+                - phone
+      security: []
+  /api/patient/login:
+    post:
+      summary: 'Login process of patients.'
+      operationId: loginProcessOfPatients
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n       \"id\": 4,\n       \"token\": Bearer 4|qe$a21dadasd1313$qas\n}"
+      tags:
+        - 'Patient Handling'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: "User's e-mail address. Must be a valid email address."
+                  example: xy.yahoo.com
+                password:
+                  type: string
+                  description: "User's password. Must not be greater than 150 characters."
+                  example: my$ecretpassword
+                token_type:
+                  type: string
+                  description: ''
+                  example: Patient-Token
+                  enum:
+                    - Patient-Token
+                    - Doctor-Token
+                    - Admin-Token
+              required:
+                - email
+                - password
+                - token_type
+      security: []
+  /api/super/patients:
+    get:
+      summary: 'GET - get every patient users of the system.'
+      operationId: gETGetEveryPatientUsersOfTheSystem
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: null
+                      first_name: null
+                      last_name: null
+                      email: august.senger@example.org
+                      patient_detail: null
+                      role: []
+                    -
+                      id: null
+                      first_name: null
+                      last_name: null
+                      email: kristoffer.beahan@example.org
+                      patient_detail: null
+                      role: []
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: null
+                        first_name: null
+                        last_name: null
+                        email: august.senger@example.org
+                        patient_detail: null
+                        role: []
+                      -
+                        id: null
+                        first_name: null
+                        last_name: null
+                        email: kristoffer.beahan@example.org
+                        patient_detail: null
+                        role: []
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: null
+                        first_name:
+                          type: string
+                          example: null
+                        last_name:
+                          type: string
+                          example: null
+                        email:
+                          type: string
+                          example: august.senger@example.org
+                        patient_detail:
+                          type: string
+                          example: null
+                        role:
+                          type: array
+                          example: []
+      tags:
+        - 'Patient Handling'
+  '/api/super/patients/{id}':
+    put:
+      summary: 'UPDATE - modify patient users data.'
+      operationId: uPDATEModifyPatientUsersData
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: bbayer@example.net
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: bbayer@example.net
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Patient Handling'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'First name of the system user. Must not be greater than 60 characters.'
+                  example: Jakab
+                last_name:
+                  type: string
+                  description: 'Last name of the system user. Must not be greater than 60 characters.'
+                  example: Gipsz
+                email:
+                  type: string
+                  description: 'Email address of the system user. Must be a valid email address.'
+                  example: jakab.gipsz@gmail.com
+                password:
+                  type: string
+                  description: 'Password of the system user. Must not be greater than 150 characters.'
+                  example: jakabgipspasswd
+                role:
+                  type: string
+                  description: 'Role of the current user.'
+                  example: patient
+                  enum:
+                    - patient
+                    - doctor
+                    - admin
+                birthday:
+                  type: string
+                  description: 'Birthday of the patient. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '1985-09-15'
+                birthplace:
+                  type: string
+                  description: 'Birthplace of the patient. Must match the regex /^[a-zA-Z]+/. Must not be greater than 80 characters.'
+                  example: Budapest
+                city:
+                  type: string
+                  description: 'Current living city of the patient. Must match the regex /^[a-zA-Z]+/. Must not be greater than 80 characters.'
+                  example: Eger
+                zip:
+                  type: string
+                  description: 'Zip of the patient current living place. Must not be greater than 10 characters.'
+                  example: '3600'
+                street:
+                  type: string
+                  description: 'Street of the living place of the patient. Must not be greater than 50 characters.'
+                  example: 'Leányka utca'
+                house_number:
+                  type: string
+                  description: 'Current house number of the patient. Must not be greater than 10 characters.'
+                  example: '6.'
+                insurance_number:
+                  type: string
+                  description: 'Insurance (TAJ) number of the patient. Must not be greater than 15 characters.'
+                  example: '123 123 123'
+                phone:
+                  type: string
+                  description: 'Phone number of the patient. Must not be greater than 30 characters.'
+                  example: '+36 36 460 1231'
+    delete:
+      summary: 'DELETE - delete a specific patient user.'
+      operationId: dELETEDeleteASpecificPatientUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    ['message': User deleted successfully.]\n}"
+        500:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    ['message': 'Delete was not successful!']\n}"
+      tags:
+        - 'Patient Handling'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the patient.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  '/api/patients/{patient_id}':
+    get:
+      summary: 'GET - get the requested patient user.'
+      operationId: gETGetTheRequestedPatientUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: imann@example.org
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: imann@example.org
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Patient Handling'
+    put:
+      summary: 'UPDATE - modify patient users data.'
+      operationId: uPDATEModifyPatientUsersData
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    first_name: null
+                    last_name: null
+                    email: sonny.pacocha@example.com
+                    patient_detail: null
+                    role: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      first_name:
+                        type: string
+                        example: null
+                      last_name:
+                        type: string
+                        example: null
+                      email:
+                        type: string
+                        example: sonny.pacocha@example.com
+                      patient_detail:
+                        type: string
+                        example: null
+                      role:
+                        type: array
+                        example: []
+      tags:
+        - 'Patient Handling'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                  description: 'First name of the system user. Must not be greater than 60 characters.'
+                  example: Jakab
+                last_name:
+                  type: string
+                  description: 'Last name of the system user. Must not be greater than 60 characters.'
+                  example: Gipsz
+                email:
+                  type: string
+                  description: 'Email address of the system user. Must be a valid email address.'
+                  example: jakab.gipsz@gmail.com
+                password:
+                  type: string
+                  description: 'Password of the system user. Must not be greater than 150 characters.'
+                  example: jakabgipspasswd
+                role:
+                  type: string
+                  description: 'Role of the current user.'
+                  example: patient
+                  enum:
+                    - patient
+                    - doctor
+                    - admin
+                birthday:
+                  type: string
+                  description: 'Birthday of the patient. Must be a valid date in the format <code>Y-m-d</code>.'
+                  example: '1985-09-15'
+                birthplace:
+                  type: string
+                  description: 'Birthplace of the patient. Must match the regex /^[a-zA-Z]+/. Must not be greater than 80 characters.'
+                  example: Budapest
+                city:
+                  type: string
+                  description: 'Current living city of the patient. Must match the regex /^[a-zA-Z]+/. Must not be greater than 80 characters.'
+                  example: Eger
+                zip:
+                  type: string
+                  description: 'Zip of the patient current living place. Must not be greater than 10 characters.'
+                  example: '3600'
+                street:
+                  type: string
+                  description: 'Street of the living place of the patient. Must not be greater than 50 characters.'
+                  example: 'Leányka utca'
+                house_number:
+                  type: string
+                  description: 'Current house number of the patient. Must not be greater than 10 characters.'
+                  example: '6.'
+                insurance_number:
+                  type: string
+                  description: 'Insurance (TAJ) number of the patient. Must not be greater than 15 characters.'
+                  example: '123 123 123'
+                phone:
+                  type: string
+                  description: 'Phone number of the patient. Must not be greater than 30 characters.'
+                  example: '+36 36 460 1231'
+    parameters:
+      -
+        in: path
+        name: patient_id
+        description: 'The ID of the patient.'
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/bookings:
+    get:
+      summary: "GET - every reserved booking's data."
+      operationId: gETEveryReservedBookingsData
+      description: ''
+      parameters:
+        -
+          in: query
+          name: bookable_reception_times_id
+          description: ''
+          example: 21454724.004077
+          required: false
+          schema:
+            type: number
+            description: ''
+            example: 21454724.004077
+        -
+          in: query
+          name: patient_user_id
+          description: ''
+          example: 10236900.0
+          required: false
+          schema:
+            type: number
+            description: ''
+            example: 10236900.0
+        -
+          in: query
+          name: filters
+          description: ''
+          example: []
+          required: false
+          schema:
+            type: object
+            description: ''
+            example: []
+            properties: {  }
+        -
+          in: query
+          name: filters.from_today
+          description: ''
+          example: false
+          required: false
+          schema:
+            type: boolean
+            description: ''
+            example: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                    -
+                      id: 1
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                      -
+                        id: 1
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+      tags:
+        - 'Reserved Bookings'
+    post:
+      summary: 'POST - book a reception time created by a doctor user.'
+      operationId: pOSTBookAReceptionTimeCreatedByADoctorUser
+      description: ''
+      parameters:
+        -
+          in: query
+          name: bookable_reception_times_id
+          description: ''
+          example: 82155.4
+          required: true
+          schema:
+            type: number
+            description: ''
+            example: 82155.4
+        -
+          in: query
+          name: patient_user_id
+          description: ''
+          example: 1.435
+          required: true
+          schema:
+            type: number
+            description: ''
+            example: 1.435
+        -
+          in: query
+          name: filters
+          description: ''
+          example: []
+          required: false
+          schema:
+            type: object
+            description: ''
+            example: []
+            properties: {  }
+        -
+          in: query
+          name: filters.from_today
+          description: ''
+          example: true
+          required: false
+          schema:
+            type: boolean
+            description: ''
+            example: true
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+      tags:
+        - 'Reserved Bookings'
+  '/api/bookings/{booking_id}':
+    get:
+      summary: "GET - a reserved appointment's details."
+      operationId: gETAReservedAppointmentsDetails
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+      tags:
+        - 'Reserved Bookings'
+    parameters:
+      -
+        in: path
+        name: booking_id
+        description: 'The ID of the booking.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: 'Admin Handling'
+    description: "\nAPIs for Admin data."
+  -
+    name: Auth
+    description: "\nAuthentication data."
+  -
+    name: 'Bookable Reception Times'
+    description: "\nGroups the API methods of the Bookable Appointments."
+  -
+    name: 'Doctor Handling'
+    description: "\nAPIs for Doctor data."
+  -
+    name: 'Every User'
+    description: "\nAPIs for every user of the system."
+  -
+    name: 'Patient Handling'
+    description: "\nAPIs for Patient data."
+  -
+    name: 'Reserved Bookings'
+    description: "\nGroups the APIs of Reserved Bookings,\nthat happens when a patient books an appointment."
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []

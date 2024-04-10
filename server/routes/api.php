@@ -30,8 +30,6 @@ Route::post('/admin/login', [AdminController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::apiResource('/routes', RouteController::class)->only(['index']);
-
     Route::group(['middleware' => ['role:admin']], function () {
         Route::prefix('super')->group(function () {
             Route::apiResource('/users', UserController::class)->only(['index', 'show']);

@@ -65,4 +65,33 @@ class UserRequest extends AbstractRequest
             'role'=> $this->role ?? null,
         ];
     }
+
+    /**
+     * Generate documentation for Scribe.
+     */
+    public function bodyParameters(): array
+    {
+        return [
+            'first_name' => [
+                'description' => 'First name of the system user.',
+                'example' => 'Jakab',
+            ],
+            'last_name' => [
+                'description' => 'Last name of the system user.',
+                'example' => 'Gipsz',
+            ],
+            'email' => [
+                'description' => 'Email address of the system user.',
+                'example' => 'jakab.gipsz@gmail.com',
+            ],
+            'password' => [
+                'description' => 'Password of the system user.',
+                'example' => 'jakabgipspasswd',
+            ],
+            'role' => [
+                'description' => 'Role of the current user.',
+                'example' => 'patient',
+            ],
+        ];
+    }
 }

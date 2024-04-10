@@ -34,6 +34,15 @@ abstract class AbstractRequest extends FormRequest implements IHttpDependableReq
         'nullable';
     }
 
+    /**
+     * Can add unique key conditionally depending
+     * on the give HTTP methods.
+     *
+     * @param string $table
+     * @param string $field
+     * @param array $methods
+     * @return string
+     */
     public function isUnique(string $table, string $field, array $methods): string
     {
         return in_array($this->method(), $methods) ?

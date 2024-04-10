@@ -16,7 +16,12 @@
 - PHPUnit
 - Spatie
 - Laravel Service Generator
-- Darkaonline/L5-Swagger
+- knuckleswtf/scribe
+
+### API dokumentáció
+1. Projekt klónozása és dependenciák telepítése
+2. php artisan scribe:generate
+3. {{baseURL}}/docs
 
 ### Adatbázis
 - MySQL

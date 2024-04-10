@@ -44,4 +44,35 @@ class ReservedBookingsRequest extends AbstractRequest
             'patientID' => $this->patient_user_id,
         ];
     }
+
+    /**
+     * Generate body parameters for Scribe.
+     *
+     * @return array
+     */
+    public function bodyParameters(): array
+    {
+        return [
+            'bookable_reception_times_id' => [
+                'description' => 'Id of a doctor created appointment.',
+                'example' => 155,
+            ],
+            'patient_user_id' => [
+                'description' => 'Id of a patient who booked the appointment.',
+                'example' => 2,
+            ]
+        ];
+    }
+
+    public function queryParameters(): array
+    {
+        return [
+            'filters' => [
+                'from_today' => [
+                    'description' => 'Filter for reserved bookings from today to the future.',
+                    'example' => 1,
+                ]
+            ]
+        ];
+    }
 }
