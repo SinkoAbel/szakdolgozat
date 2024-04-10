@@ -260,7 +260,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     --data "{
     \"email\": \"xy.yahoo.com\",
     \"password\": \"my$ecretpassword\",
-    \"token_type\": \"Doctor-Token\"
+    \"token_type\": \"Patient-Token\"
 }"
 </code></pre></div>
 
@@ -278,7 +278,7 @@ const headers = {
 let body = {
     "email": "xy.yahoo.com",
     "password": "my$ecretpassword",
-    "token_type": "Doctor-Token"
+    "token_type": "Patient-Token"
 };
 
 fetch(url, {
@@ -399,10 +399,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="token_type"                data-endpoint="POSTapi-admin-login"
-               value="Doctor-Token"
+               value="Patient-Token"
                data-component="body">
     <br>
-<p>Example: <code>Doctor-Token</code></p>
+<p>Example: <code>Patient-Token</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Patient-Token</code></li> <li><code>Doctor-Token</code></li> <li><code>Admin-Token</code></li></ul>
         </div>
@@ -458,7 +458,7 @@ fetch(url, {
             &quot;id&quot;: null,
             &quot;first_name&quot;: null,
             &quot;last_name&quot;: null,
-            &quot;email&quot;: &quot;alfonso44@example.org&quot;,
+            &quot;email&quot;: &quot;rosemary.erdman@example.com&quot;,
             &quot;patient_detail&quot;: null,
             &quot;role&quot;: []
         },
@@ -466,7 +466,7 @@ fetch(url, {
             &quot;id&quot;: null,
             &quot;first_name&quot;: null,
             &quot;last_name&quot;: null,
-            &quot;email&quot;: &quot;gbahringer@example.com&quot;,
+            &quot;email&quot;: &quot;kaylah59@example.org&quot;,
             &quot;patient_detail&quot;: null,
             &quot;role&quot;: []
         }
@@ -622,7 +622,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;daryl99@example.com&quot;,
+        &quot;email&quot;: &quot;monique.stracke@example.org&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -818,7 +818,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;little.emiliano@example.org&quot;,
+        &quot;email&quot;: &quot;romaguera.blake@example.org&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -985,7 +985,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;augustine86@example.net&quot;,
+        &quot;email&quot;: &quot;satterfield.tremaine@example.com&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -1462,7 +1462,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/appointments?doctor_user_id=1036353.3059566&amp;date=2024-04-10&amp;start_time=20%3A24&amp;end_time=2073-02-17&amp;filters[booked]=&amp;filters[doctor]=300194.47" \
+    --get "http://localhost:8000/api/appointments?doctor_user_id=18953246.72&amp;date=2024-04-10&amp;start_time=20%3A54&amp;end_time=2084-08-20&amp;filters[booked]=1&amp;filters[doctor]=54782128.88634" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1474,12 +1474,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const params = {
-    "doctor_user_id": "1036353.3059566",
+    "doctor_user_id": "18953246.72",
     "date": "2024-04-10",
-    "start_time": "20:24",
-    "end_time": "2073-02-17",
-    "filters[booked]": "",
-    "filters[doctor]": "300194.47",
+    "start_time": "20:54",
+    "end_time": "2084-08-20",
+    "filters[booked]": "1",
+    "filters[doctor]": "54782128.88634",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1610,10 +1610,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="doctor_user_id"                data-endpoint="GETapi-appointments"
-               value="1036353.3059566"
+               value="18953246.72"
                data-component="query">
     <br>
-<p>Example: <code>1036353.3059566</code></p>
+<p>Example: <code>18953246.72</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
@@ -1632,10 +1632,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="start_time"                data-endpoint="GETapi-appointments"
-               value="20:24"
+               value="20:54"
                data-component="query">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>20:24</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>20:54</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>end_time</code></b>&nbsp;&nbsp;
@@ -1643,10 +1643,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="end_time"                data-endpoint="GETapi-appointments"
-               value="2073-02-17"
+               value="2084-08-20"
                data-component="query">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>. Example: <code>2073-02-17</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>. Example: <code>2084-08-20</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>filters</code></b>&nbsp;&nbsp;
@@ -1678,7 +1678,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>filters.doctor</code></b>&nbsp;&nbsp;
@@ -1686,10 +1686,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="filters.doctor"                data-endpoint="GETapi-appointments"
-               value="300194.47"
+               value="54782128.88634"
                data-component="query">
     <br>
-<p>Example: <code>300194.47</code></p>
+<p>Example: <code>54782128.88634</code></p>
             </div>
                 </form>
 
@@ -1707,7 +1707,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/appointments?doctor_user_id=335.24&amp;date=2024-04-10&amp;start_time=20%3A24&amp;end_time=2079-05-26&amp;filters[booked]=1&amp;filters[doctor]=69535694.668218" \
+    "http://localhost:8000/api/appointments?doctor_user_id=110&amp;date=2024-04-10&amp;start_time=20%3A54&amp;end_time=2035-02-22&amp;filters[booked]=1&amp;filters[doctor]=1329563.19" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1719,12 +1719,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const params = {
-    "doctor_user_id": "335.24",
+    "doctor_user_id": "110",
     "date": "2024-04-10",
-    "start_time": "20:24",
-    "end_time": "2079-05-26",
+    "start_time": "20:54",
+    "end_time": "2035-02-22",
     "filters[booked]": "1",
-    "filters[doctor]": "69535694.668218",
+    "filters[doctor]": "1329563.19",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -1846,10 +1846,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="doctor_user_id"                data-endpoint="POSTapi-appointments"
-               value="335.24"
+               value="110"
                data-component="query">
     <br>
-<p>Example: <code>335.24</code></p>
+<p>Example: <code>110</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
@@ -1868,10 +1868,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="start_time"                data-endpoint="POSTapi-appointments"
-               value="20:24"
+               value="20:54"
                data-component="query">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>20:24</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>20:54</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>end_time</code></b>&nbsp;&nbsp;
@@ -1879,10 +1879,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="end_time"                data-endpoint="POSTapi-appointments"
-               value="2079-05-26"
+               value="2035-02-22"
                data-component="query">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>. Example: <code>2079-05-26</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>. Example: <code>2035-02-22</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>filters</code></b>&nbsp;&nbsp;
@@ -1922,10 +1922,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="filters.doctor"                data-endpoint="POSTapi-appointments"
-               value="69535694.668218"
+               value="1329563.19"
                data-component="query">
     <br>
-<p>Example: <code>69535694.668218</code></p>
+<p>Example: <code>1329563.19</code></p>
             </div>
                 </form>
 
@@ -2093,7 +2093,7 @@ booked it.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/appointments/7?doctor_user_id=238.2834635&amp;date=2024-04-10&amp;start_time=20%3A24&amp;end_time=2119-05-02&amp;filters[booked]=1&amp;filters[doctor]=114758470.88623" \
+    "http://localhost:8000/api/appointments/7?doctor_user_id=26.379222095&amp;date=2024-04-10&amp;start_time=20%3A54&amp;end_time=2066-10-04&amp;filters[booked]=&amp;filters[doctor]=395.860425" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2105,12 +2105,12 @@ booked it.</p>
 );
 
 const params = {
-    "doctor_user_id": "238.2834635",
+    "doctor_user_id": "26.379222095",
     "date": "2024-04-10",
-    "start_time": "20:24",
-    "end_time": "2119-05-02",
-    "filters[booked]": "1",
-    "filters[doctor]": "114758470.88623",
+    "start_time": "20:54",
+    "end_time": "2066-10-04",
+    "filters[booked]": "",
+    "filters[doctor]": "395.860425",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -2248,10 +2248,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="doctor_user_id"                data-endpoint="PUTapi-appointments--id-"
-               value="238.2834635"
+               value="26.379222095"
                data-component="query">
     <br>
-<p>Example: <code>238.2834635</code></p>
+<p>Example: <code>26.379222095</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
@@ -2270,10 +2270,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="start_time"                data-endpoint="PUTapi-appointments--id-"
-               value="20:24"
+               value="20:54"
                data-component="query">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>20:24</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>20:54</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>end_time</code></b>&nbsp;&nbsp;
@@ -2281,10 +2281,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="end_time"                data-endpoint="PUTapi-appointments--id-"
-               value="2119-05-02"
+               value="2066-10-04"
                data-component="query">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>. Example: <code>2119-05-02</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>. Example: <code>2066-10-04</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>filters</code></b>&nbsp;&nbsp;
@@ -2316,7 +2316,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>true</code></p>
+<p>Example: <code>false</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>filters.doctor</code></b>&nbsp;&nbsp;
@@ -2324,10 +2324,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="filters.doctor"                data-endpoint="PUTapi-appointments--id-"
-               value="114758470.88623"
+               value="395.860425"
                data-component="query">
     <br>
-<p>Example: <code>114758470.88623</code></p>
+<p>Example: <code>395.860425</code></p>
             </div>
                 </form>
 
@@ -2507,7 +2507,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"email\": \"xy.yahoo.com\",
     \"password\": \"my$ecretpassword\",
-    \"token_type\": \"Doctor-Token\"
+    \"token_type\": \"Patient-Token\"
 }"
 </code></pre></div>
 
@@ -2525,7 +2525,7 @@ const headers = {
 let body = {
     "email": "xy.yahoo.com",
     "password": "my$ecretpassword",
-    "token_type": "Doctor-Token"
+    "token_type": "Patient-Token"
 };
 
 fetch(url, {
@@ -2646,10 +2646,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="token_type"                data-endpoint="POSTapi-doctor-login"
-               value="Doctor-Token"
+               value="Patient-Token"
                data-component="body">
     <br>
-<p>Example: <code>Doctor-Token</code></p>
+<p>Example: <code>Patient-Token</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Patient-Token</code></li> <li><code>Doctor-Token</code></li> <li><code>Admin-Token</code></li></ul>
         </div>
@@ -2721,7 +2721,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;kuhic.stanley@example.com&quot;,
+        &quot;email&quot;: &quot;luigi.bauch@example.org&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -2934,7 +2934,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;sauer.zackery@example.com&quot;,
+        &quot;email&quot;: &quot;pstanton@example.org&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -3307,7 +3307,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;uschoen@example.org&quot;,
+        &quot;email&quot;: &quot;vandervort.orie@example.org&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -3474,7 +3474,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;koch.regan@example.com&quot;,
+        &quot;email&quot;: &quot;harvey.rylee@example.org&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -3683,7 +3683,7 @@ fetch(url, {
             &quot;id&quot;: null,
             &quot;first_name&quot;: null,
             &quot;last_name&quot;: null,
-            &quot;email&quot;: &quot;zbashirian@example.com&quot;,
+            &quot;email&quot;: &quot;murazik.antwon@example.com&quot;,
             &quot;patient_detail&quot;: null,
             &quot;role&quot;: []
         },
@@ -3691,7 +3691,7 @@ fetch(url, {
             &quot;id&quot;: null,
             &quot;first_name&quot;: null,
             &quot;last_name&quot;: null,
-            &quot;email&quot;: &quot;emoore@example.net&quot;,
+            &quot;email&quot;: &quot;reece40@example.net&quot;,
             &quot;patient_detail&quot;: null,
             &quot;role&quot;: []
         }
@@ -3835,7 +3835,7 @@ fetch(url, {
             &quot;id&quot;: null,
             &quot;first_name&quot;: null,
             &quot;last_name&quot;: null,
-            &quot;email&quot;: &quot;nitzsche.leone@example.net&quot;,
+            &quot;email&quot;: &quot;mwalsh@example.com&quot;,
             &quot;patient_detail&quot;: null,
             &quot;role&quot;: []
         },
@@ -3843,7 +3843,7 @@ fetch(url, {
             &quot;id&quot;: null,
             &quot;first_name&quot;: null,
             &quot;last_name&quot;: null,
-            &quot;email&quot;: &quot;grimes.madie@example.org&quot;,
+            &quot;email&quot;: &quot;destany.lockman@example.org&quot;,
             &quot;patient_detail&quot;: null,
             &quot;role&quot;: []
         }
@@ -3982,7 +3982,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;littel.celine@example.net&quot;,
+        &quot;email&quot;: &quot;tkrajcik@example.org&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -4166,7 +4166,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;karelle45@example.org&quot;,
+        &quot;email&quot;: &quot;cbreitenberg@example.com&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -4409,7 +4409,7 @@ Must be one of:
     --data "{
     \"email\": \"xy.yahoo.com\",
     \"password\": \"my$ecretpassword\",
-    \"token_type\": \"Doctor-Token\"
+    \"token_type\": \"Patient-Token\"
 }"
 </code></pre></div>
 
@@ -4427,7 +4427,7 @@ const headers = {
 let body = {
     "email": "xy.yahoo.com",
     "password": "my$ecretpassword",
-    "token_type": "Doctor-Token"
+    "token_type": "Patient-Token"
 };
 
 fetch(url, {
@@ -4548,10 +4548,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="token_type"                data-endpoint="POSTapi-patient-login"
-               value="Doctor-Token"
+               value="Patient-Token"
                data-component="body">
     <br>
-<p>Example: <code>Doctor-Token</code></p>
+<p>Example: <code>Patient-Token</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>Patient-Token</code></li> <li><code>Doctor-Token</code></li> <li><code>Admin-Token</code></li></ul>
         </div>
@@ -4607,7 +4607,7 @@ fetch(url, {
             &quot;id&quot;: null,
             &quot;first_name&quot;: null,
             &quot;last_name&quot;: null,
-            &quot;email&quot;: &quot;hgreenholt@example.net&quot;,
+            &quot;email&quot;: &quot;august.senger@example.org&quot;,
             &quot;patient_detail&quot;: null,
             &quot;role&quot;: []
         },
@@ -4615,7 +4615,7 @@ fetch(url, {
             &quot;id&quot;: null,
             &quot;first_name&quot;: null,
             &quot;last_name&quot;: null,
-            &quot;email&quot;: &quot;ogerhold@example.org&quot;,
+            &quot;email&quot;: &quot;kristoffer.beahan@example.org&quot;,
             &quot;patient_detail&quot;: null,
             &quot;role&quot;: []
         }
@@ -4787,7 +4787,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;mary59@example.net&quot;,
+        &quot;email&quot;: &quot;bbayer@example.net&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -5239,7 +5239,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;madison68@example.com&quot;,
+        &quot;email&quot;: &quot;imann@example.org&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -5422,7 +5422,7 @@ fetch(url, {
         &quot;id&quot;: null,
         &quot;first_name&quot;: null,
         &quot;last_name&quot;: null,
-        &quot;email&quot;: &quot;foconner@example.org&quot;,
+        &quot;email&quot;: &quot;sonny.pacocha@example.com&quot;,
         &quot;patient_detail&quot;: null,
         &quot;role&quot;: []
     }
@@ -5688,7 +5688,7 @@ that happens when a patient books an appointment.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/bookings?bookable_reception_times_id=669.1163911&amp;patient_user_id=44535.0913&amp;filters[from_today]=" \
+    --get "http://localhost:8000/api/bookings?bookable_reception_times_id=21454724.004077&amp;patient_user_id=10236900&amp;filters[from_today]=" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -5700,8 +5700,8 @@ that happens when a patient books an appointment.</p>
 );
 
 const params = {
-    "bookable_reception_times_id": "669.1163911",
-    "patient_user_id": "44535.0913",
+    "bookable_reception_times_id": "21454724.004077",
+    "patient_user_id": "10236900",
     "filters[from_today]": "",
 };
 Object.keys(params)
@@ -5825,10 +5825,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bookable_reception_times_id"                data-endpoint="GETapi-bookings"
-               value="669.1163911"
+               value="21454724.004077"
                data-component="query">
     <br>
-<p>Example: <code>669.1163911</code></p>
+<p>Example: <code>21454724.004077</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>patient_user_id</code></b>&nbsp;&nbsp;
@@ -5836,10 +5836,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="patient_user_id"                data-endpoint="GETapi-bookings"
-               value="44535.0913"
+               value="10236900"
                data-component="query">
     <br>
-<p>Example: <code>44535.0913</code></p>
+<p>Example: <code>10236900</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>filters</code></b>&nbsp;&nbsp;
@@ -6034,7 +6034,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/bookings?bookable_reception_times_id=359078&amp;patient_user_id=132.36566&amp;filters[from_today]=1" \
+    "http://localhost:8000/api/bookings?bookable_reception_times_id=82155.4&amp;patient_user_id=1.435&amp;filters[from_today]=1" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -6046,8 +6046,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const params = {
-    "bookable_reception_times_id": "359078",
-    "patient_user_id": "132.36566",
+    "bookable_reception_times_id": "82155.4",
+    "patient_user_id": "1.435",
     "filters[from_today]": "1",
 };
 Object.keys(params)
@@ -6166,10 +6166,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="bookable_reception_times_id"                data-endpoint="POSTapi-bookings"
-               value="359078"
+               value="82155.4"
                data-component="query">
     <br>
-<p>Example: <code>359078</code></p>
+<p>Example: <code>82155.4</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>patient_user_id</code></b>&nbsp;&nbsp;
@@ -6177,10 +6177,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="patient_user_id"                data-endpoint="POSTapi-bookings"
-               value="132.36566"
+               value="1.435"
                data-component="query">
     <br>
-<p>Example: <code>132.36566</code></p>
+<p>Example: <code>1.435</code></p>
             </div>
                                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>filters</code></b>&nbsp;&nbsp;

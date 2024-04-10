@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "2b6466ff-9f2b-4c6f-8cd9-d6dfb62e79c5",
+        "_postman_id": "be35bf56-796b-4372-8deb-7394b02f83d2",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"xy.yahoo.com\",\"password\":\"my$ecretpassword\",\"token_type\":\"Doctor-Token\"}"
+                            "raw": "{\"email\":\"xy.yahoo.com\",\"password\":\"my$ecretpassword\",\"token_type\":\"Patient-Token\"}"
                         },
                         "description": "",
                         "auth": {
@@ -84,7 +84,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"alfonso44@example.org\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"gbahringer@example.com\",\"patient_detail\":null,\"role\":[]}]}",
+                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"rosemary.erdman@example.com\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"kaylah59@example.org\",\"patient_detail\":null,\"role\":[]}]}",
                             "name": ""
                         }
                     ]
@@ -119,7 +119,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"daryl99@example.com\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"monique.stracke@example.org\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -159,7 +159,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"little.emiliano@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"romaguera.blake@example.org\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -202,7 +202,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"augustine86@example.net\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"satterfield.tremaine@example.com\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -312,7 +312,7 @@
                             "query": [
                                 {
                                     "key": "doctor_user_id",
-                                    "value": "1036353.3059566",
+                                    "value": "18953246.72",
                                     "description": "",
                                     "disabled": false
                                 },
@@ -324,13 +324,13 @@
                                 },
                                 {
                                     "key": "start_time",
-                                    "value": "20%3A24",
+                                    "value": "20%3A54",
                                     "description": "Must be a valid date in the format H:i.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "end_time",
-                                    "value": "2073-02-17",
+                                    "value": "2084-08-20",
                                     "description": "Must be a valid date in the format H:i. Must be a date after start_time.",
                                     "disabled": false
                                 },
@@ -342,18 +342,18 @@
                                 },
                                 {
                                     "key": "filters.booked",
-                                    "value": "",
+                                    "value": "1",
                                     "description": "",
-                                    "disabled": true
+                                    "disabled": false
                                 },
                                 {
                                     "key": "filters.doctor",
-                                    "value": "300194.47",
+                                    "value": "54782128.88634",
                                     "description": "",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/appointments?doctor_user_id=1036353.3059566&date=2024-04-10&start_time=20%3A24&end_time=2073-02-17&filters[]=&filters.booked=&filters.doctor=300194.47"
+                            "raw": "{{baseUrl}}\/api\/appointments?doctor_user_id=18953246.72&date=2024-04-10&start_time=20%3A54&end_time=2084-08-20&filters[]=&filters.booked=1&filters.doctor=54782128.88634"
                         },
                         "method": "GET",
                         "header": [
@@ -387,7 +387,7 @@
                             "query": [
                                 {
                                     "key": "doctor_user_id",
-                                    "value": "335.24",
+                                    "value": "110",
                                     "description": "",
                                     "disabled": false
                                 },
@@ -399,13 +399,13 @@
                                 },
                                 {
                                     "key": "start_time",
-                                    "value": "20%3A24",
+                                    "value": "20%3A54",
                                     "description": "Must be a valid date in the format H:i.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "end_time",
-                                    "value": "2079-05-26",
+                                    "value": "2035-02-22",
                                     "description": "Must be a valid date in the format H:i. Must be a date after start_time.",
                                     "disabled": false
                                 },
@@ -423,12 +423,12 @@
                                 },
                                 {
                                     "key": "filters.doctor",
-                                    "value": "69535694.668218",
+                                    "value": "1329563.19",
                                     "description": "",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/appointments?doctor_user_id=335.24&date=2024-04-10&start_time=20%3A24&end_time=2079-05-26&filters[]=&filters.booked=1&filters.doctor=69535694.668218"
+                            "raw": "{{baseUrl}}\/api\/appointments?doctor_user_id=110&date=2024-04-10&start_time=20%3A54&end_time=2035-02-22&filters[]=&filters.booked=1&filters.doctor=1329563.19"
                         },
                         "method": "POST",
                         "header": [
@@ -502,7 +502,7 @@
                             "query": [
                                 {
                                     "key": "doctor_user_id",
-                                    "value": "238.2834635",
+                                    "value": "26.379222095",
                                     "description": "",
                                     "disabled": false
                                 },
@@ -514,13 +514,13 @@
                                 },
                                 {
                                     "key": "start_time",
-                                    "value": "20%3A24",
+                                    "value": "20%3A54",
                                     "description": "Must be a valid date in the format H:i.",
                                     "disabled": false
                                 },
                                 {
                                     "key": "end_time",
-                                    "value": "2119-05-02",
+                                    "value": "2066-10-04",
                                     "description": "Must be a valid date in the format H:i. Must be a date after start_time.",
                                     "disabled": false
                                 },
@@ -532,18 +532,18 @@
                                 },
                                 {
                                     "key": "filters.booked",
-                                    "value": "1",
+                                    "value": "",
                                     "description": "",
-                                    "disabled": false
+                                    "disabled": true
                                 },
                                 {
                                     "key": "filters.doctor",
-                                    "value": "114758470.88623",
+                                    "value": "395.860425",
                                     "description": "",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/appointments\/:id?doctor_user_id=238.2834635&date=2024-04-10&start_time=20%3A24&end_time=2119-05-02&filters[]=&filters.booked=1&filters.doctor=114758470.88623",
+                            "raw": "{{baseUrl}}\/api\/appointments\/:id?doctor_user_id=26.379222095&date=2024-04-10&start_time=20%3A54&end_time=2066-10-04&filters[]=&filters.booked=&filters.doctor=395.860425",
                             "variable": [
                                 {
                                     "id": "id",
@@ -650,7 +650,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"xy.yahoo.com\",\"password\":\"my$ecretpassword\",\"token_type\":\"Doctor-Token\"}"
+                            "raw": "{\"email\":\"xy.yahoo.com\",\"password\":\"my$ecretpassword\",\"token_type\":\"Patient-Token\"}"
                         },
                         "description": "",
                         "auth": {
@@ -696,7 +696,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"kuhic.stanley@example.com\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"luigi.bauch@example.org\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -739,7 +739,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"sauer.zackery@example.com\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"pstanton@example.org\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -831,7 +831,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"uschoen@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"vandervort.orie@example.org\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -874,7 +874,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"koch.regan@example.com\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"harvey.rylee@example.org\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -906,7 +906,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"zbashirian@example.com\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"emoore@example.net\",\"patient_detail\":null,\"role\":[]}]}",
+                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"murazik.antwon@example.com\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"reece40@example.net\",\"patient_detail\":null,\"role\":[]}]}",
                             "name": ""
                         }
                     ]
@@ -944,7 +944,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"nitzsche.leone@example.net\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"grimes.madie@example.org\",\"patient_detail\":null,\"role\":[]}]}",
+                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"mwalsh@example.com\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"destany.lockman@example.org\",\"patient_detail\":null,\"role\":[]}]}",
                             "name": ""
                         }
                     ]
@@ -984,7 +984,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"littel.celine@example.net\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"tkrajcik@example.org\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -1028,7 +1028,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"karelle45@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"cbreitenberg@example.com\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -1055,7 +1055,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"xy.yahoo.com\",\"password\":\"my$ecretpassword\",\"token_type\":\"Doctor-Token\"}"
+                            "raw": "{\"email\":\"xy.yahoo.com\",\"password\":\"my$ecretpassword\",\"token_type\":\"Patient-Token\"}"
                         },
                         "description": "",
                         "auth": {
@@ -1098,7 +1098,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"hgreenholt@example.net\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"ogerhold@example.org\",\"patient_detail\":null,\"role\":[]}]}",
+                            "body": "{\"data\":[{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"august.senger@example.org\",\"patient_detail\":null,\"role\":[]},{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"kristoffer.beahan@example.org\",\"patient_detail\":null,\"role\":[]}]}",
                             "name": ""
                         }
                     ]
@@ -1141,7 +1141,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"mary59@example.net\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"bbayer@example.net\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -1227,7 +1227,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"madison68@example.com\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"imann@example.org\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -1270,7 +1270,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"foconner@example.org\",\"patient_detail\":null,\"role\":[]}}",
+                            "body": "{\"data\":{\"id\":null,\"first_name\":null,\"last_name\":null,\"email\":\"sonny.pacocha@example.com\",\"patient_detail\":null,\"role\":[]}}",
                             "name": ""
                         }
                     ]
@@ -1290,13 +1290,13 @@
                             "query": [
                                 {
                                     "key": "bookable_reception_times_id",
-                                    "value": "669.1163911",
+                                    "value": "21454724.004077",
                                     "description": "",
                                     "disabled": false
                                 },
                                 {
                                     "key": "patient_user_id",
-                                    "value": "44535.0913",
+                                    "value": "10236900",
                                     "description": "",
                                     "disabled": false
                                 },
@@ -1313,7 +1313,7 @@
                                     "disabled": true
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/bookings?bookable_reception_times_id=669.1163911&patient_user_id=44535.0913&filters[]=&filters.from_today="
+                            "raw": "{{baseUrl}}\/api\/bookings?bookable_reception_times_id=21454724.004077&patient_user_id=10236900&filters[]=&filters.from_today="
                         },
                         "method": "GET",
                         "header": [
@@ -1387,13 +1387,13 @@
                             "query": [
                                 {
                                     "key": "bookable_reception_times_id",
-                                    "value": "359078",
+                                    "value": "82155.4",
                                     "description": "",
                                     "disabled": false
                                 },
                                 {
                                     "key": "patient_user_id",
-                                    "value": "132.36566",
+                                    "value": "1.435",
                                     "description": "",
                                     "disabled": false
                                 },
@@ -1410,7 +1410,7 @@
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/bookings?bookable_reception_times_id=359078&patient_user_id=132.36566&filters[]=&filters.from_today=1"
+                            "raw": "{{baseUrl}}\/api\/bookings?bookable_reception_times_id=82155.4&patient_user_id=1.435&filters[]=&filters.from_today=1"
                         },
                         "method": "POST",
                         "header": [

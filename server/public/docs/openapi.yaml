@@ -41,7 +41,7 @@ paths:
                 token_type:
                   type: string
                   description: ''
-                  example: Doctor-Token
+                  example: Patient-Token
                   enum:
                     - Patient-Token
                     - Doctor-Token
@@ -70,14 +70,14 @@ paths:
                       id: null
                       first_name: null
                       last_name: null
-                      email: alfonso44@example.org
+                      email: rosemary.erdman@example.com
                       patient_detail: null
                       role: []
                     -
                       id: null
                       first_name: null
                       last_name: null
-                      email: gbahringer@example.com
+                      email: kaylah59@example.org
                       patient_detail: null
                       role: []
                 properties:
@@ -88,14 +88,14 @@ paths:
                         id: null
                         first_name: null
                         last_name: null
-                        email: alfonso44@example.org
+                        email: rosemary.erdman@example.com
                         patient_detail: null
                         role: []
                       -
                         id: null
                         first_name: null
                         last_name: null
-                        email: gbahringer@example.com
+                        email: kaylah59@example.org
                         patient_detail: null
                         role: []
                     items:
@@ -112,7 +112,7 @@ paths:
                           example: null
                         email:
                           type: string
-                          example: alfonso44@example.org
+                          example: rosemary.erdman@example.com
                         patient_detail:
                           type: string
                           example: null
@@ -138,7 +138,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: daryl99@example.com
+                    email: monique.stracke@example.org
                     patient_detail: null
                     role: []
                 properties:
@@ -156,7 +156,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: daryl99@example.com
+                        example: monique.stracke@example.org
                       patient_detail:
                         type: string
                         example: null
@@ -220,7 +220,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: little.emiliano@example.org
+                    email: romaguera.blake@example.org
                     patient_detail: null
                     role: []
                 properties:
@@ -238,7 +238,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: little.emiliano@example.org
+                        example: romaguera.blake@example.org
                       patient_detail:
                         type: string
                         example: null
@@ -264,7 +264,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: augustine86@example.net
+                    email: satterfield.tremaine@example.com
                     patient_detail: null
                     role: []
                 properties:
@@ -282,7 +282,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: augustine86@example.net
+                        example: satterfield.tremaine@example.com
                       patient_detail:
                         type: string
                         example: null
@@ -386,12 +386,12 @@ paths:
           in: query
           name: doctor_user_id
           description: ''
-          example: 1036353.3059566
+          example: 18953246.72
           required: false
           schema:
             type: number
             description: ''
-            example: 1036353.3059566
+            example: 18953246.72
         -
           in: query
           name: date
@@ -406,22 +406,22 @@ paths:
           in: query
           name: start_time
           description: 'Must be a valid date in the format <code>H:i</code>.'
-          example: '20:24'
+          example: '20:54'
           required: false
           schema:
             type: string
             description: 'Must be a valid date in the format <code>H:i</code>.'
-            example: '20:24'
+            example: '20:54'
         -
           in: query
           name: end_time
           description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
-          example: '2073-02-17'
+          example: '2084-08-20'
           required: false
           schema:
             type: string
             description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
-            example: '2073-02-17'
+            example: '2084-08-20'
         -
           in: query
           name: filters
@@ -437,22 +437,22 @@ paths:
           in: query
           name: filters.booked
           description: ''
-          example: false
+          example: true
           required: false
           schema:
             type: boolean
             description: ''
-            example: false
+            example: true
         -
           in: query
           name: filters.doctor
           description: ''
-          example: 300194.47
+          example: 54782128.88634
           required: false
           schema:
             type: number
             description: ''
-            example: 300194.47
+            example: 54782128.88634
       responses:
         200:
           description: ''
@@ -519,12 +519,12 @@ paths:
           in: query
           name: doctor_user_id
           description: ''
-          example: 335.24
+          example: 110.0
           required: true
           schema:
             type: number
             description: ''
-            example: 335.24
+            example: 110.0
         -
           in: query
           name: date
@@ -539,22 +539,22 @@ paths:
           in: query
           name: start_time
           description: 'Must be a valid date in the format <code>H:i</code>.'
-          example: '20:24'
+          example: '20:54'
           required: true
           schema:
             type: string
             description: 'Must be a valid date in the format <code>H:i</code>.'
-            example: '20:24'
+            example: '20:54'
         -
           in: query
           name: end_time
           description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
-          example: '2079-05-26'
+          example: '2035-02-22'
           required: true
           schema:
             type: string
             description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
-            example: '2079-05-26'
+            example: '2035-02-22'
         -
           in: query
           name: filters
@@ -580,12 +580,12 @@ paths:
           in: query
           name: filters.doctor
           description: ''
-          example: 69535694.668218
+          example: 1329563.19
           required: false
           schema:
             type: number
             description: ''
-            example: 69535694.668218
+            example: 1329563.19
       responses:
         200:
           description: ''
@@ -671,12 +671,12 @@ paths:
           in: query
           name: doctor_user_id
           description: ''
-          example: 238.2834635
+          example: 26.379222095
           required: false
           schema:
             type: number
             description: ''
-            example: 238.2834635
+            example: 26.379222095
         -
           in: query
           name: date
@@ -691,22 +691,22 @@ paths:
           in: query
           name: start_time
           description: 'Must be a valid date in the format <code>H:i</code>.'
-          example: '20:24'
+          example: '20:54'
           required: false
           schema:
             type: string
             description: 'Must be a valid date in the format <code>H:i</code>.'
-            example: '20:24'
+            example: '20:54'
         -
           in: query
           name: end_time
           description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
-          example: '2119-05-02'
+          example: '2066-10-04'
           required: false
           schema:
             type: string
             description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
-            example: '2119-05-02'
+            example: '2066-10-04'
         -
           in: query
           name: filters
@@ -722,22 +722,22 @@ paths:
           in: query
           name: filters.booked
           description: ''
-          example: true
+          example: false
           required: false
           schema:
             type: boolean
             description: ''
-            example: true
+            example: false
         -
           in: query
           name: filters.doctor
           description: ''
-          example: 114758470.88623
+          example: 395.860425
           required: false
           schema:
             type: number
             description: ''
-            example: 114758470.88623
+            example: 395.860425
       responses:
         200:
           description: ''
@@ -838,7 +838,7 @@ paths:
                 token_type:
                   type: string
                   description: ''
-                  example: Doctor-Token
+                  example: Patient-Token
                   enum:
                     - Patient-Token
                     - Doctor-Token
@@ -866,7 +866,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: kuhic.stanley@example.com
+                    email: luigi.bauch@example.org
                     patient_detail: null
                     role: []
                 properties:
@@ -884,7 +884,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: kuhic.stanley@example.com
+                        example: luigi.bauch@example.org
                       patient_detail:
                         type: string
                         example: null
@@ -948,7 +948,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: sauer.zackery@example.com
+                    email: pstanton@example.org
                     patient_detail: null
                     role: []
                 properties:
@@ -966,7 +966,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: sauer.zackery@example.com
+                        example: pstanton@example.org
                       patient_detail:
                         type: string
                         example: null
@@ -1062,7 +1062,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: uschoen@example.org
+                    email: vandervort.orie@example.org
                     patient_detail: null
                     role: []
                 properties:
@@ -1080,7 +1080,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: uschoen@example.org
+                        example: vandervort.orie@example.org
                       patient_detail:
                         type: string
                         example: null
@@ -1106,7 +1106,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: koch.regan@example.com
+                    email: harvey.rylee@example.org
                     patient_detail: null
                     role: []
                 properties:
@@ -1124,7 +1124,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: koch.regan@example.com
+                        example: harvey.rylee@example.org
                       patient_detail:
                         type: string
                         example: null
@@ -1192,14 +1192,14 @@ paths:
                       id: null
                       first_name: null
                       last_name: null
-                      email: zbashirian@example.com
+                      email: murazik.antwon@example.com
                       patient_detail: null
                       role: []
                     -
                       id: null
                       first_name: null
                       last_name: null
-                      email: emoore@example.net
+                      email: reece40@example.net
                       patient_detail: null
                       role: []
                 properties:
@@ -1210,14 +1210,14 @@ paths:
                         id: null
                         first_name: null
                         last_name: null
-                        email: zbashirian@example.com
+                        email: murazik.antwon@example.com
                         patient_detail: null
                         role: []
                       -
                         id: null
                         first_name: null
                         last_name: null
-                        email: emoore@example.net
+                        email: reece40@example.net
                         patient_detail: null
                         role: []
                     items:
@@ -1234,7 +1234,7 @@ paths:
                           example: null
                         email:
                           type: string
-                          example: zbashirian@example.com
+                          example: murazik.antwon@example.com
                         patient_detail:
                           type: string
                           example: null
@@ -1262,14 +1262,14 @@ paths:
                       id: null
                       first_name: null
                       last_name: null
-                      email: nitzsche.leone@example.net
+                      email: mwalsh@example.com
                       patient_detail: null
                       role: []
                     -
                       id: null
                       first_name: null
                       last_name: null
-                      email: grimes.madie@example.org
+                      email: destany.lockman@example.org
                       patient_detail: null
                       role: []
                 properties:
@@ -1280,14 +1280,14 @@ paths:
                         id: null
                         first_name: null
                         last_name: null
-                        email: nitzsche.leone@example.net
+                        email: mwalsh@example.com
                         patient_detail: null
                         role: []
                       -
                         id: null
                         first_name: null
                         last_name: null
-                        email: grimes.madie@example.org
+                        email: destany.lockman@example.org
                         patient_detail: null
                         role: []
                     items:
@@ -1304,7 +1304,7 @@ paths:
                           example: null
                         email:
                           type: string
-                          example: nitzsche.leone@example.net
+                          example: mwalsh@example.com
                         patient_detail:
                           type: string
                           example: null
@@ -1331,7 +1331,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: littel.celine@example.net
+                    email: tkrajcik@example.org
                     patient_detail: null
                     role: []
                 properties:
@@ -1349,7 +1349,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: littel.celine@example.net
+                        example: tkrajcik@example.org
                       patient_detail:
                         type: string
                         example: null
@@ -1385,7 +1385,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: karelle45@example.org
+                    email: cbreitenberg@example.com
                     patient_detail: null
                     role: []
                 properties:
@@ -1403,7 +1403,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: karelle45@example.org
+                        example: cbreitenberg@example.com
                       patient_detail:
                         type: string
                         example: null
@@ -1524,7 +1524,7 @@ paths:
                 token_type:
                   type: string
                   description: ''
-                  example: Doctor-Token
+                  example: Patient-Token
                   enum:
                     - Patient-Token
                     - Doctor-Token
@@ -1553,14 +1553,14 @@ paths:
                       id: null
                       first_name: null
                       last_name: null
-                      email: hgreenholt@example.net
+                      email: august.senger@example.org
                       patient_detail: null
                       role: []
                     -
                       id: null
                       first_name: null
                       last_name: null
-                      email: ogerhold@example.org
+                      email: kristoffer.beahan@example.org
                       patient_detail: null
                       role: []
                 properties:
@@ -1571,14 +1571,14 @@ paths:
                         id: null
                         first_name: null
                         last_name: null
-                        email: hgreenholt@example.net
+                        email: august.senger@example.org
                         patient_detail: null
                         role: []
                       -
                         id: null
                         first_name: null
                         last_name: null
-                        email: ogerhold@example.org
+                        email: kristoffer.beahan@example.org
                         patient_detail: null
                         role: []
                     items:
@@ -1595,7 +1595,7 @@ paths:
                           example: null
                         email:
                           type: string
-                          example: hgreenholt@example.net
+                          example: august.senger@example.org
                         patient_detail:
                           type: string
                           example: null
@@ -1622,7 +1622,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: mary59@example.net
+                    email: bbayer@example.net
                     patient_detail: null
                     role: []
                 properties:
@@ -1640,7 +1640,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: mary59@example.net
+                        example: bbayer@example.net
                       patient_detail:
                         type: string
                         example: null
@@ -1761,7 +1761,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: madison68@example.com
+                    email: imann@example.org
                     patient_detail: null
                     role: []
                 properties:
@@ -1779,7 +1779,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: madison68@example.com
+                        example: imann@example.org
                       patient_detail:
                         type: string
                         example: null
@@ -1805,7 +1805,7 @@ paths:
                     id: null
                     first_name: null
                     last_name: null
-                    email: foconner@example.org
+                    email: sonny.pacocha@example.com
                     patient_detail: null
                     role: []
                 properties:
@@ -1823,7 +1823,7 @@ paths:
                         example: null
                       email:
                         type: string
-                        example: foconner@example.org
+                        example: sonny.pacocha@example.com
                       patient_detail:
                         type: string
                         example: null
@@ -1914,22 +1914,22 @@ paths:
           in: query
           name: bookable_reception_times_id
           description: ''
-          example: 669.1163911
+          example: 21454724.004077
           required: false
           schema:
             type: number
             description: ''
-            example: 669.1163911
+            example: 21454724.004077
         -
           in: query
           name: patient_user_id
           description: ''
-          example: 44535.0913
+          example: 10236900.0
           required: false
           schema:
             type: number
             description: ''
-            example: 44535.0913
+            example: 10236900.0
         -
           in: query
           name: filters
@@ -1989,22 +1989,22 @@ paths:
           in: query
           name: bookable_reception_times_id
           description: ''
-          example: 359078.0
+          example: 82155.4
           required: true
           schema:
             type: number
             description: ''
-            example: 359078.0
+            example: 82155.4
         -
           in: query
           name: patient_user_id
           description: ''
-          example: 132.36566
+          example: 1.435
           required: true
           schema:
             type: number
             description: ''
-            example: 132.36566
+            example: 1.435
         -
           in: query
           name: filters
