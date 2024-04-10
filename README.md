@@ -19,7 +19,9 @@
 - knuckleswtf/scribe
 
 ### API dokumentáció
-- Projekt inicializálás után elérhető: http://localhost:8000/docs
+1. Projekt klónozása és dependenciák telepítése
+2. php artisan scribe:generate
+3. {{baseURL}}/docs
 
 ### Adatbázis
 - MySQL
