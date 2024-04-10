@@ -1,0 +1,225 @@
+name: 'Reserved Bookings'
+description: |-
+
+  Groups the APIs of Reserved Bookings,
+  that happens when a patient books an appointment.
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/bookings
+    metadata:
+      groupName: 'Reserved Bookings'
+      groupDescription: |-
+
+        Groups the APIs of Reserved Bookings,
+        that happens when a patient books an appointment.
+      subgroup: ''
+      subgroupDescription: ''
+      title: "GET - every reserved booking's data."
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      bookable_reception_times_id:
+        name: bookable_reception_times_id
+        description: ''
+        required: false
+        example: 669.1163911
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      patient_user_id:
+        name: patient_user_id
+        description: ''
+        required: false
+        example: 44535.0913
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters:
+        name: filters
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters.from_today:
+        name: filters.from_today
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanQueryParameters:
+      bookable_reception_times_id: 669.1163911
+      patient_user_id: 44535.0913
+      filters:
+        from_today: false
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":1},{"id":1}]}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer PV8a1hbcE46kDae5fZg63vd'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/bookings/{booking_id}'
+    metadata:
+      groupName: 'Reserved Bookings'
+      groupDescription: |-
+
+        Groups the APIs of Reserved Bookings,
+        that happens when a patient books an appointment.
+      subgroup: ''
+      subgroupDescription: ''
+      title: "GET - a reserved appointment's details."
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      booking_id:
+        name: booking_id
+        description: 'The ID of the booking.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      booking_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":1}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer cZgk8E1V6fDa34ed6vaPh5b'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/bookings
+    metadata:
+      groupName: 'Reserved Bookings'
+      groupDescription: |-
+
+        Groups the APIs of Reserved Bookings,
+        that happens when a patient books an appointment.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST - book a reception time created by a doctor user.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      bookable_reception_times_id:
+        name: bookable_reception_times_id
+        description: ''
+        required: true
+        example: 359078.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      patient_user_id:
+        name: patient_user_id
+        description: ''
+        required: true
+        example: 132.36566
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters:
+        name: filters
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters.from_today:
+        name: filters.from_today
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanQueryParameters:
+      bookable_reception_times_id: 359078.0
+      patient_user_id: 132.36566
+      filters:
+        from_today: true
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":1}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DkVEcd1b8P6h6vaa5g43Zef'
+    controller: null
+    method: null
+    route: null
+    custom: []

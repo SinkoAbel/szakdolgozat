@@ -54,4 +54,27 @@ class LoginRequest extends AbstractRequest
             'tokenType' => $this->tokenType,
         ];
     }
+
+    /**
+     * Generate data for Scribe documentation.
+     *
+     * @return array[]
+     */
+    public function bodyParameters(): array
+    {
+        return [
+            'email' => [
+                'description' => 'User\'s e-mail address.',
+                'example' => 'xy.yahoo.com',
+            ],
+            'password' => [
+                'description' => 'User\'s password',
+                'example' => 'my$ecretpassword',
+            ],
+            'tokenType' => [
+                'description' => 'User role based token type.',
+                'example' => 'Patient-Token',
+            ],
+        ];
+    }
 }

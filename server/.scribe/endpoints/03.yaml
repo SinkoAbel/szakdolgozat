@@ -1,0 +1,50 @@
+name: Auth
+description: |-
+
+  Authentication data.
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/logout
+    metadata:
+      groupName: Auth
+      groupDescription: |-
+
+        Authentication data.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Logout - handle the logout process.'
+      description: "Revokes the requester user's access token."
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              'message': 'Token revoked. User logged out.'
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer EZ1bP34fcgah6V8ek5d6vDa'
+    controller: null
+    method: null
+    route: null
+    custom: []

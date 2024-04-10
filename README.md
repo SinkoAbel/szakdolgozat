@@ -16,7 +16,10 @@
 - PHPUnit
 - Spatie
 - Laravel Service Generator
-- Darkaonline/L5-Swagger
+- knuckleswtf/scribe
+
+### API dokumentáció
+- Projekt inicializálás után elérhető: http://localhost:8000/docs
 
 ### Adatbázis
 - MySQL

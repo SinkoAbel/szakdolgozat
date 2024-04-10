@@ -1,0 +1,471 @@
+name: 'Bookable Reception Times'
+description: |-
+
+  Groups the API methods of the Bookable Appointments.
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/appointments
+    metadata:
+      groupName: 'Bookable Reception Times'
+      groupDescription: |-
+
+        Groups the API methods of the Bookable Appointments.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET - every bookable reception times for a specific doctor.'
+      description: 'If the requester user id a doctor it will get its own appointments.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      doctor_user_id:
+        name: doctor_user_id
+        description: ''
+        required: false
+        example: 1036353.3059566
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      date:
+        name: date
+        description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+        required: false
+        example: '2024-04-10'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      start_time:
+        name: start_time
+        description: 'Must be a valid date in the format <code>H:i</code>.'
+        required: false
+        example: '20:24'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      end_time:
+        name: end_time
+        description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+        required: false
+        example: '2073-02-17'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters:
+        name: filters
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters.booked:
+        name: filters.booked
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters.doctor:
+        name: filters.doctor
+        description: ''
+        required: false
+        example: 300194.47
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanQueryParameters:
+      doctor_user_id: 1036353.3059566
+      date: '2024-04-10'
+      start_time: '20:24'
+      end_time: '2073-02-17'
+      filters:
+        booked: false
+        doctor: 300194.47
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":7,"date":"2023-03-19","start_time":"10:00","end_time":"10:30","booked":false},{"id":7,"date":"2023-03-19","start_time":"10:00","end_time":"10:30","booked":false}]}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer ac1368eD4vk6f5bVPEgaZdh'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/appointments
+    metadata:
+      groupName: 'Bookable Reception Times'
+      groupDescription: |-
+
+        Groups the API methods of the Bookable Appointments.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST - create a bookable reception time.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      doctor_user_id:
+        name: doctor_user_id
+        description: ''
+        required: true
+        example: 335.24
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      date:
+        name: date
+        description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+        required: true
+        example: '2024-04-10'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      start_time:
+        name: start_time
+        description: 'Must be a valid date in the format <code>H:i</code>.'
+        required: true
+        example: '20:24'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      end_time:
+        name: end_time
+        description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+        required: true
+        example: '2079-05-26'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters:
+        name: filters
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters.booked:
+        name: filters.booked
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters.doctor:
+        name: filters.doctor
+        description: ''
+        required: false
+        example: 69535694.668218
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanQueryParameters:
+      doctor_user_id: 335.24
+      date: '2024-04-10'
+      start_time: '20:24'
+      end_time: '2079-05-26'
+      filters:
+        booked: true
+        doctor: 69535694.668218
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":7,"date":"2023-03-19","start_time":"10:00","end_time":"10:30","booked":false}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer fk5D18e4g3ZvaabP6dh6VEc'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/appointments/{id}'
+    metadata:
+      groupName: 'Bookable Reception Times'
+      groupDescription: |-
+
+        Groups the API methods of the Bookable Appointments.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET - a bookable reception time.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the appointment.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 7
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":7,"date":"2023-03-19","start_time":"10:00","end_time":"10:30","booked":false}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 68EavgkPDV145hd3be6fZca'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/appointments/{id}'
+    metadata:
+      groupName: 'Bookable Reception Times'
+      groupDescription: |-
+
+        Groups the API methods of the Bookable Appointments.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'PUT - modify a bookable reception time.'
+      description: |-
+        It can be modified if a patient user is not
+        booked it.
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the appointment.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 7
+    queryParameters:
+      doctor_user_id:
+        name: doctor_user_id
+        description: ''
+        required: false
+        example: 238.2834635
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      date:
+        name: date
+        description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+        required: false
+        example: '2024-04-10'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      start_time:
+        name: start_time
+        description: 'Must be a valid date in the format <code>H:i</code>.'
+        required: false
+        example: '20:24'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      end_time:
+        name: end_time
+        description: 'Must be a valid date in the format <code>H:i</code>. Must be a date after <code>start_time</code>.'
+        required: false
+        example: '2119-05-02'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters:
+        name: filters
+        description: ''
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters.booked:
+        name: filters.booked
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      filters.doctor:
+        name: filters.doctor
+        description: ''
+        required: false
+        example: 114758470.88623
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanQueryParameters:
+      doctor_user_id: 238.2834635
+      date: '2024-04-10'
+      start_time: '20:24'
+      end_time: '2119-05-02'
+      filters:
+        booked: true
+        doctor: 114758470.88623
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":7,"date":"2023-03-19","start_time":"10:00","end_time":"10:30","booked":false}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer gevPa6kEZ6bVhD45dac3f18'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/appointments/{id}'
+    metadata:
+      groupName: 'Bookable Reception Times'
+      groupDescription: |-
+
+        Groups the API methods of the Bookable Appointments.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'DELETE - delete a bookable reception time.'
+      description: 'It can not be deleted if a patient user booked.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the appointment.'
+        required: true
+        example: 7
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 7
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+               true
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+               'success': false,
+               'message': 'You can'\t delete this appointment, because it is booked. Please contact administrator.'
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 3gd4fED5V86bhZ1aPva6cke'
+    controller: null
+    method: null
+    route: null
+    custom: []

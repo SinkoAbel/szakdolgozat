@@ -1,0 +1,448 @@
+name: 'Admin Handling'
+description: |-
+
+  APIs for Admin data.
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/admin/login
+    metadata:
+      groupName: 'Admin Handling'
+      groupDescription: |-
+
+        APIs for Admin data.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Login process of admins users.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: "User's e-mail address. Must be a valid email address."
+        required: true
+        example: xy.yahoo.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: "User's password. Must not be greater than 150 characters."
+        required: true
+        example: my$ecretpassword
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      token_type:
+        name: token_type
+        description: ''
+        required: true
+        example: Doctor-Token
+        type: string
+        enumValues:
+          - Patient-Token
+          - Doctor-Token
+          - Admin-Token
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      email: xy.yahoo.com
+      password: my$ecretpassword
+      token_type: Doctor-Token
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+                "id": 4,
+                "token": Bearer 4|qe$a21dadasd1313$qas
+           }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/super/admins
+    metadata:
+      groupName: 'Admin Handling'
+      groupDescription: |-
+
+        APIs for Admin data.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET all admin users.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":null,"first_name":null,"last_name":null,"email":"alfonso44@example.org","patient_detail":null,"role":[]},{"id":null,"first_name":null,"last_name":null,"email":"gbahringer@example.com","patient_detail":null,"role":[]}]}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 64kbEdehf8cgDa1P653ZVva'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/super/admins
+    metadata:
+      groupName: 'Admin Handling'
+      groupDescription: |-
+
+        APIs for Admin data.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'POST - create a new admin user.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      first_name:
+        name: first_name
+        description: 'First name of the system user. Must not be greater than 60 characters.'
+        required: true
+        example: Jakab
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Last name of the system user. Must not be greater than 60 characters.'
+        required: true
+        example: Gipsz
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Email address of the system user. Must be a valid email address.'
+        required: true
+        example: jakab.gipsz@gmail.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Password of the system user. Must not be greater than 150 characters.'
+        required: true
+        example: jakabgipspasswd
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      role:
+        name: role
+        description: 'Role of the current user.'
+        required: true
+        example: patient
+        type: string
+        enumValues:
+          - patient
+          - doctor
+          - admin
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      first_name: Jakab
+      last_name: Gipsz
+      email: jakab.gipsz@gmail.com
+      password: jakabgipspasswd
+      role: patient
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":null,"first_name":null,"last_name":null,"email":"daryl99@example.com","patient_detail":null,"role":[]}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 8cvVfe3a61E6dPgaDZhb4k5'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/super/admins/{id}'
+    metadata:
+      groupName: 'Admin Handling'
+      groupDescription: |-
+
+        APIs for Admin data.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'GET - the requested admin user data.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the admin.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":null,"first_name":null,"last_name":null,"email":"little.emiliano@example.org","patient_detail":null,"role":[]}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DhfkPg86Vc6431dZvb5Eaea'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/super/admins/{id}'
+    metadata:
+      groupName: 'Admin Handling'
+      groupDescription: |-
+
+        APIs for Admin data.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'PUT - update the specific admin user.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the admin.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      first_name:
+        name: first_name
+        description: 'First name of the system user. Must not be greater than 60 characters.'
+        required: false
+        example: Jakab
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      last_name:
+        name: last_name
+        description: 'Last name of the system user. Must not be greater than 60 characters.'
+        required: false
+        example: Gipsz
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      email:
+        name: email
+        description: 'Email address of the system user. Must be a valid email address.'
+        required: false
+        example: jakab.gipsz@gmail.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      password:
+        name: password
+        description: 'Password of the system user. Must not be greater than 150 characters.'
+        required: false
+        example: jakabgipspasswd
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+      role:
+        name: role
+        description: 'Role of the current user.'
+        required: false
+        example: patient
+        type: string
+        enumValues:
+          - patient
+          - doctor
+          - admin
+        exampleWasSpecified: false
+        custom: []
+    cleanBodyParameters:
+      first_name: Jakab
+      last_name: Gipsz
+      email: jakab.gipsz@gmail.com
+      password: jakabgipspasswd
+      role: patient
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":null,"first_name":null,"last_name":null,"email":"augustine86@example.net","patient_detail":null,"role":[]}}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer aVdP84hb5cev6Z13a6fgDEk'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/super/admins/{id}'
+    metadata:
+      groupName: 'Admin Handling'
+      groupDescription: |-
+
+        APIs for Admin data.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'DELETE - delete the specific admin user.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the admin.'
+        required: true
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        custom: []
+    cleanUrlParameters:
+      id: 2
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              true
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+              false
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+              false
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6548E1gPaevkZad3hcVf6Db'
+    controller: null
+    method: null
+    route: null
+    custom: []

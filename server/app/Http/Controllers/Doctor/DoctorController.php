@@ -4,14 +4,21 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use App\Http\Enums\UserRolesEnum;
+use App\Http\Interfaces\ILoginable;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Doctor\DoctorRequest;
 use App\Models\User;
 use App\Services\AuthService;
 use App\Services\DoctorService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 
-class DoctorController extends Controller
+/**
+ * @group Doctor Handling
+ *
+ * APIs for Doctor data.
+ */
+class DoctorController extends Controller implements ILoginable
 {
     /**
      * @param DoctorService $doctorService
@@ -21,6 +28,18 @@ class DoctorController extends Controller
     {
     }
 
+    /**
+     * Login process of doctor users.
+     *
+     * @response status=200 {
+     *        "id": 4,
+     *        "token": Bearer 4|qe$a21dadasd1313$qas
+     * }
+     *
+     * @param LoginRequest $request
+     * @return JsonResponse
+     * @throws Exception
+     */
     public function login(LoginRequest $request): JsonResponse
     {
         return response()->json(
@@ -29,6 +48,15 @@ class DoctorController extends Controller
         );
     }
 
+    /**
+     * GET - every doctor user of the system.
+     *
+     * @authenticated
+     * @apiResourceCollection App\Http\Resources\UserResource
+     * @apiResourceModel App\Models\User
+     *
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         return response()->json(
@@ -37,6 +65,16 @@ class DoctorController extends Controller
         );
     }
 
+    /**
+     * GET - the requested doctor data.
+     * @apiResource App\Http\Resources\UserResource
+     * @apiResourceModel App\Models\User
+     *
+     * @authenticated
+     *
+     * @param User $doctor
+     * @return JsonResponse
+     */
     public function show(User $doctor): JsonResponse
     {
         return response()->json(
@@ -45,6 +83,16 @@ class DoctorController extends Controller
         );
     }
 
+    /**
+     * POST - create a new doctor.
+     *
+     * @authenticated
+     * @apiResource App\Http\Resources\UserResource
+     * @apiResourceModel App\Models\User
+     *
+     * @param DoctorRequest $request
+     * @return JsonResponse
+     */
     public function store(DoctorRequest $request): JsonResponse
     {
         return response()->json(
@@ -53,6 +101,17 @@ class DoctorController extends Controller
         );
     }
 
+    /**
+     * PUT - modify the doctor whose id is sent.
+     *
+     * @authenticated
+     * @apiResource App\Http\Resources\UserResource
+     * @apiResourceModel App\Models\User
+     *
+     * @param DoctorRequest $request
+     * @param User $doctor
+     * @return JsonResponse
+     */
     public function update(DoctorRequest $request, User $doctor): JsonResponse
     {
         return response()->json(
@@ -61,6 +120,23 @@ class DoctorController extends Controller
         );
     }
 
+    /**
+     * DELETE - delete the doctor user whose id is sent.
+     *
+     * @authenticated
+     * @response status=200 {
+     *     true
+     * }
+     * @response status=404 {
+     *     false
+     * }
+     * @response status=500 {
+     *     false
+     * }
+     *
+     * @param User $doctor
+     * @return JsonResponse
+     */
     public function destroy(User $doctor): JsonResponse
     {
         return response()->json(
