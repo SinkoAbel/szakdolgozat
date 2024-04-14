@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Http\Enums\UserRolesEnum;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -13,10 +14,15 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // Test Patient
-        User::create([
+        $patient = User::create([
             "first_name"       => "Peter",
             "last_name"        => "Griffin",
             "email"            => "peter.griffin@gmail.com",
+            "password"         => "peter",
+        ]);
+
+        // Create patient details.
+        $patient->patient_details()->create([
             "birthday"         => "1967-11-05",
             "birthplace"       => "Quahog",
             "city"             => "Quahog",
@@ -25,26 +31,28 @@ class UserSeeder extends Seeder
             "house_number"     => "32",
             "insurance_number" => "234 124 842",
             "phone"            => "+36 13 123 7342",
-            "password"         => "peter",
-            "role"             => "patient"
         ]);
 
+        $patient->assignRole(UserRolesEnum::PATIENT->value);
+
         // Test Doctor
-        User::create([
+        $doctor = User::create([
             "first_name" => "Teszt",
             "last_name"  => "Doktor",
             "email"      => "teszt.doktor@medicare.com",
             "password"   => "doctor",
-            "role"       => "doctor"
         ]);
 
+        $doctor->assignRole(UserRolesEnum::DOCTOR->value);
+
         // Test Admin
-        User::create([
+        $admin = User::create([
             "first_name" => "Test",
             "last_name"  => "Admin",
             "email"      => "test.admin@medicare.com",
             "password"   => "test-admin",
-            "role"       => "admin"
         ]);
+
+        $admin->assignRole(UserRolesEnum::ADMIN->value);
     }
 }
