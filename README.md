@@ -40,7 +40,7 @@
 - React Big Calendar: 1.8.1
 - Axios 1.4.0
 
-## Projekt futtatása
+## Projekt futtatása:
 - git clone <project>
 ### Kliens
 - cd client
@@ -50,5 +50,10 @@
 - cd server
 - composer install
 - npm install (opcionális)
+- set .env file
+- php artisan migrate
 - php artisan serve
 
+## Ajánlott műveletek szerver oldalon:
+- php artisan db:seed --class=RoleSeeder
+- php artisan db:seed --class=UserSeeder

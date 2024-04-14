@@ -46,7 +46,6 @@ const DoctorDashboard = () => {
             <h1 className='text-center font-bold my-2 text-2xl'>Időpontok áttekintése</h1>
             <TableContainer>
                 <Table variant='simple'>
-                    <TableCaption>Imperial to metric conversion factors</TableCaption>
                     <Thead>
                         <Tr>
                             <Th>Dátum</Th>
